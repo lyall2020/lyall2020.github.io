@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://yoursite.com').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":true,"preload":true},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="分析云二次开发——数据篇参照分析云本身调用接口方式，使用ajax或其他前端调用接口的技术，获取数据源，并进行数据处理，以适配要自定义的图表。 1、解读源码以词云为例，在\BA.WebApp\js\views找到wordcloudview.js，使用任意IDE打开，找到如下代码: 1234567891011121314151617181920212223242526272829requestWebA">
+<meta property="og:type" content="article">
+<meta property="og:title" content="分析云二次开发——数据篇">
+<meta property="og:url" content="http://yoursite.com/2020/01/09/%E5%88%86%E6%9E%90%E4%BA%91%E4%BA%8C%E5%BC%80%E2%80%94%E2%80%94%E6%95%B0%E6%8D%AE%E7%AF%87/index.html">
+<meta property="og:site_name" content="Lyall | 一米月光">
+<meta property="og:description" content="分析云二次开发——数据篇参照分析云本身调用接口方式，使用ajax或其他前端调用接口的技术，获取数据源，并进行数据处理，以适配要自定义的图表。 1、解读源码以词云为例，在\BA.WebApp\js\views找到wordcloudview.js，使用任意IDE打开，找到如下代码: 1234567891011121314151617181920212223242526272829requestWebA">
+<meta property="og:image" content="e:%5Cmd%E6%96%87%E6%A1%A3%5C%E5%88%86%E6%9E%90%E4%BA%91%E4%BA%8C%E5%BC%80%E2%80%94%E2%80%94%E6%95%B0%E6%8D%AE%E7%AF%87%5C%E8%8E%B7%E5%8F%96%E6%8A%A5%E8%A1%A8id.png">
+<meta property="og:image" content="e:%5Cmd%E6%96%87%E6%A1%A3%5C%E5%88%86%E6%9E%90%E4%BA%91%E4%BA%8C%E5%BC%80%E2%80%94%E2%80%94%E6%95%B0%E6%8D%AE%E7%AF%87%5C%E8%8E%B7%E5%8F%96%E5%9D%97id.png">
+<meta property="og:image" content="e:%5Cmd%E6%96%87%E6%A1%A3%5C%E5%88%86%E6%9E%90%E4%BA%91%E4%BA%8C%E5%BC%80%E2%80%94%E2%80%94%E6%95%B0%E6%8D%AE%E7%AF%87%5Ctoken.png">
+<meta property="og:image" content="e:%5Cmd%E6%96%87%E6%A1%A3%5C%E5%88%86%E6%9E%90%E4%BA%91%E4%BA%8C%E5%BC%80%E2%80%94%E2%80%94%E6%95%B0%E6%8D%AE%E7%AF%87%5C%E8%8E%B7%E5%8F%96%E8%AF%B7%E6%B1%82.png">
+<meta property="og:image" content="c:%5CUsers%5CZ%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200109155347891.png">
+<meta property="og:image" content="c:%5CUsers%5CZ%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200109160654620.png">
+<meta property="og:image" content="c:%5CUsers%5CZ%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200109161448337.png">
+<meta property="og:image" content="c:%5CUsers%5CZ%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200109161826526.png">
+<meta property="og:image" content="c:%5CUsers%5CZ%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200109162058744.png">
+<meta property="og:image" content="c:%5CUsers%5CZ%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200109162336540.png">
+<meta property="og:image" content="c:%5CUsers%5CZ%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200109162733035.png">
+<meta property="og:image" content="c:%5CUsers%5CZ%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200109162850269.png">
+<meta property="article:published_time" content="2020-01-09T08:36:45.057Z">
+<meta property="article:modified_time" content="2020-01-09T08:36:45.057Z">
+<meta property="article:author" content="HongJP">
+<meta property="article:tag" content="分析云">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="e:%5Cmd%E6%96%87%E6%A1%A3%5C%E5%88%86%E6%9E%90%E4%BA%91%E4%BA%8C%E5%BC%80%E2%80%94%E2%80%94%E6%95%B0%E6%8D%AE%E7%AF%87%5C%E8%8E%B7%E5%8F%96%E6%8A%A5%E8%A1%A8id.png">
+
+<link rel="canonical" href="http://yoursite.com/2020/01/09/%E5%88%86%E6%9E%90%E4%BA%91%E4%BA%8C%E5%BC%80%E2%80%94%E2%80%94%E6%95%B0%E6%8D%AE%E7%AF%87/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>分析云二次开发——数据篇 | Lyall | 一米月光</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Lyall | 一米月光</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">5</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">3</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">4</span></a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-fw fa-calendar"></i>日程表</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/09/%E5%88%86%E6%9E%90%E4%BA%91%E4%BA%8C%E5%BC%80%E2%80%94%E2%80%94%E6%95%B0%E6%8D%AE%E7%AF%87/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="HongJP">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lyall | 一米月光">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          分析云二次开发——数据篇
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-01-09 16:36:45" itemprop="dateCreated datePublished" datetime="2020-01-09T16:36:45+08:00">2020-01-09</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%BA%8C%E5%BC%80/" itemprop="url" rel="index">
+                    <span itemprop="name">二开</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="分析云二次开发——数据篇"><a href="#分析云二次开发——数据篇" class="headerlink" title="分析云二次开发——数据篇"></a>分析云二次开发——数据篇</h1><p>参照分析云本身调用接口方式，使用ajax或其他前端调用接口的技术，获取数据源，并进行数据处理，以适配要自定义的图表。</p>
+<h2 id="1、解读源码"><a href="#1、解读源码" class="headerlink" title="1、解读源码"></a>1、解读源码</h2><p>以词云为例，在\BA.WebApp\js\views找到wordcloudview.js，使用任意IDE打开，找到如下代码:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">requestWebApiJson:<span class="function"><span class="keyword">function</span>(<span class="params">reportId,blockId,fn,fv</span>)</span>&#123;</span><br><span class="line">			    	 fn = <span class="built_in">window</span>.encodeURIComponent(fn);</span><br><span class="line">					 fv = <span class="built_in">window</span>.encodeURIComponent(fv);</span><br><span class="line">			    	 <span class="keyword">var</span> that = <span class="keyword">this</span>;</span><br><span class="line">			    	 <span class="keyword">var</span> model = <span class="keyword">new</span> BlockDataModel();</span><br><span class="line">      				 model.url =  getWebApiURI()+<span class="string">"/GetWordCloudJson/?reportId="</span>+reportId+<span class="string">"&amp;blockId="</span>+blockId+<span class="string">"&amp;token="</span>+<span class="keyword">this</span>.model.token+<span class="string">"&amp;filterItem="</span>+fn+<span class="string">"&amp;filterValue="</span>+fv;</span><br><span class="line">	 				 </span><br><span class="line">	 				  model.fetch(&#123;<span class="attr">data</span>: <span class="built_in">JSON</span>.stringify(<span class="keyword">this</span>.model.currentReportFilter),<span class="attr">type</span>: <span class="string">'POST'</span>, <span class="attr">contentType</span>:<span class="string">"application/json"</span>, </span><br><span class="line">    							success: <span class="function"><span class="keyword">function</span> (<span class="params">model,response</span>) </span>&#123;</span><br><span class="line">    								<span class="keyword">if</span> (response.Message!=<span class="string">""</span>) &#123;</span><br><span class="line">    									 	$(<span class="string">"#"</span>+blockId+<span class="string">"_Msg"</span>).html(response.Message);						            </span><br><span class="line">											$(<span class="string">"#"</span>+blockId).show();</span><br><span class="line">			                        		$(<span class="string">"#"</span>+blockId+<span class="string">"_Msg"</span>).hide();</span><br><span class="line">    								&#125;</span><br><span class="line">    								<span class="keyword">else</span>&#123;</span><br><span class="line">											that.render(response.Items,response.LinkParameter1,response.LinkParameter2,response.LinkParameter3,response.LinkParameter4,response.LinkParameter5);</span><br><span class="line">											</span><br><span class="line">											$(<span class="string">"#"</span>+blockId).show();</span><br><span class="line">			                        		$(<span class="string">"#"</span>+blockId+<span class="string">"_Msg"</span>).hide();</span><br><span class="line">									&#125;</span><br><span class="line">    							&#125;,</span><br><span class="line">    							error: <span class="function"><span class="keyword">function</span> (<span class="params">collection, response, options</span>) </span>&#123;</span><br><span class="line">								   printError(blockId,response.responseText)</span><br><span class="line">								&#125;,</span><br><span class="line">								complete:<span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">									 that.eventBus.trigger(<span class="string">'hideloader'</span>);</span><br><span class="line">								&#125;</span><br><span class="line">    						&#125;);</span><br><span class="line">			   &#125;,</span><br></pre></td></tr></table></figure>
+
+<p>可以看出调用接口需要如下内容：</p>
+<ul>
+<li><p>请求地址 url</p>
+</li>
+<li><p>基础地址</p>
+<ul>
+<li>接口地址 （不同图表地址不同）</li>
+<li>参数 param （需要encodeURL）<ul>
+<li>报表编号 reportId</li>
+<li>块编号 blockId</li>
+<li>token</li>
+<li>过滤项 filterItem </li>
+<li>过滤值 filterValue</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>请求类型 type</p>
+<ul>
+<li>POST</li>
+</ul>
+</li>
+<li><p>请求头 headers</p>
+<ul>
+<li>“Content-type”:  “application/json”</li>
+</ul>
+</li>
+<li><p>请求内容 data</p>
+<ul>
+<li>“data”: JSON.stringify({“Name”: reportId,”Items”:[]}) </li>
+</ul>
+</li>
+</ul>
+<h3 id="1-1-获取请求地址"><a href="#1-1-获取请求地址" class="headerlink" title="1.1 获取请求地址"></a>1.1 获取请求地址</h3><h4 id="1-1-1-基础地址"><a href="#1-1-1-基础地址" class="headerlink" title="1.1.1 基础地址"></a>1.1.1 基础地址</h4><p>基础地址即项目启动地址，本地默认为：<a href="http://localhost:8008" target="_blank" rel="noopener">http://localhost:8008</a></p>
+<h4 id="1-1-2-接口地址"><a href="#1-1-2-接口地址" class="headerlink" title="1.1.2 接口地址"></a>1.1.2 接口地址</h4><p>在\BA.WebApp\js\views目录下找不同报表的js文件，从源代码中获取接口地址，例如词云的接口地址：/GetWordCloudJson</p>
+<h4 id="1-1-3-报表编号"><a href="#1-1-3-报表编号" class="headerlink" title="1.1.3 报表编号"></a>1.1.3 报表编号</h4><p>在报表管理页面，找到对应报表，点击属性</p>
+<p><img src="E:%5Cmd%E6%96%87%E6%A1%A3%5C%E5%88%86%E6%9E%90%E4%BA%91%E4%BA%8C%E5%BC%80%E2%80%94%E2%80%94%E6%95%B0%E6%8D%AE%E7%AF%87%5C%E8%8E%B7%E5%8F%96%E6%8A%A5%E8%A1%A8id.png" alt=""></p>
+<h4 id="1-1-4-块编号"><a href="#1-1-4-块编号" class="headerlink" title="1.1.4 块编号"></a>1.1.4 块编号</h4><p>在\AnalyticsCloud\BIN目录下找到ReportTools.exe，双击运行以此找到对应的块</p>
+<p><img src="E:%5Cmd%E6%96%87%E6%A1%A3%5C%E5%88%86%E6%9E%90%E4%BA%91%E4%BA%8C%E5%BC%80%E2%80%94%E2%80%94%E6%95%B0%E6%8D%AE%E7%AF%87%5C%E8%8E%B7%E5%8F%96%E5%9D%97id.png" alt=""></p>
+<h4 id="1-1-5-token"><a href="#1-1-5-token" class="headerlink" title="1.1.5 token"></a>1.1.5 token</h4><p>在报表管理页面，点击地址栏</p>
+<p><img src="E:%5Cmd%E6%96%87%E6%A1%A3%5C%E5%88%86%E6%9E%90%E4%BA%91%E4%BA%8C%E5%BC%80%E2%80%94%E2%80%94%E6%95%B0%E6%8D%AE%E7%AF%87%5Ctoken.png" alt=""></p>
+<p>1.1.6 filterItem</p>
+<p>目前没有涉及，默认空即可，如有使用后续更新</p>
+<p>1.1.7 filterValue</p>
+<p>目前没有涉及，默认空即可，如有使用后续更新</p>
+<h3 id="1-2-请求方法"><a href="#1-2-请求方法" class="headerlink" title="1.2 请求方法"></a>1.2 请求方法</h3><p>接口请求方法均为POST</p>
+<p><a href="https://www.runoob.com/http/http-methods.html" target="_blank" rel="noopener">请求方法说明</a></p>
+<h3 id="1-3-请求头"><a href="#1-3-请求头" class="headerlink" title="1.3 请求头"></a>1.3 请求头</h3><p>设置请求内容的类型为json，即设置Content-type为application/json</p>
+<p><a href="https://www.runoob.com/http/http-content-type.html" target="_blank" rel="noopener">content-type说明</a></p>
+<h3 id="1-4-请求内容"><a href="#1-4-请求内容" class="headerlink" title="1.4 请求内容"></a>1.4 请求内容</h3><p>没有过滤项：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"data"</span>: <span class="built_in">JSON</span>.stringify(&#123;<span class="string">"Name"</span>: reportId,<span class="string">"Items"</span>:[]&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>有过滤项：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"data"</span>: <span class="built_in">JSON</span>.stringify(&#123;<span class="string">"Name"</span>: reportId,<span class="string">"Items"</span>:[&#123;<span class="string">"Key"</span>:<span class="string">"请选择区域"</span>,<span class="string">"Name"</span>:<span class="string">"请选择区域"</span>,<span class="string">"Value1"</span>:<span class="string">"-全部-"</span>&#125;]&#125;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="2、数据源准备"><a href="#2、数据源准备" class="headerlink" title="2、数据源准备"></a>2、数据源准备</h2><p>数据源准备就是通过分析云设计报表，生成报表id及块id，从而可以通过调用接口方式获取数据。按照需求划分一般可以分为两种类型，一种为分析云原有报表模板，但是需要进行样式上的微调，另一种是纯定制化开发。</p>
+<h3 id="2-1-样式微调"><a href="#2-1-样式微调" class="headerlink" title="2.1 样式微调"></a>2.1 样式微调</h3><p>建议选用对应的报表模板进行设计</p>
+<p>例如需要开发一个柱状图，需要改变柱体样式并增加颜色渐变。由于是标准的报表开发，即接接口返回的数据更适配柱状图，可直接使用，减少数据处理步骤，缩短开发时间。</p>
+<h3 id="2-2-定制开发"><a href="#2-2-定制开发" class="headerlink" title="2.2 定制开发"></a>2.2 定制开发</h3><p>建议统一使用垂直表模板进行设计</p>
+<h2 id="3、接口测试"><a href="#3、接口测试" class="headerlink" title="3、接口测试"></a>3、接口测试</h2><p>使用接口测试工具Postman</p>
+<p><a href="https://www.getpostman.com/" target="_blank" rel="noopener">安装包</a>   |   <a href="https://blog.csdn.net/fxbin123/article/details/80428216" target="_blank" rel="noopener">使用教程</a></p>
+<h3 id="3-1-获取请求地址即参数"><a href="#3-1-获取请求地址即参数" class="headerlink" title="3.1 获取请求地址即参数"></a>3.1 获取请求地址即参数</h3><p>除参照1.1的方式外，还可使用下述方法</p>
+<p>设计报表，预览报表，检查元素(F12)，刷新页面(F5)</p>
+<p><img src="E:%5Cmd%E6%96%87%E6%A1%A3%5C%E5%88%86%E6%9E%90%E4%BA%91%E4%BA%8C%E5%BC%80%E2%80%94%E2%80%94%E6%95%B0%E6%8D%AE%E7%AF%87%5C%E8%8E%B7%E5%8F%96%E8%AF%B7%E6%B1%82.png" alt=""></p>
+<p>依次点击，网络-&gt;内容类型-&gt;XHR-&gt;”?reportId”开头的请求</p>
+<p>标头中的请求url即完整的请求地址，可直接复制到Postman</p>
+<p>正文中的请求正文即请求内容data，可直接复制到Postman</p>
+<h3 id="3-2-Postman调用"><a href="#3-2-Postman调用" class="headerlink" title="3.2 Postman调用"></a>3.2 Postman调用</h3><p>新建请求窗口，复制请求地址，修改请求方法为POST，增加Headers，复制请求，添加请求正文，Send</p>
+<p><img src="C:%5CUsers%5CZ%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200109155347891.png" alt="image-20200109155347891"></p>
+<p><img src="C:%5CUsers%5CZ%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200109160654620.png" alt="image-20200109160654620"></p>
+<h2 id="4、开发示例"><a href="#4、开发示例" class="headerlink" title="4、开发示例"></a>4、开发示例</h2><p>使用开发工具HbuildX</p>
+<p><a href="https://www.dcloud.io/hbuilderx.html" target="_blank" rel="noopener">安装包</a>    |    <a href="https://ask.dcloud.net.cn/docs/#//ask.dcloud.net.cn/article/35357" target="_blank" rel="noopener">使用教程</a></p>
+<h3 id="4-1新建Html项目"><a href="#4-1新建Html项目" class="headerlink" title="4.1新建Html项目"></a>4.1新建Html项目</h3><p><img src="C:%5CUsers%5CZ%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200109161448337.png" alt="image-20200109161448337"></p>
+<p>项目目录</p>
+<p><img src="C:%5CUsers%5CZ%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200109161826526.png" alt="image-20200109161826526"></p>
+<h3 id="4-2-引入jquery-js"><a href="#4-2-引入jquery-js" class="headerlink" title="4.2 引入jquery.js"></a>4.2 引入jquery.js</h3><p>在js下新建lib目录，在lib目录下新建js文件，选择jquery</p>
+<p><img src="C:%5CUsers%5CZ%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200109162058744.png" alt="image-20200109162058744"></p>
+<h3 id="4-3-自定义调用接口js"><a href="#4-3-自定义调用接口js" class="headerlink" title="4.3 自定义调用接口js"></a>4.3 自定义调用接口js</h3><p>在js下新建views目录，在views目录下新建js文件”index.js”，选择default</p>
+<p>使用Postman生成jQuery请求代码，将生成代码贴入新创建的index.js中</p>
+<p><img src="C:%5CUsers%5CZ%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200109162336540.png" alt="image-20200109162336540"></p>
+<h3 id="4-4-修改index-html"><a href="#4-4-修改index-html" class="headerlink" title="4.4 修改index.html"></a>4.4 修改index.html</h3><p>引入jquery和自定义js</p>
+<p><img src="C:%5CUsers%5CZ%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200109162733035.png" alt="image-20200109162733035"></p>
+<h3 id="4-5-运行查看结果"><a href="#4-5-运行查看结果" class="headerlink" title="4.5 运行查看结果"></a>4.5 运行查看结果</h3><p><img src="C:%5CUsers%5CZ%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200109162850269.png" alt="image-20200109162850269"></p>
+<p>运行到内置浏览器（需要事先现安装内置浏览器插件）</p>
+<p>右键-&gt;检查元素-&gt;Console，查看结果</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%88%86%E6%9E%90%E4%BA%91/" rel="tag"># 分析云</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/01/09/%E5%9F%BA%E4%BA%8Ekellte%E5%AE%9E%E7%8E%B0%E5%A4%9A%E4%B8%AAExcel%E5%8C%B9%E9%85%8D%E5%90%88%E5%B9%B6/" rel="prev" title="基于kettle实现多个Excel匹配合并">
+      <i class="fa fa-chevron-left"></i> 基于kettle实现多个Excel匹配合并
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#分析云二次开发——数据篇"><span class="nav-number">1.</span> <span class="nav-text">分析云二次开发——数据篇</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、解读源码"><span class="nav-number">1.1.</span> <span class="nav-text">1、解读源码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-获取请求地址"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1 获取请求地址</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-1-基础地址"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">1.1.1 基础地址</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-2-接口地址"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">1.1.2 接口地址</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-3-报表编号"><span class="nav-number">1.1.1.3.</span> <span class="nav-text">1.1.3 报表编号</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-4-块编号"><span class="nav-number">1.1.1.4.</span> <span class="nav-text">1.1.4 块编号</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-5-token"><span class="nav-number">1.1.1.5.</span> <span class="nav-text">1.1.5 token</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-请求方法"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.2 请求方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-请求头"><span class="nav-number">1.1.3.</span> <span class="nav-text">1.3 请求头</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-请求内容"><span class="nav-number">1.1.4.</span> <span class="nav-text">1.4 请求内容</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、数据源准备"><span class="nav-number">1.2.</span> <span class="nav-text">2、数据源准备</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-样式微调"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1 样式微调</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-定制开发"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2 定制开发</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、接口测试"><span class="nav-number">1.3.</span> <span class="nav-text">3、接口测试</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-获取请求地址即参数"><span class="nav-number">1.3.1.</span> <span class="nav-text">3.1 获取请求地址即参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-Postman调用"><span class="nav-number">1.3.2.</span> <span class="nav-text">3.2 Postman调用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、开发示例"><span class="nav-number">1.4.</span> <span class="nav-text">4、开发示例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1新建Html项目"><span class="nav-number">1.4.1.</span> <span class="nav-text">4.1新建Html项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-引入jquery-js"><span class="nav-number">1.4.2.</span> <span class="nav-text">4.2 引入jquery.js</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-自定义调用接口js"><span class="nav-number">1.4.3.</span> <span class="nav-text">4.3 自定义调用接口js</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-修改index-html"><span class="nav-number">1.4.4.</span> <span class="nav-text">4.4 修改index.html</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-5-运行查看结果"><span class="nav-number">1.4.5.</span> <span class="nav-text">4.5 运行查看结果</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="HongJP"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">HongJP</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">HongJP</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.6.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,0' opacity='0.5' zIndex='-1' count='150' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
