@@ -3,7 +3,9 @@
   <entry>
     <title>分析云二开——数据篇</title>
     <url>/2020/01/09/%E5%88%86%E6%9E%90%E4%BA%91%E4%BA%8C%E5%BC%80%E2%80%94%E2%80%94%E6%95%B0%E6%8D%AE%E7%AF%87/</url>
-    <content><![CDATA[<h1 id="分析云二次开发——数据篇"><a href="#分析云二次开发——数据篇" class="headerlink" title="分析云二次开发——数据篇"></a>分析云二次开发——数据篇</h1><p>参照分析云本身调用接口方式，使用ajax或其他前端调用接口的技术，获取数据源，并进行数据处理，以适配要自定义的图表。</p>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>参照分析云本身调用接口方式，使用ajax或其他前端调用接口的技术，获取数据源，以适配要自定义的图表。</p>
+<a id="more"></a>
+
 <h2 id="1、解读源码"><a href="#1、解读源码" class="headerlink" title="1、解读源码"></a>1、解读源码</h2><p>以词云为例，在\BA.WebApp\js\views找到wordcloudview.js，使用任意IDE打开，找到如下代码:</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">requestWebApiJson:<span class="function"><span class="keyword">function</span>(<span class="params">reportId,blockId,fn,fv</span>)</span>&#123;</span><br><span class="line">			    	 fn = <span class="built_in">window</span>.encodeURIComponent(fn);</span><br><span class="line">					 fv = <span class="built_in">window</span>.encodeURIComponent(fv);</span><br><span class="line">			    	 <span class="keyword">var</span> that = <span class="keyword">this</span>;</span><br><span class="line">			    	 <span class="keyword">var</span> model = <span class="keyword">new</span> BlockDataModel();</span><br><span class="line">      				 model.url =  getWebApiURI()+<span class="string">"/GetWordCloudJson/?reportId="</span>+reportId+<span class="string">"&amp;blockId="</span>+blockId+<span class="string">"&amp;token="</span>+<span class="keyword">this</span>.model.token+<span class="string">"&amp;filterItem="</span>+fn+<span class="string">"&amp;filterValue="</span>+fv;</span><br><span class="line">	 				 </span><br><span class="line">	 				  model.fetch(&#123;<span class="attr">data</span>: <span class="built_in">JSON</span>.stringify(<span class="keyword">this</span>.model.currentReportFilter),<span class="attr">type</span>: <span class="string">'POST'</span>, <span class="attr">contentType</span>:<span class="string">"application/json"</span>, </span><br><span class="line">    							success: <span class="function"><span class="keyword">function</span> (<span class="params">model,response</span>) </span>&#123;</span><br><span class="line">    								<span class="keyword">if</span> (response.Message!=<span class="string">""</span>) &#123;</span><br><span class="line">    									 	$(<span class="string">"#"</span>+blockId+<span class="string">"_Msg"</span>).html(response.Message);						            </span><br><span class="line">											$(<span class="string">"#"</span>+blockId).show();</span><br><span class="line">			                        		$(<span class="string">"#"</span>+blockId+<span class="string">"_Msg"</span>).hide();</span><br><span class="line">    								&#125;</span><br><span class="line">    								<span class="keyword">else</span>&#123;</span><br><span class="line">											that.render(response.Items,response.LinkParameter1,response.LinkParameter2,response.LinkParameter3,response.LinkParameter4,response.LinkParameter5);</span><br><span class="line">											</span><br><span class="line">											$(<span class="string">"#"</span>+blockId).show();</span><br><span class="line">			                        		$(<span class="string">"#"</span>+blockId+<span class="string">"_Msg"</span>).hide();</span><br><span class="line">									&#125;</span><br><span class="line">    							&#125;,</span><br><span class="line">    							error: <span class="function"><span class="keyword">function</span> (<span class="params">collection, response, options</span>) </span>&#123;</span><br><span class="line">								   printError(blockId,response.responseText)</span><br><span class="line">								&#125;,</span><br><span class="line">								complete:<span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">									 that.eventBus.trigger(<span class="string">'hideloader'</span>);</span><br><span class="line">								&#125;</span><br><span class="line">    						&#125;);</span><br><span class="line">			   &#125;,</span><br></pre></td></tr></table></figure>
 
@@ -93,6 +95,13 @@
 <p>运行到内置浏览器（需要事先现安装内置浏览器插件）</p>
 <p>右键-&gt;检查元素-&gt;Console，查看结果</p>
 ]]></content>
+      <categories>
+        <category>二次开发</category>
+        <category>分析云</category>
+      </categories>
+      <tags>
+        <tag>分析云</tag>
+      </tags>
   </entry>
   <entry>
     <title>基于kettle实现多个Excel匹配合并</title>
