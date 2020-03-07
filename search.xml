@@ -6,7 +6,6 @@
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>依托Eclipse和IDEA两种不同IDE搭建致远开发环境</p>
 <a id="more"></a>
 
-<p>[TOC]</p>
 <h3 id="一、OA安装与启动"><a href="#一、OA安装与启动" class="headerlink" title="一、OA安装与启动"></a>一、OA安装与启动</h3><hr>
 <p>1、创建数据库</p>
 <p>以SQL Server为例，新建数据库”OA-A8”，修改一下两个配置：</p>
