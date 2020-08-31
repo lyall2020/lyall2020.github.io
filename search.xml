@@ -1,6 +1,128 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>ElasticSearch从入门到放弃（一）——初体验</title>
+    <url>/ElasticSearch%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E6%94%BE%E5%BC%83%E4%B8%80.html</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>ES的初次使用，主要记录环境的搭建，ElasticSearch7.8的安装与配置，以及可视化插件elasticsearch-head的安装与配置。</p>
+<a id="more"></a>
+
+<h1 id="ElasticSearch从入门到放弃（一）——初体验"><a href="#ElasticSearch从入门到放弃（一）——初体验" class="headerlink" title="ElasticSearch从入门到放弃（一）——初体验"></a>ElasticSearch从入门到放弃（一）——初体验</h1><p>目录</p>
+<ul>
+<li>安装</li>
+<li>常用REST APIs</li>
+</ul>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><h3 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h3><ul>
+<li><p><a href="https://www.elastic.co/cn/downloads/elasticsearch" target="_blank" rel="noopener">ElasticSearch7.8</a></p>
+</li>
+<li><p><a href="https://github.com/mobz/elasticsearch-head" target="_blank" rel="noopener">ElasticSearch-head</a></p>
+</li>
+</ul>
+<h3 id="安装ElasticSearch"><a href="#安装ElasticSearch" class="headerlink" title="安装ElasticSearch"></a>安装ElasticSearch</h3><p>解压至一个<strong>英文没有空格</strong>的目录</p>
+<p>运行”/bin”目录下的elasticsearch.bat</p>
+<p>访问<a href="http://127.0.0.1:9200/，如下图则安装成功" target="_blank" rel="noopener">http://127.0.0.1:9200/，如下图则安装成功</a></p>
+<p><img src="http://qiniu.hongjp1018.cn/image-20200825095823541.png" alt="image-20200825095823487"></p>
+<h3 id="安装elasticsearch-head"><a href="#安装elasticsearch-head" class="headerlink" title="安装elasticsearch-head"></a>安装elasticsearch-head</h3><p>解压至任意目录</p>
+<p>安装<a href="https://nodejs.org/zh-cn/" target="_blank" rel="noopener">node.js</a>，用于下载elasticsearch-head需要的依赖包</p>
+<p>通过查看node版本确认node是否安装成功</p>
+<blockquote>
+<p>node -v</p>
+</blockquote>
+<p>安装grunt，用于启动elasticsearch-head服务</p>
+<blockquote>
+<p>npm install -g grunt-cli</p>
+</blockquote>
+<p>查看grunt版本确认grunt是否安装成功</p>
+<blockquote>
+<p>grunt -version</p>
+</blockquote>
+<p>进入elasticsearch-head的解压目录，初始化项目，下载依赖包</p>
+<blockquote>
+<p>npm install</p>
+</blockquote>
+<p>下载速度慢的话，可以切换为阿里数据源，再初始化</p>
+<blockquote>
+<p>npm config set registry <a href="https://registry.npm.taobao.org" target="_blank" rel="noopener">https://registry.npm.taobao.org</a></p>
+</blockquote>
+<p>运行elasticsearch-head</p>
+<blockquote>
+<p>grunt server</p>
+<p>或者</p>
+<p>npm run start</p>
+</blockquote>
+<p>访问<a href="http://localhost:9100/" target="_blank" rel="noopener">http://localhost:9100/</a></p>
+<p>修改elasticsearch配置</p>
+<p>在“/config/elasticsearch.yml”中增加下列配置</p>
+<blockquote>
+<p>http.cors.enabled: true<br>http.cors.allow-origin: “*”</p>
+</blockquote>
+<p><strong>注意：修改配置后要重启服务</strong></p>
+<h2 id="常用REST-APIs"><a href="#常用REST-APIs" class="headerlink" title="常用REST APIs"></a>常用REST APIs</h2><h3 id="创建索引"><a href="#创建索引" class="headerlink" title="创建索引"></a>创建索引</h3><figure class="highlight"><table><tr><td class="code"><pre><span class="line">PUT /&lt;index&gt;</span><br></pre></td></tr></table></figure>
+
+<p>示例</p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">PUT /my-index-000001</span><br></pre></td></tr></table></figure>
+
+<p>创建索引同时可以添加</p>
+<ul>
+<li>设置 settings</li>
+<li>字段映射 mappings</li>
+<li>别名 aliases</li>
+</ul>
+<h3 id="删除索引"><a href="#删除索引" class="headerlink" title="删除索引"></a>删除索引</h3><figure class="highlight"><table><tr><td class="code"><pre><span class="line">DELETE /&lt;index&gt;</span><br></pre></td></tr></table></figure>
+<p>示例</p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">DELETE /my-index-000001</span><br></pre></td></tr></table></figure>
+
+<h3 id="新增文档"><a href="#新增文档" class="headerlink" title="新增文档"></a>新增文档</h3><figure class="highlight"><table><tr><td class="code"><pre><span class="line">PUT /&lt;index&gt;/_doc/&lt;_id&gt;</span><br></pre></td></tr></table></figure>
+
+<p>或</p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">PUT /&lt;index&gt;/_create/&lt;_id&gt;</span><br></pre></td></tr></table></figure>
+
+<p>示例</p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">PUT /my-index-000001/_doc/1</span><br><span class="line">&#123;</span><br><span class="line">	"name": "lyall"</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="修改文档"><a href="#修改文档" class="headerlink" title="修改文档"></a>修改文档</h3><figure class="highlight"><table><tr><td class="code"><pre><span class="line">POST /&lt;index&gt;/_doc/&lt;_id&gt;</span><br></pre></td></tr></table></figure>
+
+<p>或</p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">POST /&lt;index&gt;/_create/&lt;_id&gt;</span><br></pre></td></tr></table></figure>
+
+<p>示例</p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">POST /my-index-000001/_doc/1</span><br><span class="line">&#123;</span><br><span class="line">	"name": "lyall2020"</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="删除文档"><a href="#删除文档" class="headerlink" title="删除文档"></a>删除文档</h3><figure class="highlight"><table><tr><td class="code"><pre><span class="line">DELETE /&lt;index&gt;/_doc/&lt;_id&gt;</span><br></pre></td></tr></table></figure>
+
+<p>示例</p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">DELETE /my-index-000001/_doc/1</span><br></pre></td></tr></table></figure>
+
+<h3 id="根据-lt-Id-gt-查询"><a href="#根据-lt-Id-gt-查询" class="headerlink" title="根据&lt;_Id&gt;查询"></a>根据&lt;_Id&gt;查询</h3><figure class="highlight"><table><tr><td class="code"><pre><span class="line">GET &lt;index&gt;/_doc/&lt;_id&gt;</span><br></pre></td></tr></table></figure>
+
+<p>示例</p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">GET my-index-000001/_doc/1</span><br></pre></td></tr></table></figure>
+
+<h2 id="其他配置"><a href="#其他配置" class="headerlink" title="其他配置"></a>其他配置</h2><h3 id="启用ElasticSearch用户密码"><a href="#启用ElasticSearch用户密码" class="headerlink" title="启用ElasticSearch用户密码"></a>启用ElasticSearch用户密码</h3><p>1、修改elasticsearch配置，启用X-Pack Security</p>
+<p>在“/config/elasticsearch.yml”中增加下列配置</p>
+<blockquote>
+<p>http.cors.allow-headers: Authorization,Content-Type<br>xpack.security.enabled: true<br>xpack.security.transport.ssl.enabled: true</p>
+</blockquote>
+<p>2、命令行中切换路径至“/bin”，执行下列代码</p>
+<blockquote>
+<p>elasticsearch-setup-passwords interactive</p>
+</blockquote>
+<p><img src="http://qiniu.hongjp1018.cn/image-20200831144336226.png" alt="image-20200831144336226"></p>
+<p>按提示为apm_system，kibana_system，kibana， logstash_system，beats_system，remote_monitoring_user，elastic用户设置密码</p>
+<p>3、使用elasticsearch-head</p>
+<p>访问地址变为</p>
+<blockquote>
+<p><a href="http://localhost:9100/?auth_user=elastic&amp;auth_password=123456" target="_blank" rel="noopener">http://localhost:9100/?auth_user=elastic&amp;auth_password=123456</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>ElasticSearch</category>
+      </categories>
+      <tags>
+        <tag>es</tag>
+        <tag>ElasticSearch</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>读取Word中的表格数据</title>
     <url>/%E8%AF%BB%E5%8F%96Word%E4%B8%AD%E7%9A%84%E8%A1%A8%E6%A0%BC%E6%95%B0%E6%8D%AE.html</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>使用Python批量处理Word中表格数据存储MSSQL。</p>
@@ -110,8 +232,8 @@
         <category>python</category>
       </categories>
       <tags>
-        <tag>word</tag>
         <tag>python</tag>
+        <tag>word</tag>
       </tags>
   </entry>
   <entry>
@@ -250,8 +372,8 @@
         <category>python</category>
       </categories>
       <tags>
-        <tag>python</tag>
         <tag>vs code</tag>
+        <tag>python</tag>
       </tags>
   </entry>
   <entry>
