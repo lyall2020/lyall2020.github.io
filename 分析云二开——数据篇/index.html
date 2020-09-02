@@ -1,0 +1,454 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>分析云二开——数据篇 - null</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+
+  
+  
+  <meta name="description" content="前言参照分析云本身调用接口方式，使用ajax或其他前端..."> 
+  
+  <meta name="author" content="BigPoom"> 
+
+  
+    <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  
+  
+    <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  
+  
+    <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  
+  
+    <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+  
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_hhodbqn7tit.css">
+
+  
+
+  
+  
+  
+<link rel="stylesheet" href="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+  
+  
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css">
+
+  
+
+  
+  
+  
+<link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/justifiedGallery/3.7.0/css/justifiedGallery.min.css">
+
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        loadingImage: '/images/theme/loading.gif',
+      },
+      donate: {
+        enable: true,
+        alipay: '/images/theme/alipay.jpg',
+        wechat: '/images/theme/wechat.jpg'
+      },
+      motto: {
+        api: '',
+        default: '天地不仁，以万物为刍狗。'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        alwaysShow: false
+      },
+      carrier: {
+        enable: false
+      },
+      daovoice: {
+        enable: false
+      }
+    }
+  </script>
+
+  
+
+  
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+
+
+<nav class="navbar">
+  <div class="left">
+    <div class="163music">
+    
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=298 height=52 src="//music.163.com/outchain/player?type=0&id=4987905381&auto=0&height=32"></iframe>
+    
+</div>
+  </div>
+  <div class="center">分析云二开——数据篇</div>
+  <div class="right">
+    <i class="iconfont iconmenu j-navbar-menu"></i>
+  </div>
+</nav>
+
+  <nav class="menu">
+  <div class="menu-wrap">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content">
+      
+      
+      
+      
+      <li class="menu-item"><a href="/ " class="underline"> 首页</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/archives " class="underline"> 归档</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/tags " class="underline"> 标签</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/categories " class="underline"> 分类</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/about " class="underline"> 关于</a></li>
+      
+    </ul>
+    <div class="menu-copyright"><p>Copyright© 2019-2020 | <a target="_blank" href="https://lyall2020.github.io">lyall</a> .AllRightsReserved</p></div>
+  </div>
+</nav>
+  <main id="main">
+  <div class="container" id="container">
+    <article class="article">
+  <section class="head">
+  <img   class="lazyload" data-original="/images/theme/post-image.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">分析云二开——数据篇</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>1月 09, 2020</span
+        class="post-info-item">
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>3047</span>
+    </div>
+  </div>
+</section>
+  <section class="main">
+    <section class="content">
+      <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>参照分析云本身调用接口方式，使用ajax或其他前端调用接口的技术，获取数据源，以适配要自定义的图表。</p>
+<a id="more"></a>
+
+<h2 id="1、解读源码"><a href="#1、解读源码" class="headerlink" title="1、解读源码"></a>1、解读源码</h2><p>以词云为例，在\BA.WebApp\js\views找到wordcloudview.js，使用任意IDE打开，找到如下代码:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs javascript">requestWebApiJson:<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">reportId,blockId,fn,fv</span>)</span>&#123;<br>	fn = <span class="hljs-built_in">window</span>.encodeURIComponent(fn);<br>	fv = <span class="hljs-built_in">window</span>.encodeURIComponent(fv);<br>	<span class="hljs-keyword">var</span> that = <span class="hljs-keyword">this</span>;<br>	<span class="hljs-keyword">var</span> model = <span class="hljs-keyword">new</span> BlockDataModel();<br>	model.url =  getWebApiURI()+<span class="hljs-string">"/GetWordCloudJson/?reportId="</span>+reportId+<span class="hljs-string">"&amp;blockId="</span>+blockId+<span class="hljs-string">"&amp;token="</span>+<span class="hljs-keyword">this</span>.model.token+<span class="hljs-string">"&amp;filterItem="</span>+fn+<span class="hljs-string">"&amp;filterValue="</span>+fv;		 <br>	model.fetch(&#123;<span class="hljs-attr">data</span>: <span class="hljs-built_in">JSON</span>.stringify(<span class="hljs-keyword">this</span>.model.currentReportFilter),<span class="hljs-attr">type</span>: <span class="hljs-string">'POST'</span>, <span class="hljs-attr">contentType</span>:<span class="hljs-string">"application/json"</span>, <span class="hljs-attr">success</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">model,response</span>) </span>&#123;<br>    		<span class="hljs-keyword">if</span> (response.Message!=<span class="hljs-string">""</span>) &#123;<br>    			$(<span class="hljs-string">"#"</span>+blockId+<span class="hljs-string">"_Msg"</span>).html(response.Message);						            <br>			$(<span class="hljs-string">"#"</span>+blockId).show();<br>			$(<span class="hljs-string">"#"</span>+blockId+<span class="hljs-string">"_Msg"</span>).hide();<br>    		&#125; <span class="hljs-keyword">else</span> &#123;<br>			that.render(response.Items,response.LinkParameter1,response.LinkParameter2,response.LinkParameter3,response.LinkParameter4,response.LinkParameter5);<br>			$(<span class="hljs-string">"#"</span>+blockId).show();<br>			 $(<span class="hljs-string">"#"</span>+blockId+<span class="hljs-string">"_Msg"</span>).hide();<br>		&#125;<br>    	&#125;,<br>    	<span class="hljs-attr">error</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">collection, response, options</span>) </span>&#123;<br>		printError(blockId,response.responseText)<br>	&#125;,<br>	<span class="hljs-attr">complete</span>:<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>)</span>&#123;<br>		that.eventBus.trigger(<span class="hljs-string">'hideloader'</span>);<br>	&#125;<br>    	&#125;);<br>&#125;,<br></code></pre></td></tr></table></figure>
+
+<p>可以看出调用接口需要如下内容：</p>
+<ul>
+<li><p>请求地址 url</p>
+</li>
+<li><p>基础地址</p>
+<ul>
+<li>接口地址 （不同图表地址不同）</li>
+<li>参数 param （需要encodeURL）<ul>
+<li>报表编号 reportId</li>
+<li>块编号 blockId</li>
+<li>token</li>
+<li>过滤项 filterItem </li>
+<li>过滤值 filterValue</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>请求类型 type</p>
+<ul>
+<li>POST</li>
+</ul>
+</li>
+<li><p>请求头 headers</p>
+<ul>
+<li>“Content-type”:  “application/json”</li>
+</ul>
+</li>
+<li><p>请求内容 data</p>
+<ul>
+<li>“data”: JSON.stringify({“Name”: reportId,”Items”:[]}) </li>
+</ul>
+</li>
+</ul>
+<h3 id="1-1-获取请求地址"><a href="#1-1-获取请求地址" class="headerlink" title="1.1 获取请求地址"></a>1.1 获取请求地址</h3><h4 id="1-1-1-基础地址"><a href="#1-1-1-基础地址" class="headerlink" title="1.1.1 基础地址"></a>1.1.1 基础地址</h4><p>基础地址即项目启动地址，本地默认为：<a href="http://localhost:8008" target="_blank" rel="noopener">http://localhost:8008</a></p>
+<h4 id="1-1-2-接口地址"><a href="#1-1-2-接口地址" class="headerlink" title="1.1.2 接口地址"></a>1.1.2 接口地址</h4><p>在\BA.WebApp\js\views目录下找不同报表的js文件，从源代码中获取接口地址，例如词云的接口地址：/GetWordCloudJson</p>
+<h4 id="1-1-3-报表编号"><a href="#1-1-3-报表编号" class="headerlink" title="1.1.3 报表编号"></a>1.1.3 报表编号</h4><p>在报表管理页面，找到对应报表，点击属性</p>
+<p><img   class="lazyload" data-original="http://qiniu.hongjp1018.cn/img/%E5%88%86%E6%9E%90%E4%BA%91%E4%BA%8C%E5%BC%80%E2%80%94%E2%80%94%E6%95%B0%E6%8D%AE%E7%AF%87/%E8%8E%B7%E5%8F%96%E6%8A%A5%E8%A1%A8id.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="获取报表id"></p>
+<h4 id="1-1-4-块编号"><a href="#1-1-4-块编号" class="headerlink" title="1.1.4 块编号"></a>1.1.4 块编号</h4><p>在\AnalyticsCloud\BIN目录下找到ReportTools.exe，双击运行以此找到对应的块</p>
+<p><img   class="lazyload" data-original="http://qiniu.hongjp1018.cn/img/%E5%88%86%E6%9E%90%E4%BA%91%E4%BA%8C%E5%BC%80%E2%80%94%E2%80%94%E6%95%B0%E6%8D%AE%E7%AF%87/%E8%8E%B7%E5%8F%96%E5%9D%97id.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="获取块id"></p>
+<h4 id="1-1-5-token"><a href="#1-1-5-token" class="headerlink" title="1.1.5 token"></a>1.1.5 token</h4><p>在报表管理页面，点击地址栏</p>
+<p><img   class="lazyload" data-original="http://qiniu.hongjp1018.cn/img/%E5%88%86%E6%9E%90%E4%BA%91%E4%BA%8C%E5%BC%80%E2%80%94%E2%80%94%E6%95%B0%E6%8D%AE%E7%AF%87/token.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="token"></p>
+<p>1.1.6 filterItem</p>
+<p>目前没有涉及，默认空即可，如有使用后续更新</p>
+<p>1.1.7 filterValue</p>
+<p>目前没有涉及，默认空即可，如有使用后续更新</p>
+<h3 id="1-2-请求方法"><a href="#1-2-请求方法" class="headerlink" title="1.2 请求方法"></a>1.2 请求方法</h3><p>接口请求方法均为POST</p>
+<p><a href="https://www.runoob.com/http/http-methods.html" target="_blank" rel="noopener">请求方法说明</a></p>
+<h3 id="1-3-请求头"><a href="#1-3-请求头" class="headerlink" title="1.3 请求头"></a>1.3 请求头</h3><p>设置请求内容的类型为json，即设置Content-type为application/json</p>
+<p><a href="https://www.runoob.com/http/http-content-type.html" target="_blank" rel="noopener">content-type说明</a></p>
+<h3 id="1-4-请求内容"><a href="#1-4-请求内容" class="headerlink" title="1.4 请求内容"></a>1.4 请求内容</h3><p>没有过滤项：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-string">"data"</span>: <span class="hljs-built_in">JSON</span>.stringify(&#123;<span class="hljs-string">"Name"</span>: reportId,<span class="hljs-string">"Items"</span>:[]&#125;)<br></code></pre></td></tr></table></figure>
+
+<p>有过滤项：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-string">"data"</span>: <span class="hljs-built_in">JSON</span>.stringify(&#123;<span class="hljs-string">"Name"</span>: reportId,<span class="hljs-string">"Items"</span>:[&#123;<span class="hljs-string">"Key"</span>:<span class="hljs-string">"请选择区域"</span>,<span class="hljs-string">"Name"</span>:<span class="hljs-string">"请选择区域"</span>,<span class="hljs-string">"Value1"</span>:<span class="hljs-string">"-全部-"</span>&#125;]&#125;)<br></code></pre></td></tr></table></figure>
+
+<h2 id="2、数据源准备"><a href="#2、数据源准备" class="headerlink" title="2、数据源准备"></a>2、数据源准备</h2><p>数据源准备就是通过分析云设计报表，生成报表id及块id，从而可以通过调用接口方式获取数据。按照需求划分一般可以分为两种类型，一种为分析云原有报表模板，但是需要进行样式上的微调，另一种是纯定制化开发。</p>
+<h3 id="2-1-样式微调"><a href="#2-1-样式微调" class="headerlink" title="2.1 样式微调"></a>2.1 样式微调</h3><p>建议选用对应的报表模板进行设计</p>
+<p>例如需要开发一个柱状图，需要改变柱体样式并增加颜色渐变。由于是标准的报表开发，即接接口返回的数据更适配柱状图，可直接使用，减少数据处理步骤，缩短开发时间。</p>
+<h3 id="2-2-定制开发"><a href="#2-2-定制开发" class="headerlink" title="2.2 定制开发"></a>2.2 定制开发</h3><p>建议统一使用垂直表模板进行设计</p>
+<h2 id="3、接口测试"><a href="#3、接口测试" class="headerlink" title="3、接口测试"></a>3、接口测试</h2><p>使用接口测试工具Postman</p>
+<p><a href="https://www.getpostman.com/" target="_blank" rel="noopener">安装包</a>   |   <a href="https://blog.csdn.net/fxbin123/article/details/80428216" target="_blank" rel="noopener">使用教程</a></p>
+<h3 id="3-1-获取请求地址即参数"><a href="#3-1-获取请求地址即参数" class="headerlink" title="3.1 获取请求地址即参数"></a>3.1 获取请求地址即参数</h3><p>除参照1.1的方式外，还可使用下述方法</p>
+<p>设计报表，预览报表，检查元素(F12)，刷新页面(F5)</p>
+<p><img   class="lazyload" data-original="http://qiniu.hongjp1018.cn/img/%E5%88%86%E6%9E%90%E4%BA%91%E4%BA%8C%E5%BC%80%E2%80%94%E2%80%94%E6%95%B0%E6%8D%AE%E7%AF%87/%E8%8E%B7%E5%8F%96%E8%AF%B7%E6%B1%82.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="获取请求"></p>
+<p>依次点击，网络-&gt;内容类型-&gt;XHR-&gt;”?reportId”开头的请求</p>
+<p>标头中的请求url即完整的请求地址，可直接复制到Postman</p>
+<p>正文中的请求正文即请求内容data，可直接复制到Postman</p>
+<h3 id="3-2-Postman调用"><a href="#3-2-Postman调用" class="headerlink" title="3.2 Postman调用"></a>3.2 Postman调用</h3><p>新建请求窗口，复制请求地址，修改请求方法为POST，增加Headers，复制请求，添加请求正文，Send</p>
+<p><img   class="lazyload" data-original="http://qiniu.hongjp1018.cn/img/%E5%88%86%E6%9E%90%E4%BA%91%E4%BA%8C%E5%BC%80%E2%80%94%E2%80%94%E6%95%B0%E6%8D%AE%E7%AF%87/%E6%96%B0%E5%BB%BA%E8%AF%B7%E6%B1%82%E6%B5%8B%E8%AF%95.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="新建请求测试"></p>
+<p><img   class="lazyload" data-original="http://qiniu.hongjp1018.cn/img/%E5%88%86%E6%9E%90%E4%BA%91%E4%BA%8C%E5%BC%80%E2%80%94%E2%80%94%E6%95%B0%E6%8D%AE%E7%AF%87/%E8%AF%B7%E6%B1%82%E5%86%85%E5%AE%B9.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="请求内容"></p>
+<h2 id="4、开发示例"><a href="#4、开发示例" class="headerlink" title="4、开发示例"></a>4、开发示例</h2><p>使用开发工具HbuildX</p>
+<p><a href="https://www.dcloud.io/hbuilderx.html" target="_blank" rel="noopener">安装包</a>    |    <a href="https://ask.dcloud.net.cn/docs/#//ask.dcloud.net.cn/article/35357" target="_blank" rel="noopener">使用教程</a></p>
+<h3 id="4-1新建Html项目"><a href="#4-1新建Html项目" class="headerlink" title="4.1新建Html项目"></a>4.1新建Html项目</h3><p><img   class="lazyload" data-original="http://qiniu.hongjp1018.cn/img/%E5%88%86%E6%9E%90%E4%BA%91%E4%BA%8C%E5%BC%80%E2%80%94%E2%80%94%E6%95%B0%E6%8D%AE%E7%AF%87/%E6%96%B0%E5%BB%BA%E9%A1%B9%E7%9B%AE.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="新建项目"></p>
+<p>项目目录</p>
+<p><img   class="lazyload" data-original="http://qiniu.hongjp1018.cn/img/%E5%88%86%E6%9E%90%E4%BA%91%E4%BA%8C%E5%BC%80%E2%80%94%E2%80%94%E6%95%B0%E6%8D%AE%E7%AF%87/%E9%A1%B9%E7%9B%AE%E7%9B%AE%E5%BD%95.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="项目目录"></p>
+<h3 id="4-2-引入jquery-js"><a href="#4-2-引入jquery-js" class="headerlink" title="4.2 引入jquery.js"></a>4.2 引入jquery.js</h3><p>在js下新建lib目录，在lib目录下新建js文件，选择jquery</p>
+<p><img   class="lazyload" data-original="http://qiniu.hongjp1018.cn/img/%E5%88%86%E6%9E%90%E4%BA%91%E4%BA%8C%E5%BC%80%E2%80%94%E2%80%94%E6%95%B0%E6%8D%AE%E7%AF%87/%E6%96%B0%E5%BB%BAjquery.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="新建jquery"></p>
+<h3 id="4-3-自定义调用接口js"><a href="#4-3-自定义调用接口js" class="headerlink" title="4.3 自定义调用接口js"></a>4.3 自定义调用接口js</h3><p>在js下新建views目录，在views目录下新建js文件”index.js”，选择default</p>
+<p>使用Postman生成jQuery请求代码，将生成代码贴入新创建的index.js中</p>
+<p><img   class="lazyload" data-original="http://qiniu.hongjp1018.cn/img/%E5%88%86%E6%9E%90%E4%BA%91%E4%BA%8C%E5%BC%80%E2%80%94%E2%80%94%E6%95%B0%E6%8D%AE%E7%AF%87/%E7%94%9F%E6%88%90js%E8%AF%B7%E6%B1%82.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="生成js请求"></p>
+<h3 id="4-4-修改index-html"><a href="#4-4-修改index-html" class="headerlink" title="4.4 修改index.html"></a>4.4 修改index.html</h3><p>引入jquery和自定义js</p>
+<p><img   class="lazyload" data-original="http://qiniu.hongjp1018.cn/img/%E5%88%86%E6%9E%90%E4%BA%91%E4%BA%8C%E5%BC%80%E2%80%94%E2%80%94%E6%95%B0%E6%8D%AE%E7%AF%87/%E5%BC%95%E5%85%A5js.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="引入js"></p>
+<h3 id="4-5-运行查看结果"><a href="#4-5-运行查看结果" class="headerlink" title="4.5 运行查看结果"></a>4.5 运行查看结果</h3><p><img   class="lazyload" data-original="http://qiniu.hongjp1018.cn/img/%E5%88%86%E6%9E%90%E4%BA%91%E4%BA%8C%E5%BC%80%E2%80%94%E2%80%94%E6%95%B0%E6%8D%AE%E7%AF%87/%E8%BF%90%E8%A1%8C.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="运行"></p>
+<p>运行到内置浏览器（需要事先现安装内置浏览器插件）</p>
+<p>右键-&gt;检查元素-&gt;Console，查看结果</p>
+
+    </section>
+    <section class="extra">
+      
+        <ul class="copyright">
+  
+  <li><strong>本文作者：</strong>BigPoom</li>
+  <li><strong>本文链接：</strong><a href="http://lyall2020.github.io/%E5%88%86%E6%9E%90%E4%BA%91%E4%BA%8C%E5%BC%80%E2%80%94%E2%80%94%E6%95%B0%E6%8D%AE%E7%AF%87/index.html">http://lyall2020.github.io/%E5%88%86%E6%9E%90%E4%BA%91%E4%BA%8C%E5%BC%80%E2%80%94%E2%80%94%E6%95%B0%E6%8D%AE%E7%AF%87/index.html</a></li>
+  <li><strong>版权声明：</strong>本博客所有文章均采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh"
+      rel="external nofollow" target="_blank"> BY-NC-SA </a>许可协议，转载请注明出处！</li>
+  
+</ul>
+      
+      
+        <section class="donate">
+  <div class="qrcode">
+    <img   class="lazyload" data-original="/images/theme/alipay.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+      
+      
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%88%86%E6%9E%90%E4%BA%91/" rel="tag">分析云</a></li></ul>
+
+      
+<nav class="nav">
+  
+    <a href="/%E5%88%86%E6%9E%90%E4%BA%91%E4%BA%8C%E5%BC%80%E2%80%94%E2%80%94%E6%8A%A5%E8%A1%A8%E7%AF%87/"><i class="iconfont iconleft"></i>分析云二开——报表篇</a>
+  
+  
+</nav>
+
+    </section>
+    
+      <section class="comments">
+        
+          <div class="btn" id="comments-btn">查看评论</div>
+        
+        
+<div id="valine"></div>
+<script defer src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+  window.onload = function () {
+    var loadValine = function () {
+      new Valine({
+        el: '#valine',
+        app_id: "om5v6Yea3iQD57IxOpdagvb3-gzGzoHsz",
+        app_key: "dczs3m37wzi6q04LbYGCMQch",
+        placeholder: "留下你的足迹~",
+        avatar: "mp",
+        pageSize: "10",
+        lang: "zh-CN",
+      });
+    }
+    if ( true ) {
+      $("#comments-btn").on("click", function () {
+        $(this).hide();
+        loadValine();
+      });
+    } else {
+      loadValine();
+    }
+  };
+</script>
+
+      </section>
+    
+  </section>
+</article>
+  </div>
+</main>
+  <footer class="footer">
+  <div class="footer-social">
+    
+    
+    
+    
+    
+    <a href="tencent://message/?Menu=yes&uin=2394148078 " target="_blank" onMouseOver="this.style.color= '#12B7F5'"
+      onMouseOut="this.style.color='#33333D'">
+      <i class="iconfont footer-social-item  iconQQ "></i>
+    </a>
+    
+    
+    
+    
+    
+    <a href="mailto:bigpoom@aliyun.com " target="_blank" onMouseOver="this.style.color='#FFBE5B'"
+      onMouseOut="this.style.color='#33333D'">
+      <i class="iconfont footer-social-item  iconmail"></i>
+    </a>
+    
+  </div>
+  <div class="footer-copyright"><p>Copyright© 2019-2020 | <a target="_blank" href="https://lyall2020.github.io">lyall</a> .AllRightsReserved</p></div>
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+</body>
+
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+
+
+<script src="https://cdn.bootcdn.net/ajax/libs/justifiedGallery/3.7.0/js/jquery.justifiedGallery.min.js"></script>
+
+
+
+
+
+
+<script src="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/modules.js"></script>
+<script src="/js/zui.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+<script>
+  (function () {
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    } else {
+      bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+
+<script>
+  var _hmt = _hmt || [];
+  (function () {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?4c204d8bc027a0455b5fc642ac334ca8";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+
+
+
+
+
+
+
+
+
+
+</html>

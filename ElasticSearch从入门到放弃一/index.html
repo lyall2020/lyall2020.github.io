@@ -1,0 +1,468 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>ElasticSearch从入门到放弃（一）——初体验 - null</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+
+  
+  
+  <meta name="description" content="ES的初次使用，主要记录环境的搭建，ElasticSe..."> 
+  
+  <meta name="author" content="BigPoom"> 
+
+  
+    <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  
+  
+    <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  
+  
+    <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  
+  
+    <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+  
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_hhodbqn7tit.css">
+
+  
+
+  
+  
+  
+<link rel="stylesheet" href="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+  
+  
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css">
+
+  
+
+  
+  
+  
+<link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/justifiedGallery/3.7.0/css/justifiedGallery.min.css">
+
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        loadingImage: '/images/theme/loading.gif',
+      },
+      donate: {
+        enable: true,
+        alipay: '/images/theme/alipay.jpg',
+        wechat: '/images/theme/wechat.jpg'
+      },
+      motto: {
+        api: '',
+        default: '天地不仁，以万物为刍狗。'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        alwaysShow: false
+      },
+      carrier: {
+        enable: false
+      },
+      daovoice: {
+        enable: false
+      }
+    }
+  </script>
+
+  
+
+  
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+
+
+<nav class="navbar">
+  <div class="left">
+    <div class="163music">
+    
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=298 height=52 src="//music.163.com/outchain/player?type=0&id=4987905381&auto=0&height=32"></iframe>
+    
+</div>
+  </div>
+  <div class="center">ElasticSearch从入门到放弃（一）——初体验</div>
+  <div class="right">
+    <i class="iconfont iconmenu j-navbar-menu"></i>
+  </div>
+</nav>
+
+  <nav class="menu">
+  <div class="menu-wrap">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content">
+      
+      
+      
+      
+      <li class="menu-item"><a href="/ " class="underline"> 首页</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/archives " class="underline"> 归档</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/tags " class="underline"> 标签</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/categories " class="underline"> 分类</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/about " class="underline"> 关于</a></li>
+      
+    </ul>
+    <div class="menu-copyright"><p>Copyright© 2019-2020 | <a target="_blank" href="https://lyall2020.github.io">lyall</a> .AllRightsReserved</p></div>
+  </div>
+</nav>
+  <main id="main">
+  <div class="container" id="container">
+    <article class="article">
+  <section class="head">
+  <img   class="lazyload" data-original="/images/theme/post-image.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">ElasticSearch从入门到放弃（一）——初体验</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>8月 31, 2020</span
+        class="post-info-item">
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>1880</span>
+    </div>
+  </div>
+</section>
+  <section class="main">
+    <section class="content">
+      <p>ES的初次使用，主要记录环境的搭建，ElasticSearch7.8的安装与配置，以及可视化插件elasticsearch-head的安装与配置。</p>
+<a id="more"></a>
+
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><h3 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h3><ul>
+<li><p><a href="https://www.elastic.co/cn/downloads/elasticsearch" target="_blank" rel="noopener">ElasticSearch7.8</a></p>
+</li>
+<li><p><a href="https://github.com/mobz/elasticsearch-head" target="_blank" rel="noopener">ElasticSearch-head</a></p>
+</li>
+</ul>
+<h3 id="安装ElasticSearch"><a href="#安装ElasticSearch" class="headerlink" title="安装ElasticSearch"></a>安装ElasticSearch</h3><p>解压至一个<strong>英文没有空格</strong>的目录</p>
+<p>运行”/bin”目录下的elasticsearch.bat</p>
+<p>访问<a href="http://127.0.0.1:9200/，如下图则安装成功" target="_blank" rel="noopener">http://127.0.0.1:9200/，如下图则安装成功</a></p>
+<p><img   class="lazyload" data-original="http://qiniu.hongjp1018.cn/image-20200825095823541.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20200825095823487"></p>
+<h3 id="安装elasticsearch-head"><a href="#安装elasticsearch-head" class="headerlink" title="安装elasticsearch-head"></a>安装elasticsearch-head</h3><p>解压至任意目录</p>
+<p>安装<a href="https://nodejs.org/zh-cn/" target="_blank" rel="noopener">node.js</a>，用于下载elasticsearch-head需要的依赖包</p>
+<p>通过查看node版本确认node是否安装成功</p>
+<blockquote>
+<p>node -v</p>
+</blockquote>
+<p>安装grunt，用于启动elasticsearch-head服务</p>
+<blockquote>
+<p>npm install -g grunt-cli</p>
+</blockquote>
+<p>查看grunt版本确认grunt是否安装成功</p>
+<blockquote>
+<p>grunt -version</p>
+</blockquote>
+<p>进入elasticsearch-head的解压目录，初始化项目，下载依赖包</p>
+<blockquote>
+<p>npm install</p>
+</blockquote>
+<p>下载速度慢的话，可以切换为阿里数据源，再初始化</p>
+<blockquote>
+<p>npm config set registry <a href="https://registry.npm.taobao.org" target="_blank" rel="noopener">https://registry.npm.taobao.org</a></p>
+</blockquote>
+<p>运行elasticsearch-head</p>
+<blockquote>
+<p>grunt server</p>
+<p>或者</p>
+<p>npm run start</p>
+</blockquote>
+<p>访问<a href="http://localhost:9100/" target="_blank" rel="noopener">http://localhost:9100/</a></p>
+<p>修改elasticsearch配置</p>
+<p>在“/config/elasticsearch.yml”中增加下列配置</p>
+<blockquote>
+<p>http.cors.enabled: true<br>http.cors.allow-origin: “*”</p>
+</blockquote>
+<p><strong>注意：修改配置后要重启服务</strong></p>
+<h2 id="常用REST-APIs"><a href="#常用REST-APIs" class="headerlink" title="常用REST APIs"></a>常用REST APIs</h2><h3 id="创建索引"><a href="#创建索引" class="headerlink" title="创建索引"></a>创建索引</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs http">PUT /&lt;index&gt;<br></code></pre></td></tr></table></figure>
+
+<p>示例</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs http">PUT /my-index-000001<br></code></pre></td></tr></table></figure>
+
+<p>创建索引同时可以添加</p>
+<ul>
+<li>设置 settings</li>
+<li>字段映射 mappings</li>
+<li>别名 aliases</li>
+</ul>
+<h3 id="删除索引"><a href="#删除索引" class="headerlink" title="删除索引"></a>删除索引</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs http">DELETE /&lt;index&gt;<br></code></pre></td></tr></table></figure>
+<p>示例</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs http">DELETE /my-index-000001<br></code></pre></td></tr></table></figure>
+
+<h3 id="新增文档"><a href="#新增文档" class="headerlink" title="新增文档"></a>新增文档</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs http">PUT /&lt;index&gt;/_doc/&lt;_id&gt;<br></code></pre></td></tr></table></figure>
+
+<p>或</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs http">PUT /&lt;index&gt;/_create/&lt;_id&gt;<br></code></pre></td></tr></table></figure>
+
+<p>示例</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs http">PUT /my-index-000001/_doc/1<br>&#123;<br>	"name": "lyall"<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="修改文档"><a href="#修改文档" class="headerlink" title="修改文档"></a>修改文档</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs http">POST /&lt;index&gt;/_doc/&lt;_id&gt;<br></code></pre></td></tr></table></figure>
+
+<p>或</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs http">POST /&lt;index&gt;/_create/&lt;_id&gt;<br></code></pre></td></tr></table></figure>
+
+<p>示例</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs http">POST /my-index-000001/_doc/1<br>&#123;<br>	"name": "lyall2020"<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="删除文档"><a href="#删除文档" class="headerlink" title="删除文档"></a>删除文档</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs http">DELETE /&lt;index&gt;/_doc/&lt;_id&gt;<br></code></pre></td></tr></table></figure>
+
+<p>示例</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs http">DELETE /my-index-000001/_doc/1<br></code></pre></td></tr></table></figure>
+
+<h3 id="根据-lt-Id-gt-查询"><a href="#根据-lt-Id-gt-查询" class="headerlink" title="根据&lt;_Id&gt;查询"></a>根据&lt;_Id&gt;查询</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs http">GET &lt;index&gt;/_doc/&lt;_id&gt;<br></code></pre></td></tr></table></figure>
+
+<p>示例</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs HTTP">GET my-index-000001/_doc/1<br></code></pre></td></tr></table></figure>
+
+<h2 id="其他配置"><a href="#其他配置" class="headerlink" title="其他配置"></a>其他配置</h2><h3 id="启用ElasticSearch用户密码"><a href="#启用ElasticSearch用户密码" class="headerlink" title="启用ElasticSearch用户密码"></a>启用ElasticSearch用户密码</h3><p>1、修改elasticsearch配置，启用X-Pack Security</p>
+<p>在“/config/elasticsearch.yml”中增加下列配置</p>
+<blockquote>
+<p>http.cors.allow-headers: Authorization,Content-Type<br>xpack.security.enabled: true<br>xpack.security.transport.ssl.enabled: true</p>
+</blockquote>
+<p>2、命令行中切换路径至“/bin”，执行下列代码</p>
+<blockquote>
+<p>elasticsearch-setup-passwords interactive</p>
+</blockquote>
+<p><img   class="lazyload" data-original="http://qiniu.hongjp1018.cn/image-20200831144336226.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20200831144336226"></p>
+<p>按提示为apm_system，kibana_system，kibana， logstash_system，beats_system，remote_monitoring_user，elastic用户设置密码</p>
+<p>3、使用elasticsearch-head</p>
+<p>访问地址变为</p>
+<blockquote>
+<p><a href="http://localhost:9100/?auth_user=elastic&amp;auth_password=123456" target="_blank" rel="noopener">http://localhost:9100/?auth_user=elastic&amp;auth_password=123456</a></p>
+</blockquote>
+
+    </section>
+    <section class="extra">
+      
+        <ul class="copyright">
+  
+  <li><strong>本文作者：</strong>BigPoom</li>
+  <li><strong>本文链接：</strong><a href="http://lyall2020.github.io/ElasticSearch%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E6%94%BE%E5%BC%83%E4%B8%80/index.html">http://lyall2020.github.io/ElasticSearch%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E6%94%BE%E5%BC%83%E4%B8%80/index.html</a></li>
+  <li><strong>版权声明：</strong>本博客所有文章均采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh"
+      rel="external nofollow" target="_blank"> BY-NC-SA </a>许可协议，转载请注明出处！</li>
+  
+</ul>
+      
+      
+        <section class="donate">
+  <div class="qrcode">
+    <img   class="lazyload" data-original="/images/theme/alipay.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+      
+      
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ElasticSearch/" rel="tag">ElasticSearch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/es/" rel="tag">es</a></li></ul>
+
+      
+<nav class="nav">
+  
+  
+    <a href="/%E8%AF%BB%E5%8F%96Word%E4%B8%AD%E7%9A%84%E8%A1%A8%E6%A0%BC%E6%95%B0%E6%8D%AE/">读取Word中的表格数据<i class="iconfont iconright"></i></a>
+  
+</nav>
+
+    </section>
+    
+      <section class="comments">
+        
+          <div class="btn" id="comments-btn">查看评论</div>
+        
+        
+<div id="valine"></div>
+<script defer src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+  window.onload = function () {
+    var loadValine = function () {
+      new Valine({
+        el: '#valine',
+        app_id: "om5v6Yea3iQD57IxOpdagvb3-gzGzoHsz",
+        app_key: "dczs3m37wzi6q04LbYGCMQch",
+        placeholder: "留下你的足迹~",
+        avatar: "mp",
+        pageSize: "10",
+        lang: "zh-CN",
+      });
+    }
+    if ( true ) {
+      $("#comments-btn").on("click", function () {
+        $(this).hide();
+        loadValine();
+      });
+    } else {
+      loadValine();
+    }
+  };
+</script>
+
+      </section>
+    
+  </section>
+</article>
+  </div>
+</main>
+  <footer class="footer">
+  <div class="footer-social">
+    
+    
+    
+    
+    
+    <a href="tencent://message/?Menu=yes&uin=2394148078 " target="_blank" onMouseOver="this.style.color= '#12B7F5'"
+      onMouseOut="this.style.color='#33333D'">
+      <i class="iconfont footer-social-item  iconQQ "></i>
+    </a>
+    
+    
+    
+    
+    
+    <a href="mailto:bigpoom@aliyun.com " target="_blank" onMouseOver="this.style.color='#FFBE5B'"
+      onMouseOut="this.style.color='#33333D'">
+      <i class="iconfont footer-social-item  iconmail"></i>
+    </a>
+    
+  </div>
+  <div class="footer-copyright"><p>Copyright© 2019-2020 | <a target="_blank" href="https://lyall2020.github.io">lyall</a> .AllRightsReserved</p></div>
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+</body>
+
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+
+
+<script src="https://cdn.bootcdn.net/ajax/libs/justifiedGallery/3.7.0/js/jquery.justifiedGallery.min.js"></script>
+
+
+
+
+
+
+<script src="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/modules.js"></script>
+<script src="/js/zui.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+<script>
+  (function () {
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    } else {
+      bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+
+<script>
+  var _hmt = _hmt || [];
+  (function () {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?4c204d8bc027a0455b5fc642ac334ca8";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+
+
+
+
+
+
+
+
+
+
+</html>

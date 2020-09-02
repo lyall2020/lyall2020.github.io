@@ -1,0 +1,436 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>分析云二开——报表篇 - null</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+
+  
+  
+  <meta name="description" content="前言基于前文的数据源，使用Echarts进行自定义图表..."> 
+  
+  <meta name="author" content="BigPoom"> 
+
+  
+    <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  
+  
+    <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  
+  
+    <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  
+  
+    <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+  
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_hhodbqn7tit.css">
+
+  
+
+  
+  
+  
+<link rel="stylesheet" href="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+  
+  
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css">
+
+  
+
+  
+  
+  
+<link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/justifiedGallery/3.7.0/css/justifiedGallery.min.css">
+
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        loadingImage: '/images/theme/loading.gif',
+      },
+      donate: {
+        enable: true,
+        alipay: '/images/theme/alipay.jpg',
+        wechat: '/images/theme/wechat.jpg'
+      },
+      motto: {
+        api: '',
+        default: '天地不仁，以万物为刍狗。'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        alwaysShow: false
+      },
+      carrier: {
+        enable: false
+      },
+      daovoice: {
+        enable: false
+      }
+    }
+  </script>
+
+  
+
+  
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+
+
+<nav class="navbar">
+  <div class="left">
+    <div class="163music">
+    
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=298 height=52 src="//music.163.com/outchain/player?type=0&id=4987905381&auto=0&height=32"></iframe>
+    
+</div>
+  </div>
+  <div class="center">分析云二开——报表篇</div>
+  <div class="right">
+    <i class="iconfont iconmenu j-navbar-menu"></i>
+  </div>
+</nav>
+
+  <nav class="menu">
+  <div class="menu-wrap">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content">
+      
+      
+      
+      
+      <li class="menu-item"><a href="/ " class="underline"> 首页</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/archives " class="underline"> 归档</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/tags " class="underline"> 标签</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/categories " class="underline"> 分类</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/about " class="underline"> 关于</a></li>
+      
+    </ul>
+    <div class="menu-copyright"><p>Copyright© 2019-2020 | <a target="_blank" href="https://lyall2020.github.io">lyall</a> .AllRightsReserved</p></div>
+  </div>
+</nav>
+  <main id="main">
+  <div class="container" id="container">
+    <article class="article">
+  <section class="head">
+  <img   class="lazyload" data-original="/images/theme/post-image.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">分析云二开——报表篇</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>1月 10, 2020</span
+        class="post-info-item">
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>18766</span>
+    </div>
+  </div>
+</section>
+  <section class="main">
+    <section class="content">
+      <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>基于前文的数据源，使用Echarts进行自定义图表开发，通过主题搭配，功能配置实现个性化分析需求。</p>
+<a id="more"></a>
+
+<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><h2 id="推荐阅读"><a href="#推荐阅读" class="headerlink" title="推荐阅读"></a>推荐阅读</h2><p><a href="http://lyall2020.github.io/2020/01/09/分析云二开——数据篇/">《分析云二开——数据篇》</a></p>
+<h2 id="Echarts"><a href="#Echarts" class="headerlink" title="Echarts"></a>Echarts</h2><p><a href="https://echarts.apache.org/zh/index.html" target="_blank" rel="noopener">官网</a>    |    <a href="https://echarts.apache.org/zh/option.html#title" target="_blank" rel="noopener">文档</a>    |    <a href="https://echarts.apache.org/examples/zh/index.html" target="_blank" rel="noopener">官方实例</a>    |    <a href="https://echarts.apache.org/examples/zh/index.html" target="_blank" rel="noopener">社区实例</a></p>
+<p>Echarts4以前的图表实现，数据集只能定义到各个系列（series）中，Echarts4开始支持dataset组件进行数据集管理，当时只有部分图表支持：</p>
+<ul>
+<li>line  折线/面积图</li>
+<li>bar  柱状/条形图</li>
+<li>pie  饼图</li>
+<li>scatter  散点（气泡）图</li>
+<li>effectScatter 带有涟漪特效动画的散点（气泡）图</li>
+<li>parallel  平行坐标系的系列</li>
+<li>candlestick  k线图</li>
+<li>map  地图</li>
+<li>funnel  漏斗图</li>
+<li>custom  自定义</li>
+</ul>
+<p>故我们可以参考Echarts的数据集管理方式，将我们的数据进行格式或计算处理。</p>
+<h2 id="数据处理"><a href="#数据处理" class="headerlink" title="数据处理"></a>数据处理</h2><p>由<a href="http://lyall2020.github.io/2020/01/09/分析云二开——数据篇/">《分析云二开——数据篇》</a>获取的数据源，适配分析云的报表模型，但是不能直接应用到定制开发上，故需要进一步的数据处理。</p>
+<h3 id="样式微调"><a href="#样式微调" class="headerlink" title="样式微调"></a>样式微调</h3><p>以分析云的“柱状图”为例，接口返回数据如下：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br></pre></td><td class="code"><pre><code class="hljs json">&#123;<br>    <span class="hljs-attr">"Message"</span>: <span class="hljs-string">""</span>,<br>    <span class="hljs-attr">"Items"</span>: [<br>        &#123;<br>            <span class="hljs-attr">"Dimension1"</span>: <span class="hljs-string">"A"</span>,<br>            <span class="hljs-attr">"Dimension2"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"Value1"</span>: <span class="hljs-number">50.00000000</span>,<br>            <span class="hljs-attr">"Value2"</span>: <span class="hljs-number">10.00000000</span>,<br>            <span class="hljs-attr">"Value3"</span>: <span class="hljs-number">100.00000000</span>,<br>            <span class="hljs-attr">"Value4"</span>: <span class="hljs-number">0.0</span>,<br>            <span class="hljs-attr">"Value5"</span>: <span class="hljs-number">0.0</span>,<br>            <span class="hljs-attr">"Value6"</span>: <span class="hljs-number">0.0</span>,<br>            <span class="hljs-attr">"Value7"</span>: <span class="hljs-number">0.0</span>,<br>            <span class="hljs-attr">"Value8"</span>: <span class="hljs-number">0.0</span>,<br>            <span class="hljs-attr">"Value9"</span>: <span class="hljs-number">0.0</span>,<br>            <span class="hljs-attr">"Value10"</span>: <span class="hljs-number">0.0</span>,<br>            <span class="hljs-attr">"Value11"</span>: <span class="hljs-number">0.0</span>,<br>            <span class="hljs-attr">"Value12"</span>: <span class="hljs-number">0.0</span>,<br>            <span class="hljs-attr">"Value13"</span>: <span class="hljs-number">0.0</span>,<br>            <span class="hljs-attr">"Value14"</span>: <span class="hljs-number">0.0</span>,<br>            <span class="hljs-attr">"Value15"</span>: <span class="hljs-number">0.0</span>,<br>            <span class="hljs-attr">"Value16"</span>: <span class="hljs-number">0.0</span>,<br>            <span class="hljs-attr">"Value17"</span>: <span class="hljs-number">0.0</span>,<br>            <span class="hljs-attr">"Value18"</span>: <span class="hljs-number">0.0</span>,<br>            <span class="hljs-attr">"Value19"</span>: <span class="hljs-number">0.0</span>,<br>            <span class="hljs-attr">"Value20"</span>: <span class="hljs-number">0.0</span>,<br>            <span class="hljs-attr">"color"</span>: <span class="hljs-string">""</span><br>        &#125;,<br>        &#123;<br>            <span class="hljs-attr">"Dimension1"</span>: <span class="hljs-string">"B"</span>,<br>            <span class="hljs-attr">"Dimension2"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"Value1"</span>: <span class="hljs-number">20.00000000</span>,<br>            <span class="hljs-attr">"Value2"</span>: <span class="hljs-number">20.00000000</span>,<br>            <span class="hljs-attr">"Value3"</span>: <span class="hljs-number">20.00000000</span>,<br>            <span class="hljs-attr">"Value4"</span>: <span class="hljs-number">0.0</span>,<br>            <span class="hljs-attr">"Value5"</span>: <span class="hljs-number">0.0</span>,<br>            <span class="hljs-attr">"Value6"</span>: <span class="hljs-number">0.0</span>,<br>            <span class="hljs-attr">"Value7"</span>: <span class="hljs-number">0.0</span>,<br>            <span class="hljs-attr">"Value8"</span>: <span class="hljs-number">0.0</span>,<br>            <span class="hljs-attr">"Value9"</span>: <span class="hljs-number">0.0</span>,<br>            <span class="hljs-attr">"Value10"</span>: <span class="hljs-number">0.0</span>,<br>            <span class="hljs-attr">"Value11"</span>: <span class="hljs-number">0.0</span>,<br>            <span class="hljs-attr">"Value12"</span>: <span class="hljs-number">0.0</span>,<br>            <span class="hljs-attr">"Value13"</span>: <span class="hljs-number">0.0</span>,<br>            <span class="hljs-attr">"Value14"</span>: <span class="hljs-number">0.0</span>,<br>            <span class="hljs-attr">"Value15"</span>: <span class="hljs-number">0.0</span>,<br>            <span class="hljs-attr">"Value16"</span>: <span class="hljs-number">0.0</span>,<br>            <span class="hljs-attr">"Value17"</span>: <span class="hljs-number">0.0</span>,<br>            <span class="hljs-attr">"Value18"</span>: <span class="hljs-number">0.0</span>,<br>            <span class="hljs-attr">"Value19"</span>: <span class="hljs-number">0.0</span>,<br>            <span class="hljs-attr">"Value20"</span>: <span class="hljs-number">0.0</span>,<br>            <span class="hljs-attr">"color"</span>: <span class="hljs-string">""</span><br>        &#125;,<br>        &#123;<br>            <span class="hljs-attr">"Dimension1"</span>: <span class="hljs-string">"C"</span>,<br>            <span class="hljs-attr">"Dimension2"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"Value1"</span>: <span class="hljs-number">60.00000000</span>,<br>            <span class="hljs-attr">"Value2"</span>: <span class="hljs-number">40.00000000</span>,<br>            <span class="hljs-attr">"Value3"</span>: <span class="hljs-number">30.00000000</span>,<br>            <span class="hljs-attr">"Value4"</span>: <span class="hljs-number">0.0</span>,<br>            <span class="hljs-attr">"Value5"</span>: <span class="hljs-number">0.0</span>,<br>            <span class="hljs-attr">"Value6"</span>: <span class="hljs-number">0.0</span>,<br>            <span class="hljs-attr">"Value7"</span>: <span class="hljs-number">0.0</span>,<br>            <span class="hljs-attr">"Value8"</span>: <span class="hljs-number">0.0</span>,<br>            <span class="hljs-attr">"Value9"</span>: <span class="hljs-number">0.0</span>,<br>            <span class="hljs-attr">"Value10"</span>: <span class="hljs-number">0.0</span>,<br>            <span class="hljs-attr">"Value11"</span>: <span class="hljs-number">0.0</span>,<br>            <span class="hljs-attr">"Value12"</span>: <span class="hljs-number">0.0</span>,<br>            <span class="hljs-attr">"Value13"</span>: <span class="hljs-number">0.0</span>,<br>            <span class="hljs-attr">"Value14"</span>: <span class="hljs-number">0.0</span>,<br>            <span class="hljs-attr">"Value15"</span>: <span class="hljs-number">0.0</span>,<br>            <span class="hljs-attr">"Value16"</span>: <span class="hljs-number">0.0</span>,<br>            <span class="hljs-attr">"Value17"</span>: <span class="hljs-number">0.0</span>,<br>            <span class="hljs-attr">"Value18"</span>: <span class="hljs-number">0.0</span>,<br>            <span class="hljs-attr">"Value19"</span>: <span class="hljs-number">0.0</span>,<br>            <span class="hljs-attr">"Value20"</span>: <span class="hljs-number">0.0</span>,<br>            <span class="hljs-attr">"color"</span>: <span class="hljs-string">""</span><br>        &#125;<br>    ],<br>    <span class="hljs-attr">"Series"</span>: [<br>        &#123;<br>            <span class="hljs-attr">"name"</span>: <span class="hljs-string">"进程中"</span>,<br>            <span class="hljs-attr">"type"</span>: <span class="hljs-string">"column"</span>,<br>            <span class="hljs-attr">"categoryField"</span>: <span class="hljs-string">"Dimension1"</span>,<br>            <span class="hljs-attr">"field"</span>: <span class="hljs-string">"Value1"</span>,<br>            <span class="hljs-attr">"explodeField"</span>: <span class="hljs-string">"Explode"</span>,<br>            <span class="hljs-attr">"axis"</span>: <span class="hljs-string">"axis1"</span>,<br>            <span class="hljs-attr">"labels"</span>: &#123;<br>                <span class="hljs-attr">"visible"</span>: <span class="hljs-literal">false</span>,<br>                <span class="hljs-attr">"template"</span>: <span class="hljs-literal">null</span>,<br>                <span class="hljs-attr">"padding"</span>: &#123;<br>                    <span class="hljs-attr">"bottom"</span>: <span class="hljs-number">0</span><br>                &#125;<br>            &#125;,<br>            <span class="hljs-attr">"tooltip"</span>: &#123;<br>                <span class="hljs-attr">"visible"</span>: <span class="hljs-literal">true</span>,<br>                <span class="hljs-attr">"template"</span>: <span class="hljs-string">" #= value # "</span>,<br>                <span class="hljs-attr">"shared"</span>: <span class="hljs-literal">true</span>,<br>                <span class="hljs-attr">"sharedTemplate"</span>: <span class="hljs-string">" #= value # "</span><br>            &#125;,<br>            <span class="hljs-attr">"style"</span>: <span class="hljs-string">"normal"</span>,<br>            <span class="hljs-attr">"markers"</span>: &#123;<br>                <span class="hljs-attr">"visible"</span>: <span class="hljs-literal">false</span>,<br>                <span class="hljs-attr">"size"</span>: <span class="hljs-number">6</span><br>            &#125;<br>        &#125;,<br>        &#123;<br>            <span class="hljs-attr">"name"</span>: <span class="hljs-string">"未开始"</span>,<br>            <span class="hljs-attr">"type"</span>: <span class="hljs-string">"column"</span>,<br>            <span class="hljs-attr">"categoryField"</span>: <span class="hljs-string">"Dimension1"</span>,<br>            <span class="hljs-attr">"field"</span>: <span class="hljs-string">"Value2"</span>,<br>            <span class="hljs-attr">"explodeField"</span>: <span class="hljs-string">"Explode"</span>,<br>            <span class="hljs-attr">"axis"</span>: <span class="hljs-string">"axis1"</span>,<br>            <span class="hljs-attr">"labels"</span>: &#123;<br>                <span class="hljs-attr">"visible"</span>: <span class="hljs-literal">false</span>,<br>                <span class="hljs-attr">"template"</span>: <span class="hljs-literal">null</span>,<br>                <span class="hljs-attr">"padding"</span>: &#123;<br>                    <span class="hljs-attr">"bottom"</span>: <span class="hljs-number">5</span><br>                &#125;<br>            &#125;,<br>            <span class="hljs-attr">"tooltip"</span>: &#123;<br>                <span class="hljs-attr">"visible"</span>: <span class="hljs-literal">true</span>,<br>                <span class="hljs-attr">"template"</span>: <span class="hljs-string">" #= value # "</span>,<br>                <span class="hljs-attr">"shared"</span>: <span class="hljs-literal">true</span>,<br>                <span class="hljs-attr">"sharedTemplate"</span>: <span class="hljs-string">" #= value # "</span><br>            &#125;,<br>            <span class="hljs-attr">"style"</span>: <span class="hljs-string">"normal"</span>,<br>            <span class="hljs-attr">"markers"</span>: &#123;<br>                <span class="hljs-attr">"visible"</span>: <span class="hljs-literal">false</span>,<br>                <span class="hljs-attr">"size"</span>: <span class="hljs-number">6</span><br>            &#125;<br>        &#125;,<br>        &#123;<br>            <span class="hljs-attr">"name"</span>: <span class="hljs-string">"已结束"</span>,<br>            <span class="hljs-attr">"type"</span>: <span class="hljs-string">"column"</span>,<br>            <span class="hljs-attr">"categoryField"</span>: <span class="hljs-string">"Dimension1"</span>,<br>            <span class="hljs-attr">"field"</span>: <span class="hljs-string">"Value3"</span>,<br>            <span class="hljs-attr">"explodeField"</span>: <span class="hljs-string">"Explode"</span>,<br>            <span class="hljs-attr">"axis"</span>: <span class="hljs-string">"axis1"</span>,<br>            <span class="hljs-attr">"labels"</span>: &#123;<br>                <span class="hljs-attr">"visible"</span>: <span class="hljs-literal">false</span>,<br>                <span class="hljs-attr">"template"</span>: <span class="hljs-literal">null</span>,<br>                <span class="hljs-attr">"padding"</span>: &#123;<br>                    <span class="hljs-attr">"bottom"</span>: <span class="hljs-number">10</span><br>                &#125;<br>            &#125;,<br>            <span class="hljs-attr">"tooltip"</span>: &#123;<br>                <span class="hljs-attr">"visible"</span>: <span class="hljs-literal">true</span>,<br>                <span class="hljs-attr">"template"</span>: <span class="hljs-string">" #= value # "</span>,<br>                <span class="hljs-attr">"shared"</span>: <span class="hljs-literal">true</span>,<br>                <span class="hljs-attr">"sharedTemplate"</span>: <span class="hljs-string">" #= value # "</span><br>            &#125;,<br>            <span class="hljs-attr">"style"</span>: <span class="hljs-string">"normal"</span>,<br>            <span class="hljs-attr">"markers"</span>: &#123;<br>                <span class="hljs-attr">"visible"</span>: <span class="hljs-literal">false</span>,<br>                <span class="hljs-attr">"size"</span>: <span class="hljs-number">6</span><br>            &#125;<br>        &#125;<br>    ],<br>    <span class="hljs-attr">"ShowLine1"</span>: <span class="hljs-literal">false</span>,<br>    <span class="hljs-attr">"StandLine1"</span>: <span class="hljs-number">0.0</span>,<br>    <span class="hljs-attr">"ShowLine2"</span>: <span class="hljs-literal">false</span>,<br>    <span class="hljs-attr">"StandLine2"</span>: <span class="hljs-number">0.0</span>,<br>    <span class="hljs-attr">"ShowLine3"</span>: <span class="hljs-literal">false</span>,<br>    <span class="hljs-attr">"StandLine3"</span>: <span class="hljs-number">0.0</span>,<br>    <span class="hljs-attr">"ShowLine4"</span>: <span class="hljs-literal">false</span>,<br>    <span class="hljs-attr">"StandLine4"</span>: <span class="hljs-number">0.0</span>,<br>    <span class="hljs-attr">"LinkReport1"</span>: &#123;<br>        <span class="hljs-attr">"ReportId"</span>: <span class="hljs-literal">null</span>,<br>        <span class="hljs-attr">"Parameter1"</span>: <span class="hljs-literal">null</span>,<br>        <span class="hljs-attr">"Parameter2"</span>: <span class="hljs-literal">null</span>,<br>        <span class="hljs-attr">"Parameter3"</span>: <span class="hljs-literal">null</span>,<br>        <span class="hljs-attr">"Parameter4"</span>: <span class="hljs-literal">null</span>,<br>        <span class="hljs-attr">"Parameter5"</span>: <span class="hljs-literal">null</span><br>    &#125;,<br>    <span class="hljs-attr">"LinkReport2"</span>: &#123;<br>        <span class="hljs-attr">"ReportId"</span>: <span class="hljs-literal">null</span>,<br>        <span class="hljs-attr">"Parameter1"</span>: <span class="hljs-literal">null</span>,<br>        <span class="hljs-attr">"Parameter2"</span>: <span class="hljs-literal">null</span>,<br>        <span class="hljs-attr">"Parameter3"</span>: <span class="hljs-literal">null</span>,<br>        <span class="hljs-attr">"Parameter4"</span>: <span class="hljs-literal">null</span>,<br>        <span class="hljs-attr">"Parameter5"</span>: <span class="hljs-literal">null</span><br>    &#125;,<br>    <span class="hljs-attr">"PlotBands"</span>: []<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>有用的字段</p>
+<ul>
+<li>Items.Dimension1  维度</li>
+<li>Items.Value1 度量，系列1的值</li>
+<li>Items.Value2 度量，系列2的值</li>
+<li>Items.Value3 度量，系列3的值</li>
+<li>Series.name  系列</li>
+</ul>
+<p>遍历取出存入二维数组</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/* 解析返回结果成二维数组 */</span><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">dataset</span>(<span class="hljs-params">response</span>) </span>&#123;<br>	<span class="hljs-keyword">var</span> items = response.Items;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> i <span class="hljs-keyword">in</span> items) &#123;<br>		arr[i] = [];<br>		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> j <span class="hljs-keyword">in</span> items[i]) &#123;<br>			<span class="hljs-keyword">if</span>(items[i][j] != <span class="hljs-literal">null</span> &amp;&amp; items[i][j] != <span class="hljs-number">0</span>) &#123;<br>				arr[i].push(items[i][j]);<br>			&#125;<br>		&#125;<br>	&#125;<br>	<span class="hljs-keyword">var</span> series = response.Series;<br>	<span class="hljs-keyword">var</span> tempArr = [];<br>	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> s <span class="hljs-keyword">in</span> series) &#123;<br>		tempArr.push(series[s].name);<br>	&#125;<br>	tempArr.unshift(<span class="hljs-string">"dimension"</span>);<br>	arr.unshift(tempArr);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>遍历结果</p>
+<p><img   class="lazyload" data-original="http://qiniu.hongjp1018.cn/blog/20200113/pDmpgtQ79LbC.png?imageslim" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="遍历结果"></p>
+<p>此结果即可使用Echarts中的dataset，生成图形</p>
+<h3 id="定制开发"><a href="#定制开发" class="headerlink" title="定制开发"></a>定制开发</h3><p>与上述将结果处理成二维数组方式不同，此方法是将返回结果按照系列（series）、图例（legend）、坐标系（xAxis、yAxis）进行数据处理。</p>
+<p>使用分析云的垂直表进行数据源实现，接口返回结果如下：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br></pre></td><td class="code"><pre><code class="hljs json">&#123;<br>    <span class="hljs-attr">"Message"</span>: <span class="hljs-literal">null</span>,<br>    <span class="hljs-attr">"PageIndex"</span>: <span class="hljs-number">0</span>,<br>    <span class="hljs-attr">"PageCount"</span>: <span class="hljs-number">0</span>,<br>    <span class="hljs-attr">"TotalPages"</span>: <span class="hljs-number">1</span>,<br>    <span class="hljs-attr">"TotalCounts"</span>: <span class="hljs-number">3</span>,<br>    <span class="hljs-attr">"Rows"</span>: [<br>        &#123;<br>            <span class="hljs-attr">"C1"</span>: <span class="hljs-string">"A"</span>,<br>            <span class="hljs-attr">"C2"</span>: <span class="hljs-number">160.00000000</span>,<br>            <span class="hljs-attr">"C3"</span>: <span class="hljs-string">""</span>,<br>            <span class="hljs-attr">"C4"</span>: <span class="hljs-string">""</span>,<br>            <span class="hljs-attr">"C5"</span>: <span class="hljs-string">""</span>,<br>            <span class="hljs-attr">"C6"</span>: <span class="hljs-string">""</span>,<br>            <span class="hljs-attr">"C7"</span>: <span class="hljs-string">""</span><br>        &#125;,<br>        &#123;<br>            <span class="hljs-attr">"C1"</span>: <span class="hljs-string">"B"</span>,<br>            <span class="hljs-attr">"C2"</span>: <span class="hljs-number">60.00000000</span>,<br>            <span class="hljs-attr">"C3"</span>: <span class="hljs-string">""</span>,<br>            <span class="hljs-attr">"C4"</span>: <span class="hljs-string">""</span>,<br>            <span class="hljs-attr">"C5"</span>: <span class="hljs-string">""</span>,<br>            <span class="hljs-attr">"C6"</span>: <span class="hljs-string">""</span>,<br>            <span class="hljs-attr">"C7"</span>: <span class="hljs-string">""</span><br>        &#125;,<br>        &#123;<br>            <span class="hljs-attr">"C1"</span>: <span class="hljs-string">"C"</span>,<br>            <span class="hljs-attr">"C2"</span>: <span class="hljs-number">130.00000000</span>,<br>            <span class="hljs-attr">"C3"</span>: <span class="hljs-string">""</span>,<br>            <span class="hljs-attr">"C4"</span>: <span class="hljs-string">""</span>,<br>            <span class="hljs-attr">"C5"</span>: <span class="hljs-string">""</span>,<br>            <span class="hljs-attr">"C6"</span>: <span class="hljs-string">""</span>,<br>            <span class="hljs-attr">"C7"</span>: <span class="hljs-string">""</span><br>        &#125;<br>    ],<br>    <span class="hljs-attr">"Columns"</span>: [<br>        &#123;<br>            <span class="hljs-attr">"field"</span>: <span class="hljs-string">"C1"</span>,<br>            <span class="hljs-attr">"title"</span>: <span class="hljs-string">"单位"</span>,<br>            <span class="hljs-attr">"width"</span>: <span class="hljs-number">90.0</span>,<br>            <span class="hljs-attr">"type"</span>: <span class="hljs-string">"string"</span>,<br>            <span class="hljs-attr">"hidden"</span>: <span class="hljs-literal">false</span>,<br>            <span class="hljs-attr">"format"</span>: <span class="hljs-string">"&#123;0&#125;"</span>,<br>            <span class="hljs-attr">"footerTemplate"</span>: <span class="hljs-string">"&lt;div class='k-grid-footer-cell' style='text-align:left;font-size:12px'&gt;&lt;/div&gt;"</span>,<br>            <span class="hljs-attr">"headerAttributes"</span>: &#123;<br>                <span class="hljs-attr">"class"</span>: <span class="hljs-string">"table-header-cell"</span>,<br>                <span class="hljs-attr">"style"</span>: <span class="hljs-string">"text-align: center; font-size: 12px; color:#333333; "</span><br>            &#125;,<br>            <span class="hljs-attr">"attributes"</span>: &#123;<br>                <span class="hljs-attr">"class"</span>: <span class="hljs-string">"table-cell"</span>,<br>                <span class="hljs-attr">"style"</span>: <span class="hljs-string">"text-align: Left;"</span><br>            &#125;,<br>            <span class="hljs-attr">"filterable"</span>: &#123;<br>                <span class="hljs-attr">"multi"</span>: <span class="hljs-literal">true</span>,<br>                <span class="hljs-attr">"search"</span>: <span class="hljs-literal">true</span><br>            &#125;,<br>            <span class="hljs-attr">"linkReport"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"lrRarameter1"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"lrRarameter2"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"lrRarameter3"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"lrRarameter4"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"lrRarameter5"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"locked"</span>: <span class="hljs-literal">false</span>,<br>            <span class="hljs-attr">"bodyAlign"</span>: <span class="hljs-string">"Left"</span>,<br>            <span class="hljs-attr">"template"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"FixedWidth"</span>: <span class="hljs-number">0.0</span>,<br>            <span class="hljs-attr">"BodyFontSize"</span>: <span class="hljs-string">"12px"</span>,<br>            <span class="hljs-attr">"BodyColor"</span>: <span class="hljs-string">"#000000"</span>,<br>            <span class="hljs-attr">"Level1"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"Level2"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"Level3"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"Level4"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"Level5"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"Rate"</span>: <span class="hljs-number">1</span><br>        &#125;,<br>        &#123;<br>            <span class="hljs-attr">"field"</span>: <span class="hljs-string">"C2"</span>,<br>            <span class="hljs-attr">"title"</span>: <span class="hljs-string">"数量"</span>,<br>            <span class="hljs-attr">"width"</span>: <span class="hljs-number">90.0</span>,<br>            <span class="hljs-attr">"type"</span>: <span class="hljs-string">"number"</span>,<br>            <span class="hljs-attr">"hidden"</span>: <span class="hljs-literal">false</span>,<br>            <span class="hljs-attr">"format"</span>: <span class="hljs-string">"&#123;0:N2&#125;"</span>,<br>            <span class="hljs-attr">"footerTemplate"</span>: <span class="hljs-string">"&lt;div class='k-grid-footer-cell' style='text-align:right;font-size:12px'&gt;350.00&lt;/div&gt;"</span>,<br>            <span class="hljs-attr">"headerAttributes"</span>: &#123;<br>                <span class="hljs-attr">"class"</span>: <span class="hljs-string">"table-header-cell"</span>,<br>                <span class="hljs-attr">"style"</span>: <span class="hljs-string">"text-align: center; font-size: 12px; color:#333333; "</span><br>            &#125;,<br>            <span class="hljs-attr">"attributes"</span>: &#123;<br>                <span class="hljs-attr">"class"</span>: <span class="hljs-string">"table-cell"</span>,<br>                <span class="hljs-attr">"style"</span>: <span class="hljs-string">"text-align: Right;"</span><br>            &#125;,<br>            <span class="hljs-attr">"filterable"</span>: &#123;<br>                <span class="hljs-attr">"multi"</span>: <span class="hljs-literal">false</span>,<br>                <span class="hljs-attr">"search"</span>: <span class="hljs-literal">false</span><br>            &#125;,<br>            <span class="hljs-attr">"linkReport"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"lrRarameter1"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"lrRarameter2"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"lrRarameter3"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"lrRarameter4"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"lrRarameter5"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"locked"</span>: <span class="hljs-literal">false</span>,<br>            <span class="hljs-attr">"bodyAlign"</span>: <span class="hljs-string">"Right"</span>,<br>            <span class="hljs-attr">"template"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"FixedWidth"</span>: <span class="hljs-number">0.0</span>,<br>            <span class="hljs-attr">"BodyFontSize"</span>: <span class="hljs-string">"12px"</span>,<br>            <span class="hljs-attr">"BodyColor"</span>: <span class="hljs-string">"#000000"</span>,<br>            <span class="hljs-attr">"Level1"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"Level2"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"Level3"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"Level4"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"Level5"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"Rate"</span>: <span class="hljs-number">1</span><br>        &#125;,<br>        &#123;<br>            <span class="hljs-attr">"field"</span>: <span class="hljs-string">"C3"</span>,<br>            <span class="hljs-attr">"title"</span>: <span class="hljs-string">" "</span>,<br>            <span class="hljs-attr">"width"</span>: <span class="hljs-number">90.0</span>,<br>            <span class="hljs-attr">"type"</span>: <span class="hljs-string">"string"</span>,<br>            <span class="hljs-attr">"hidden"</span>: <span class="hljs-literal">false</span>,<br>            <span class="hljs-attr">"format"</span>: <span class="hljs-string">"&#123;0&#125;"</span>,<br>            <span class="hljs-attr">"footerTemplate"</span>: <span class="hljs-string">"&lt;div class='k-grid-footer-cell' style='text-align:left;font-size:12px'&gt;&lt;/div&gt;"</span>,<br>            <span class="hljs-attr">"headerAttributes"</span>: &#123;<br>                <span class="hljs-attr">"class"</span>: <span class="hljs-string">"table-header-cell"</span>,<br>                <span class="hljs-attr">"style"</span>: <span class="hljs-string">"text-align: center; font-size: 12px; color:#333333; "</span><br>            &#125;,<br>            <span class="hljs-attr">"attributes"</span>: &#123;<br>                <span class="hljs-attr">"class"</span>: <span class="hljs-string">"table-cell"</span>,<br>                <span class="hljs-attr">"style"</span>: <span class="hljs-string">""</span><br>            &#125;,<br>            <span class="hljs-attr">"filterable"</span>: &#123;<br>                <span class="hljs-attr">"multi"</span>: <span class="hljs-literal">true</span>,<br>                <span class="hljs-attr">"search"</span>: <span class="hljs-literal">true</span><br>            &#125;,<br>            <span class="hljs-attr">"linkReport"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"lrRarameter1"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"lrRarameter2"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"lrRarameter3"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"lrRarameter4"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"lrRarameter5"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"locked"</span>: <span class="hljs-literal">false</span>,<br>            <span class="hljs-attr">"bodyAlign"</span>: <span class="hljs-string">"Left"</span>,<br>            <span class="hljs-attr">"template"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"FixedWidth"</span>: <span class="hljs-number">0.0</span>,<br>            <span class="hljs-attr">"BodyFontSize"</span>: <span class="hljs-string">"12px"</span>,<br>            <span class="hljs-attr">"BodyColor"</span>: <span class="hljs-string">"#000000"</span>,<br>            <span class="hljs-attr">"Level1"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"Level2"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"Level3"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"Level4"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"Level5"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"Rate"</span>: <span class="hljs-number">1</span><br>        &#125;,<br>        &#123;<br>            <span class="hljs-attr">"field"</span>: <span class="hljs-string">"C4"</span>,<br>            <span class="hljs-attr">"title"</span>: <span class="hljs-string">" "</span>,<br>            <span class="hljs-attr">"width"</span>: <span class="hljs-number">90.0</span>,<br>            <span class="hljs-attr">"type"</span>: <span class="hljs-string">"string"</span>,<br>            <span class="hljs-attr">"hidden"</span>: <span class="hljs-literal">false</span>,<br>            <span class="hljs-attr">"format"</span>: <span class="hljs-string">"&#123;0&#125;"</span>,<br>            <span class="hljs-attr">"footerTemplate"</span>: <span class="hljs-string">"&lt;div class='k-grid-footer-cell' style='text-align:left;font-size:12px'&gt;&lt;/div&gt;"</span>,<br>            <span class="hljs-attr">"headerAttributes"</span>: &#123;<br>                <span class="hljs-attr">"class"</span>: <span class="hljs-string">"table-header-cell"</span>,<br>                <span class="hljs-attr">"style"</span>: <span class="hljs-string">"text-align: center; font-size: 12px; color:#333333; "</span><br>            &#125;,<br>            <span class="hljs-attr">"attributes"</span>: &#123;<br>                <span class="hljs-attr">"class"</span>: <span class="hljs-string">"table-cell"</span>,<br>                <span class="hljs-attr">"style"</span>: <span class="hljs-string">""</span><br>            &#125;,<br>            <span class="hljs-attr">"filterable"</span>: &#123;<br>                <span class="hljs-attr">"multi"</span>: <span class="hljs-literal">true</span>,<br>                <span class="hljs-attr">"search"</span>: <span class="hljs-literal">true</span><br>            &#125;,<br>            <span class="hljs-attr">"linkReport"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"lrRarameter1"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"lrRarameter2"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"lrRarameter3"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"lrRarameter4"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"lrRarameter5"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"locked"</span>: <span class="hljs-literal">false</span>,<br>            <span class="hljs-attr">"bodyAlign"</span>: <span class="hljs-string">"Left"</span>,<br>            <span class="hljs-attr">"template"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"FixedWidth"</span>: <span class="hljs-number">0.0</span>,<br>            <span class="hljs-attr">"BodyFontSize"</span>: <span class="hljs-string">"12px"</span>,<br>            <span class="hljs-attr">"BodyColor"</span>: <span class="hljs-string">"#000000"</span>,<br>            <span class="hljs-attr">"Level1"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"Level2"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"Level3"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"Level4"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"Level5"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"Rate"</span>: <span class="hljs-number">1</span><br>        &#125;,<br>        &#123;<br>            <span class="hljs-attr">"field"</span>: <span class="hljs-string">"C5"</span>,<br>            <span class="hljs-attr">"title"</span>: <span class="hljs-string">" "</span>,<br>            <span class="hljs-attr">"width"</span>: <span class="hljs-number">90.0</span>,<br>            <span class="hljs-attr">"type"</span>: <span class="hljs-string">"string"</span>,<br>            <span class="hljs-attr">"hidden"</span>: <span class="hljs-literal">false</span>,<br>            <span class="hljs-attr">"format"</span>: <span class="hljs-string">"&#123;0&#125;"</span>,<br>            <span class="hljs-attr">"footerTemplate"</span>: <span class="hljs-string">"&lt;div class='k-grid-footer-cell' style='text-align:left;font-size:12px'&gt;&lt;/div&gt;"</span>,<br>            <span class="hljs-attr">"headerAttributes"</span>: &#123;<br>                <span class="hljs-attr">"class"</span>: <span class="hljs-string">"table-header-cell"</span>,<br>                <span class="hljs-attr">"style"</span>: <span class="hljs-string">"text-align: center; font-size: 12px; color:#333333; "</span><br>            &#125;,<br>            <span class="hljs-attr">"attributes"</span>: &#123;<br>                <span class="hljs-attr">"class"</span>: <span class="hljs-string">"table-cell"</span>,<br>                <span class="hljs-attr">"style"</span>: <span class="hljs-string">""</span><br>            &#125;,<br>            <span class="hljs-attr">"filterable"</span>: &#123;<br>                <span class="hljs-attr">"multi"</span>: <span class="hljs-literal">true</span>,<br>                <span class="hljs-attr">"search"</span>: <span class="hljs-literal">true</span><br>            &#125;,<br>            <span class="hljs-attr">"linkReport"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"lrRarameter1"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"lrRarameter2"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"lrRarameter3"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"lrRarameter4"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"lrRarameter5"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"locked"</span>: <span class="hljs-literal">false</span>,<br>            <span class="hljs-attr">"bodyAlign"</span>: <span class="hljs-string">"Left"</span>,<br>            <span class="hljs-attr">"template"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"FixedWidth"</span>: <span class="hljs-number">0.0</span>,<br>            <span class="hljs-attr">"BodyFontSize"</span>: <span class="hljs-string">"12px"</span>,<br>            <span class="hljs-attr">"BodyColor"</span>: <span class="hljs-string">"#000000"</span>,<br>            <span class="hljs-attr">"Level1"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"Level2"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"Level3"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"Level4"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"Level5"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"Rate"</span>: <span class="hljs-number">1</span><br>        &#125;,<br>        &#123;<br>            <span class="hljs-attr">"field"</span>: <span class="hljs-string">"C6"</span>,<br>            <span class="hljs-attr">"title"</span>: <span class="hljs-string">" "</span>,<br>            <span class="hljs-attr">"width"</span>: <span class="hljs-number">90.0</span>,<br>            <span class="hljs-attr">"type"</span>: <span class="hljs-string">"string"</span>,<br>            <span class="hljs-attr">"hidden"</span>: <span class="hljs-literal">false</span>,<br>            <span class="hljs-attr">"format"</span>: <span class="hljs-string">"&#123;0&#125;"</span>,<br>            <span class="hljs-attr">"footerTemplate"</span>: <span class="hljs-string">"&lt;div class='k-grid-footer-cell' style='text-align:left;font-size:12px'&gt;&lt;/div&gt;"</span>,<br>            <span class="hljs-attr">"headerAttributes"</span>: &#123;<br>                <span class="hljs-attr">"class"</span>: <span class="hljs-string">"table-header-cell"</span>,<br>                <span class="hljs-attr">"style"</span>: <span class="hljs-string">"text-align: center; font-size: 12px; color:#333333; "</span><br>            &#125;,<br>            <span class="hljs-attr">"attributes"</span>: &#123;<br>                <span class="hljs-attr">"class"</span>: <span class="hljs-string">"table-cell"</span>,<br>                <span class="hljs-attr">"style"</span>: <span class="hljs-string">""</span><br>            &#125;,<br>            <span class="hljs-attr">"filterable"</span>: &#123;<br>                <span class="hljs-attr">"multi"</span>: <span class="hljs-literal">true</span>,<br>                <span class="hljs-attr">"search"</span>: <span class="hljs-literal">true</span><br>            &#125;,<br>            <span class="hljs-attr">"linkReport"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"lrRarameter1"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"lrRarameter2"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"lrRarameter3"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"lrRarameter4"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"lrRarameter5"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"locked"</span>: <span class="hljs-literal">false</span>,<br>            <span class="hljs-attr">"bodyAlign"</span>: <span class="hljs-string">"Left"</span>,<br>            <span class="hljs-attr">"template"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"FixedWidth"</span>: <span class="hljs-number">0.0</span>,<br>            <span class="hljs-attr">"BodyFontSize"</span>: <span class="hljs-string">"12px"</span>,<br>            <span class="hljs-attr">"BodyColor"</span>: <span class="hljs-string">"#000000"</span>,<br>            <span class="hljs-attr">"Level1"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"Level2"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"Level3"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"Level4"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"Level5"</span>: <span class="hljs-literal">null</span>,<br>            <span class="hljs-attr">"Rate"</span>: <span class="hljs-number">1</span><br>        &#125;<br>    ],<br>    <span class="hljs-attr">"MergeCells"</span>: [],<br>    <span class="hljs-attr">"SurplusRanges"</span>: [],<br>    <span class="hljs-attr">"WarningCells"</span>: [],<br>    <span class="hljs-attr">"RowIndents"</span>: [],<br>    <span class="hljs-attr">"ColorRows"</span>: [<br>        &#123;<br>            <span class="hljs-attr">"RowIndex"</span>: <span class="hljs-number">3</span>,<br>            <span class="hljs-attr">"Background"</span>: <span class="hljs-string">"#F7F8FF"</span>,<br>            <span class="hljs-attr">"Color"</span>: <span class="hljs-string">"#000000"</span><br>        &#125;<br>    ],<br>    <span class="hljs-attr">"ColumnAligns"</span>: [],<br>    <span class="hljs-attr">"LockColumns"</span>: <span class="hljs-literal">false</span>,<br>    <span class="hljs-attr">"HierarchyMode"</span>: <span class="hljs-literal">false</span>,<br>    <span class="hljs-attr">"RowCollapsed"</span>: <span class="hljs-literal">false</span>,<br>    <span class="hljs-attr">"TotalRow"</span>: &#123;<br>        <span class="hljs-attr">"C1"</span>: <span class="hljs-string">""</span>,<br>        <span class="hljs-attr">"C2"</span>: <span class="hljs-number">350.00000000</span>,<br>        <span class="hljs-attr">"C3"</span>: <span class="hljs-string">""</span>,<br>        <span class="hljs-attr">"C4"</span>: <span class="hljs-string">""</span>,<br>        <span class="hljs-attr">"C5"</span>: <span class="hljs-string">""</span>,<br>        <span class="hljs-attr">"C6"</span>: <span class="hljs-string">""</span>,<br>        <span class="hljs-attr">"C7"</span>: <span class="hljs-string">""</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>常用字段</p>
+<ul>
+<li>Rows.C1  第一列</li>
+<li>Rows.C2  第二列</li>
+<li>Columns.title  字段</li>
+<li>TotalRow.C2   总数</li>
+</ul>
+<p>具体方法不限，遍历取出目标数据分别存入对应的数组中即可。可参考下述方法：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">/* 解析数据 */</span><br><span class="hljs-keyword">var</span> xData = [];<br><span class="hljs-keyword">var</span> yData = [];<br><span class="hljs-keyword">var</span> data = [];<br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">dataset</span>(<span class="hljs-params">response</span>) </span>&#123;<br>	<span class="hljs-keyword">var</span> rows = response.Rows;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> i=<span class="hljs-number">0</span>; i&lt;rows.length; i++) &#123;<br>		<span class="hljs-keyword">if</span>(rows[i].C1 != <span class="hljs-literal">null</span> &amp;&amp; rows[i].C1 != <span class="hljs-number">0</span>) &#123;<br>            <span class="hljs-comment">/* 第一列，对应x轴 */</span><br>			xData.push(rows[i].C1);<br>		&#125;<br>		<span class="hljs-keyword">if</span>(rows[i].C2 != <span class="hljs-literal">null</span> &amp;&amp; rows[i].C2 != <span class="hljs-number">0</span>) &#123;<br>            <span class="hljs-comment">/* 第二列，对应渲染的值 */</span><br>			data.push(rows[i].C2);<br>		&#125;<br>	&#125;<br>	<span class="hljs-keyword">var</span> columns = response.Columns;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> i=<span class="hljs-number">0</span>; i&lt;columns.length; i++) &#123;<br>		<span class="hljs-keyword">if</span>(columns[i].title != <span class="hljs-literal">null</span> &amp;&amp; columns[i].title != <span class="hljs-number">0</span>) &#123;<br>			yData.push(columns[i].title);<br>		&#125;<br>	&#125;<br>	<span class="hljs-built_in">console</span>.log(xData)<br>	<span class="hljs-built_in">console</span>.log(yData)<br>	<span class="hljs-built_in">console</span>.log(data)<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="图表示例"><a href="#图表示例" class="headerlink" title="图表示例"></a>图表示例</h2><p>在上文<a href="http://lyall2020.github.io/2020/01/09/分析云二开——数据篇/">《分析云二开——数据篇》</a>创建的项目基础上，引入Echarts.js，并创建图表存放容器。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><br>		<span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"utf-8"</span>&gt;</span><br>		<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"js/lib/jquery-3.4.1.min.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br>		<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"js/lib/echarts.min.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br>		<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"js/views/bar.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br>		<span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span><br>	<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br>		<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"chart"</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"width: 500px; height: 500px;"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>	<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>修改index.js，增加数据处理方法：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">/* 解析返回结果成二维数组 */</span><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">dataset</span>(<span class="hljs-params">response</span>) </span>&#123;<br>	<span class="hljs-keyword">var</span> items = response.Items;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> i <span class="hljs-keyword">in</span> items) &#123;<br>		arr[i] = [];<br>		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> j <span class="hljs-keyword">in</span> items[i]) &#123;<br>			<span class="hljs-keyword">if</span>(items[i][j] != <span class="hljs-literal">null</span> &amp;&amp; items[i][j] != <span class="hljs-number">0</span>) &#123;<br>				arr[i].push(items[i][j]);<br>			&#125;<br>		&#125;<br>	&#125;<br>	<span class="hljs-keyword">var</span> series = response.Series;<br>	<span class="hljs-keyword">var</span> tempArr = [];<br>	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> s <span class="hljs-keyword">in</span> series) &#123;<br>		tempArr.push(series[s].name);<br>	&#125;<br>	tempArr.unshift(<span class="hljs-string">"dimension"</span>);<br>	arr.unshift(tempArr);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>增加图形渲染方法：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">/* 渲染图表 */</span><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">chart</span>(<span class="hljs-params"></span>) </span>&#123;<br>	<span class="hljs-keyword">var</span> chart = echarts.init(<span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'chart'</span>));<br>	<span class="hljs-keyword">var</span> options = &#123;<br>		<span class="hljs-attr">dataset</span>: &#123;<br>		        <span class="hljs-attr">source</span>: arr<br>		    &#125;,<br>		    <span class="hljs-attr">xAxis</span>: &#123;<span class="hljs-attr">type</span>: <span class="hljs-string">'category'</span>&#125;,<br>		    <span class="hljs-attr">yAxis</span>: &#123;&#125;,<br>		    <span class="hljs-attr">series</span>: [<br>		        &#123;<span class="hljs-attr">type</span>: <span class="hljs-string">'bar'</span>&#125;,<br>				&#123;<span class="hljs-attr">type</span>: <span class="hljs-string">'bar'</span>&#125;,<br>				&#123;<span class="hljs-attr">type</span>: <span class="hljs-string">'bar'</span>&#125;<br>		    ]<br>	&#125;<br>	chart.setOption(options);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>保存文件，重启项目进行预览</p>
+<p><img   class="lazyload" data-original="http://qiniu.hongjp1018.cn/blog/20200113/cFRyKLfjRVQE.png?imageslim" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="mark"></p>
+<h2 id="系统集成"><a href="#系统集成" class="headerlink" title="系统集成"></a>系统集成</h2><p>将项目拷入\BA.WebApp，不用重启分析云项目，查看开发图表</p>
+<p><a href="http://localhost:8008/myProject/index.html" target="_blank" rel="noopener">http://localhost:8008/myProject/index.html</a></p>
+<p><img   class="lazyload" data-original="http://qiniu.hongjp1018.cn/blog/20200113/Ye3pqrC4uYxW.png?imageslim" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="mark"></p>
+<p>还可进一步与原有项目图表进行集成，新进html模型，使用嵌入页面方式将自定义图表进行嵌入：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">iframe</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"http://localhost:8008/myProject/index.html"</span> <span class="hljs-attr">frameborder</span>=<span class="hljs-string">0</span> <span class="hljs-attr">width</span>=<span class="hljs-string">"100%"</span> <span class="hljs-attr">height</span>=<span class="hljs-string">"100%"</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">iframe</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p><a href="https://github.com/Noob1018/myProject" target="_blank" rel="noopener">示例代码：https://github.com/Noob1018/myProject</a></p>
+
+    </section>
+    <section class="extra">
+      
+        <ul class="copyright">
+  
+  <li><strong>本文作者：</strong>BigPoom</li>
+  <li><strong>本文链接：</strong><a href="http://lyall2020.github.io/%E5%88%86%E6%9E%90%E4%BA%91%E4%BA%8C%E5%BC%80%E2%80%94%E2%80%94%E6%8A%A5%E8%A1%A8%E7%AF%87/index.html">http://lyall2020.github.io/%E5%88%86%E6%9E%90%E4%BA%91%E4%BA%8C%E5%BC%80%E2%80%94%E2%80%94%E6%8A%A5%E8%A1%A8%E7%AF%87/index.html</a></li>
+  <li><strong>版权声明：</strong>本博客所有文章均采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh"
+      rel="external nofollow" target="_blank"> BY-NC-SA </a>许可协议，转载请注明出处！</li>
+  
+</ul>
+      
+      
+        <section class="donate">
+  <div class="qrcode">
+    <img   class="lazyload" data-original="/images/theme/alipay.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+      
+      
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Echarts/" rel="tag">Echarts</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%88%86%E6%9E%90%E4%BA%91/" rel="tag">分析云</a></li></ul>
+
+      
+<nav class="nav">
+  
+    <a href="/%E8%87%B4%E8%BF%9COA%E4%BA%8C%E5%BC%80%E2%80%94%E2%80%94%E7%8E%AF%E5%A2%83%E7%AF%87/"><i class="iconfont iconleft"></i>致远OA二开——环境篇</a>
+  
+  
+    <a href="/%E5%88%86%E6%9E%90%E4%BA%91%E4%BA%8C%E5%BC%80%E2%80%94%E2%80%94%E6%95%B0%E6%8D%AE%E7%AF%87/">分析云二开——数据篇<i class="iconfont iconright"></i></a>
+  
+</nav>
+
+    </section>
+    
+      <section class="comments">
+        
+          <div class="btn" id="comments-btn">查看评论</div>
+        
+        
+<div id="valine"></div>
+<script defer src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+  window.onload = function () {
+    var loadValine = function () {
+      new Valine({
+        el: '#valine',
+        app_id: "om5v6Yea3iQD57IxOpdagvb3-gzGzoHsz",
+        app_key: "dczs3m37wzi6q04LbYGCMQch",
+        placeholder: "留下你的足迹~",
+        avatar: "mp",
+        pageSize: "10",
+        lang: "zh-CN",
+      });
+    }
+    if ( true ) {
+      $("#comments-btn").on("click", function () {
+        $(this).hide();
+        loadValine();
+      });
+    } else {
+      loadValine();
+    }
+  };
+</script>
+
+      </section>
+    
+  </section>
+</article>
+  </div>
+</main>
+  <footer class="footer">
+  <div class="footer-social">
+    
+    
+    
+    
+    
+    <a href="tencent://message/?Menu=yes&uin=2394148078 " target="_blank" onMouseOver="this.style.color= '#12B7F5'"
+      onMouseOut="this.style.color='#33333D'">
+      <i class="iconfont footer-social-item  iconQQ "></i>
+    </a>
+    
+    
+    
+    
+    
+    <a href="mailto:bigpoom@aliyun.com " target="_blank" onMouseOver="this.style.color='#FFBE5B'"
+      onMouseOut="this.style.color='#33333D'">
+      <i class="iconfont footer-social-item  iconmail"></i>
+    </a>
+    
+  </div>
+  <div class="footer-copyright"><p>Copyright© 2019-2020 | <a target="_blank" href="https://lyall2020.github.io">lyall</a> .AllRightsReserved</p></div>
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+</body>
+
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+
+
+<script src="https://cdn.bootcdn.net/ajax/libs/justifiedGallery/3.7.0/js/jquery.justifiedGallery.min.js"></script>
+
+
+
+
+
+
+<script src="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/modules.js"></script>
+<script src="/js/zui.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+<script>
+  (function () {
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    } else {
+      bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+
+<script>
+  var _hmt = _hmt || [];
+  (function () {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?4c204d8bc027a0455b5fc642ac334ca8";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+
+
+
+
+
+
+
+
+
+
+</html>

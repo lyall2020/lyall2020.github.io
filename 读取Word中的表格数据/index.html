@@ -1,0 +1,467 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>读取Word中的表格数据 - null</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+
+  
+  
+  <meta name="description" content="前言使用Python批量处理Word中表格数据存储MS..."> 
+  
+  <meta name="author" content="BigPoom"> 
+
+  
+    <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  
+  
+    <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  
+  
+    <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  
+  
+    <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+  
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_hhodbqn7tit.css">
+
+  
+
+  
+  
+  
+<link rel="stylesheet" href="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+  
+  
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css">
+
+  
+
+  
+  
+  
+<link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/justifiedGallery/3.7.0/css/justifiedGallery.min.css">
+
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        loadingImage: '/images/theme/loading.gif',
+      },
+      donate: {
+        enable: true,
+        alipay: '/images/theme/alipay.jpg',
+        wechat: '/images/theme/wechat.jpg'
+      },
+      motto: {
+        api: '',
+        default: '天地不仁，以万物为刍狗。'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        alwaysShow: false
+      },
+      carrier: {
+        enable: false
+      },
+      daovoice: {
+        enable: false
+      }
+    }
+  </script>
+
+  
+
+  
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+
+
+<nav class="navbar">
+  <div class="left">
+    <div class="163music">
+    
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=298 height=52 src="//music.163.com/outchain/player?type=0&id=4987905381&auto=0&height=32"></iframe>
+    
+</div>
+  </div>
+  <div class="center">读取Word中的表格数据</div>
+  <div class="right">
+    <i class="iconfont iconmenu j-navbar-menu"></i>
+  </div>
+</nav>
+
+  <nav class="menu">
+  <div class="menu-wrap">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content">
+      
+      
+      
+      
+      <li class="menu-item"><a href="/ " class="underline"> 首页</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/archives " class="underline"> 归档</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/tags " class="underline"> 标签</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/categories " class="underline"> 分类</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/about " class="underline"> 关于</a></li>
+      
+    </ul>
+    <div class="menu-copyright"><p>Copyright© 2019-2020 | <a target="_blank" href="https://lyall2020.github.io">lyall</a> .AllRightsReserved</p></div>
+  </div>
+</nav>
+  <main id="main">
+  <div class="container" id="container">
+    <article class="article">
+  <section class="head">
+  <img   class="lazyload" data-original="/images/theme/post-image.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">读取Word中的表格数据</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>8月 03, 2020</span
+        class="post-info-item">
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>5221</span>
+    </div>
+  </div>
+</section>
+  <section class="main">
+    <section class="content">
+      <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>使用Python批量处理Word中表格数据存储MSSQL。</p>
+<a id="more"></a>
+
+<h1 id="需求及功能实现"><a href="#需求及功能实现" class="headerlink" title="需求及功能实现"></a>需求及功能实现</h1><h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><p>现有大量相似word文档，文档格式包含“.doc”和“.docx”，需要将其中一个表格数据读取出来，处理后存入数据库</p>
+<h2 id="功能点"><a href="#功能点" class="headerlink" title="功能点"></a>功能点</h2><ul>
+<li>统一文档格式</li>
+<li>批量读取Word文档</li>
+<li>读取表格</li>
+<li>数据清洗</li>
+<li>存储至Sql Server</li>
+</ul>
+<h2 id="功能实现"><a href="#功能实现" class="headerlink" title="功能实现"></a>功能实现</h2><h3 id="统一文档格式"><a href="#统一文档格式" class="headerlink" title="统一文档格式"></a>统一文档格式</h3><blockquote>
+<p><strong>思路</strong></p>
+<p>利用win32com将“.doc”另存为“.docx”，方便使用python-docx统一处理</p>
+</blockquote>
+<p><strong>doc2docx()</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">doc2docx</span><span class="hljs-params">(path)</span>:</span><br>	<span class="hljs-string">"""doc转存docx<br><br>	Parameter<br>    ----------<br>    path : string<br>        路径<br><br>    Returns<br>    -------<br>    string<br>        返回转存后路径<br>	"""</span><br>	w = wc.Dispatch(<span class="hljs-string">'Word.Application'</span>)<br>	<span class="hljs-comment"># 后台运行，不显示，不警告</span><br>	w.Visible = <span class="hljs-number">0</span><br>	w.DisplayAlerts = <span class="hljs-number">0</span><br>	<span class="hljs-comment"># 打开新的文件</span><br>	doc = w.Documents.Open(path)<br>	<span class="hljs-comment"># 构造路径</span><br>	newpath = os.path.splitext(path)[<span class="hljs-number">0</span>] + <span class="hljs-string">'.docx'</span><br>	<span class="hljs-comment"># 另存</span><br>	doc.SaveAs(newpath, <span class="hljs-number">12</span>, <span class="hljs-literal">False</span>, <span class="hljs-string">""</span>, <span class="hljs-literal">True</span>, <span class="hljs-string">""</span>, <span class="hljs-literal">False</span>, <span class="hljs-literal">False</span>, <span class="hljs-literal">False</span>, <span class="hljs-literal">False</span>)<br>	<span class="hljs-comment"># 关闭</span><br>	doc.Close()<br>	w.Quit()<br><br>	<span class="hljs-comment"># 原文件备份</span><br>	tempPath = os.path.dirname(path) + <span class="hljs-string">'/temp'</span><br>	<span class="hljs-keyword">if</span> os.path.isdir(tempPath) == <span class="hljs-literal">False</span>:<br>		os.makedirs(tempPath) <br>	shutil.move(path, tempPath)<br>	<span class="hljs-comment"># 返回新地址</span><br>	<span class="hljs-keyword">return</span> newpath<br></code></pre></td></tr></table></figure>
+
+<h3 id="批量读取Word文档"><a href="#批量读取Word文档" class="headerlink" title="批量读取Word文档"></a>批量读取Word文档</h3><blockquote>
+<p><strong>思路</strong></p>
+<p>先实现读取一个文档的函数open1Word()，获取目录下符合条件的word，进行遍历，循环调用open1Word()</p>
+</blockquote>
+<p><strong>open1word()</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">read1Word</span><span class="hljs-params">(path, specText=<span class="hljs-string">''</span>, tableIndex=<span class="hljs-number">0</span>, headerIndex=<span class="hljs-number">0</span>)</span>:</span><br>	<span class="hljs-string">""" 读取一个word<br><br>	Parameter<br>    ----------<br>    path : string<br>        路径<br>	specText: string<br>		标识字符，支持正则表达式，默认为空<br>    sheet : int<br>        sheet编号，默认0<br>    title : int<br>        标题行标，默认0<br><br>    Returns<br>    -------<br>    dataframe<br>        返回dataframe数据类型<br>	"""</span><br>	key,value=[],[]<br><br>	newpath = <span class="hljs-string">""</span><br>	<span class="hljs-comment"># 统一读取word格式</span><br>	file = os.path.splitext(path)<br>	filename, type = file<br>	<span class="hljs-keyword">if</span> type != <span class="hljs-string">".docx"</span>:<br>		newpath = doc_to_docx(path)<br>	<span class="hljs-keyword">else</span>:<br>		newpath = path<br><br>	<span class="hljs-comment"># 读取docx</span><br>	doc = Document(newpath)<br><br>	<span class="hljs-comment"># 两种方式获取表</span><br>	table=<span class="hljs-literal">None</span><br>	<span class="hljs-keyword">if</span> specText==<span class="hljs-string">''</span>:<br>		<span class="hljs-comment"># 根据表格index读取table</span><br>		table = doc.tables[tableIndex]<br>	<span class="hljs-keyword">else</span>:<br>		<span class="hljs-comment"># specText = specText.encode('utf-8').decode('utf-8')</span><br>		<span class="hljs-keyword">for</span> para <span class="hljs-keyword">in</span> doc.paragraphs:<br>			<span class="hljs-keyword">if</span> re.match(specText, para.text):<br>				ele = para._p<br>				<span class="hljs-keyword">while</span>(ele.tag != <span class="hljs-string">''</span> <span class="hljs-keyword">and</span> ele.tag[<span class="hljs-number">-3</span>:] != <span class="hljs-string">'tbl'</span>):<br>					ele = ele.getnext()<br>					<span class="hljs-keyword">if</span> ele.tag != <span class="hljs-string">''</span>:<br>						<span class="hljs-keyword">for</span> aTable <span class="hljs-keyword">in</span> doc.tables:<br>							<span class="hljs-keyword">if</span> aTable._tbl == ele:<br>								table = aTable<br>								<span class="hljs-keyword">break</span><br>				<span class="hljs-keyword">break</span><br><br>	<span class="hljs-comment"># 遍历行</span><br>	row_index=<span class="hljs-number">0</span><br>	<span class="hljs-keyword">for</span> row <span class="hljs-keyword">in</span> table.rows:<br>		<span class="hljs-comment"># 遍历列</span><br>		temp_value=[]<br>		<span class="hljs-keyword">for</span> cell <span class="hljs-keyword">in</span> row.cells:<br>			<span class="hljs-keyword">if</span> row_index == headerIndex:<br>				key.append(cell.text)<br>			temp_value.append(cell.text)<br>		<span class="hljs-comment"># 去除跨页标题行</span><br>		<span class="hljs-keyword">if</span> temp_value != key:<br>			value.append(temp_value)<br>		row_index+=<span class="hljs-number">1</span><br><br>	<span class="hljs-comment"># 根据多维数组创建dataframe格式返回数据</span><br>	result=pd.DataFrame(value,columns=key)<br><br>	<span class="hljs-keyword">return</span> result<br></code></pre></td></tr></table></figure>
+
+<p><strong>readWords()</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">readWords</span><span class="hljs-params">(path, specText=<span class="hljs-string">''</span>, tableIndex=<span class="hljs-number">0</span>, headerIndex=<span class="hljs-number">0</span>)</span>:</span><br>	<span class="hljs-string">""" 读取多个word<br><br>	Parameter<br>    ----------<br>    path : string<br>        路径<br>	specText: string<br>		标识字符，支持正则表达式，默认为空<br>    sheet : int<br>        sheet编号，默认0<br>    title : int<br>        标题行标，默认0<br><br>    Returns<br>    -------<br>    dict<br>        返回字典类型结果集<br>	"""</span><br>	<span class="hljs-comment"># 声明返回数据类型,字典类型</span><br>	data_dict = &#123;&#125;<br>	<span class="hljs-comment"># 获取指定路径下的文件和目录列表</span><br>	file_list = os.listdir(path)<br>	<span class="hljs-comment"># 遍历列表，保留符合要求文件</span><br>	<span class="hljs-keyword">for</span> file_name <span class="hljs-keyword">in</span> file_list:<br>		<span class="hljs-comment"># 拼接绝对路径</span><br>		fileName = path + <span class="hljs-string">"/"</span> + file_name<br>		<span class="hljs-comment"># 判断输入路径是文件，且格式是'.doc'或 '.docx'</span><br>		<span class="hljs-keyword">if</span>  os.path.isfile(fileName) <span class="hljs-keyword">and</span> os.path.splitext(fileName)[<span class="hljs-number">1</span>] <span class="hljs-keyword">in</span> [<span class="hljs-string">'.doc'</span>, <span class="hljs-string">'.docx'</span>]:<br>			<span class="hljs-comment"># 读取word文档，获取表格数据</span><br>			data_list = read1Word(fileName, specText, tableIndex, headerIndex)<br>			<span class="hljs-comment"># 存储至字典中</span><br>			data_dict[file_name] = data_list<br>	<span class="hljs-comment"># 返回全部数据</span><br>	<span class="hljs-keyword">return</span> data_dict<br></code></pre></td></tr></table></figure>
+
+<h3 id="读取表格"><a href="#读取表格" class="headerlink" title="读取表格"></a>读取表格</h3><blockquote>
+<p><strong>思路</strong></p>
+<p>如果表格的索引相同，则直接使用table[i]快速读取，如果索引不相同，但都在相同过相似段落下，则可以使用关键字的方式读取</p>
+</blockquote>
+<p><strong>open1word()</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#代码片段</span><br><span class="hljs-comment"># 两种方式获取表</span><br>	table=<span class="hljs-literal">None</span><br>	<span class="hljs-keyword">if</span> specText==<span class="hljs-string">''</span>:<br>		<span class="hljs-comment"># 根据表格index读取table</span><br>		table = doc.tables[tableIndex]<br>	<span class="hljs-keyword">else</span>:<br>		<span class="hljs-comment"># specText = specText.encode('utf-8').decode('utf-8')</span><br>		<span class="hljs-keyword">for</span> para <span class="hljs-keyword">in</span> doc.paragraphs:<br>			<span class="hljs-keyword">if</span> re.match(specText, para.text):<br>				ele = para._p<br>				<span class="hljs-keyword">while</span>(ele.tag != <span class="hljs-string">''</span> <span class="hljs-keyword">and</span> ele.tag[<span class="hljs-number">-3</span>:] != <span class="hljs-string">'tbl'</span>):<br>					ele = ele.getnext()<br>					<span class="hljs-keyword">if</span> ele.tag != <span class="hljs-string">''</span>:<br>						<span class="hljs-keyword">for</span> aTable <span class="hljs-keyword">in</span> doc.tables:<br>							<span class="hljs-keyword">if</span> aTable._tbl == ele:<br>								table = aTable<br>								<span class="hljs-keyword">break</span><br>				<span class="hljs-keyword">break</span><br><br>	<span class="hljs-comment"># 遍历行</span><br>	row_index=<span class="hljs-number">0</span><br>	<span class="hljs-keyword">for</span> row <span class="hljs-keyword">in</span> table.rows:<br>		<span class="hljs-comment"># 遍历列</span><br>		temp_value=[]<br>		<span class="hljs-keyword">for</span> cell <span class="hljs-keyword">in</span> row.cells:<br>			<span class="hljs-keyword">if</span> row_index == headerIndex:<br>				key.append(cell.text)<br>			temp_value.append(cell.text)<br>		<span class="hljs-comment"># 去除跨页标题行</span><br>		<span class="hljs-keyword">if</span> temp_value != key:<br>			value.append(temp_value)<br>		row_index+=<span class="hljs-number">1</span><br><br>	<span class="hljs-comment"># 根据多维数组创建dataframe格式返回数据</span><br>	result=pd.DataFrame(value,columns=key)<br></code></pre></td></tr></table></figure>
+
+<h3 id="数据清洗"><a href="#数据清洗" class="headerlink" title="数据清洗"></a>数据清洗</h3><p>根据实际数据以及要求对应处理，本例中包含如下几种类型不规范的数据：</p>
+<ul>
+<li>空数据</li>
+<li>换行符</li>
+<li>前后空格</li>
+<li>跨页标题</li>
+</ul>
+<h3 id="存储数据-Sql-Server"><a href="#存储数据-Sql-Server" class="headerlink" title="存储数据 Sql Server"></a>存储数据 Sql Server</h3><p>读取单一文件返回数据结构为pandas特有二维带标签数据结构dataframe，读取多文件返回数据结构为dict字典类型，故存储多文件时需要多一步循环</p>
+<blockquote>
+<p><strong>注意</strong></p>
+<p>需提前安装数据库驱动<a href="https://www.microsoft.com/zh-CN/download/details.aspx?id=56567" target="_blank" rel="noopener">ODBC Driver 17 for SQL Server</a></p>
+</blockquote>
+<p><strong>saveData()</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">saveData</span><span class="hljs-params">(data, tableName)</span>:</span><br>	<span class="hljs-string">"""存储数据<br><br>	Parameter<br>    ----------<br>    data : DataFrame 或 dict<br>        数据<br>	tableName: string<br>		表名<br><br>	"""</span><br><br>	<span class="hljs-comment"># 创建连接</span><br>	engine = create_engine(<span class="hljs-string">"mssql+pyodbc://sa:sa123456.@localhost:1433/cgris?driver=ODBC Driver 17 for SQL Server"</span>)<br><br>	<span class="hljs-keyword">if</span> type(data).__name__ == <span class="hljs-string">'DataFrame'</span>:<br>		data.to_sql(tableName, engine, index=<span class="hljs-literal">False</span>, if_exists=<span class="hljs-string">'append'</span>)<br>	<span class="hljs-keyword">elif</span> type(data).__name__ == <span class="hljs-string">'dict'</span>:<br>		<span class="hljs-keyword">for</span> aData <span class="hljs-keyword">in</span> data.values():<br>			aData.to_sql(tableName, engine, index=<span class="hljs-literal">False</span>, if_exists=<span class="hljs-string">'append'</span>)<br></code></pre></td></tr></table></figure>
+
+<h1 id="应用技术"><a href="#应用技术" class="headerlink" title="应用技术"></a>应用技术</h1><table>
+<thead>
+<tr>
+<th align="center">包名称</th>
+<th align="center">说明</th>
+<th align="center">地址</th>
+<th align="center">是否内置</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">os</td>
+<td align="center">封装了常见的文件和目录操作</td>
+<td align="center"><a href="https://www.cnblogs.com/MnCu8261/p/5483657.html" target="_blank" rel="noopener">https://www.cnblogs.com/MnCu8261/p/5483657.html</a></td>
+<td align="center">是</td>
+</tr>
+<tr>
+<td align="center">shutil</td>
+<td align="center">对os的补充</td>
+<td align="center"><a href="https://www.liujiangblog.com/course/python/61" target="_blank" rel="noopener">https://www.liujiangblog.com/course/python/61</a></td>
+<td align="center">是</td>
+</tr>
+<tr>
+<td align="center">re</td>
+<td align="center">正则表达式</td>
+<td align="center"><a href="https://www.liujiangblog.com/course/python/74" target="_blank" rel="noopener">https://www.liujiangblog.com/course/python/74</a></td>
+<td align="center">是</td>
+</tr>
+<tr>
+<td align="center">pywin32</td>
+<td align="center">用于windows的python拓展</td>
+<td align="center"><a href="https://pypi.org/project/pywin32/" target="_blank" rel="noopener">https://pypi.org/project/pywin32/</a></td>
+<td align="center">否</td>
+</tr>
+<tr>
+<td align="center">python-docx</td>
+<td align="center">操作Word(.docx)</td>
+<td align="center"><a href="https://python-docx.readthedocs.io/en/latest/" target="_blank" rel="noopener">https://python-docx.readthedocs.io/en/latest/</a></td>
+<td align="center">否</td>
+</tr>
+<tr>
+<td align="center">SQLAlchemy</td>
+<td align="center">数据库访问</td>
+<td align="center"><a href="https://www.osgeo.cn/sqlalchemy/index.html" target="_blank" rel="noopener">https://www.osgeo.cn/sqlalchemy/index.html</a></td>
+<td align="center">否</td>
+</tr>
+<tr>
+<td align="center">pandas</td>
+<td align="center">数据分析</td>
+<td align="center"><a href="https://www.pypandas.cn/" target="_blank" rel="noopener">https://www.pypandas.cn/</a></td>
+<td align="center">否</td>
+</tr>
+</tbody></table>
+
+    </section>
+    <section class="extra">
+      
+        <ul class="copyright">
+  
+  <li><strong>本文作者：</strong>BigPoom</li>
+  <li><strong>本文链接：</strong><a href="http://lyall2020.github.io/%E8%AF%BB%E5%8F%96Word%E4%B8%AD%E7%9A%84%E8%A1%A8%E6%A0%BC%E6%95%B0%E6%8D%AE/index.html">http://lyall2020.github.io/%E8%AF%BB%E5%8F%96Word%E4%B8%AD%E7%9A%84%E8%A1%A8%E6%A0%BC%E6%95%B0%E6%8D%AE/index.html</a></li>
+  <li><strong>版权声明：</strong>本博客所有文章均采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh"
+      rel="external nofollow" target="_blank"> BY-NC-SA </a>许可协议，转载请注明出处！</li>
+  
+</ul>
+      
+      
+        <section class="donate">
+  <div class="qrcode">
+    <img   class="lazyload" data-original="/images/theme/alipay.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+      
+      
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/word/" rel="tag">word</a></li></ul>
+
+      
+<nav class="nav">
+  
+    <a href="/ElasticSearch%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E6%94%BE%E5%BC%83%E4%B8%80/"><i class="iconfont iconleft"></i>ElasticSearch从入门到放弃（一）——初体验</a>
+  
+  
+    <a href="/VS%20Code%E6%90%AD%E5%BB%BAPython%E7%8E%AF%E5%A2%83/">VS Code搭建Python环境<i class="iconfont iconright"></i></a>
+  
+</nav>
+
+    </section>
+    
+      <section class="comments">
+        
+          <div class="btn" id="comments-btn">查看评论</div>
+        
+        
+<div id="valine"></div>
+<script defer src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+  window.onload = function () {
+    var loadValine = function () {
+      new Valine({
+        el: '#valine',
+        app_id: "om5v6Yea3iQD57IxOpdagvb3-gzGzoHsz",
+        app_key: "dczs3m37wzi6q04LbYGCMQch",
+        placeholder: "留下你的足迹~",
+        avatar: "mp",
+        pageSize: "10",
+        lang: "zh-CN",
+      });
+    }
+    if ( true ) {
+      $("#comments-btn").on("click", function () {
+        $(this).hide();
+        loadValine();
+      });
+    } else {
+      loadValine();
+    }
+  };
+</script>
+
+      </section>
+    
+  </section>
+</article>
+  </div>
+</main>
+  <footer class="footer">
+  <div class="footer-social">
+    
+    
+    
+    
+    
+    <a href="tencent://message/?Menu=yes&uin=2394148078 " target="_blank" onMouseOver="this.style.color= '#12B7F5'"
+      onMouseOut="this.style.color='#33333D'">
+      <i class="iconfont footer-social-item  iconQQ "></i>
+    </a>
+    
+    
+    
+    
+    
+    <a href="mailto:bigpoom@aliyun.com " target="_blank" onMouseOver="this.style.color='#FFBE5B'"
+      onMouseOut="this.style.color='#33333D'">
+      <i class="iconfont footer-social-item  iconmail"></i>
+    </a>
+    
+  </div>
+  <div class="footer-copyright"><p>Copyright© 2019-2020 | <a target="_blank" href="https://lyall2020.github.io">lyall</a> .AllRightsReserved</p></div>
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+</body>
+
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+
+
+<script src="https://cdn.bootcdn.net/ajax/libs/justifiedGallery/3.7.0/js/jquery.justifiedGallery.min.js"></script>
+
+
+
+
+
+
+<script src="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/modules.js"></script>
+<script src="/js/zui.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+<script>
+  (function () {
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    } else {
+      bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+
+<script>
+  var _hmt = _hmt || [];
+  (function () {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?4c204d8bc027a0455b5fc642ac334ca8";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+
+
+
+
+
+
+
+
+
+
+</html>

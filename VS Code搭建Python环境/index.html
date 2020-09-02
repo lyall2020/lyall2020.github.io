@@ -1,0 +1,493 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>VS Code搭建Python环境 - null</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+
+  
+  
+  <meta name="description" content="前言使用轻量级开发工具VS Code搭建Python运..."> 
+  
+  <meta name="author" content="BigPoom"> 
+
+  
+    <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  
+  
+    <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  
+  
+    <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  
+  
+    <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+  
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_hhodbqn7tit.css">
+
+  
+
+  
+  
+  
+<link rel="stylesheet" href="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+  
+  
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css">
+
+  
+
+  
+  
+  
+<link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/justifiedGallery/3.7.0/css/justifiedGallery.min.css">
+
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        loadingImage: '/images/theme/loading.gif',
+      },
+      donate: {
+        enable: true,
+        alipay: '/images/theme/alipay.jpg',
+        wechat: '/images/theme/wechat.jpg'
+      },
+      motto: {
+        api: '',
+        default: '天地不仁，以万物为刍狗。'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        alwaysShow: false
+      },
+      carrier: {
+        enable: false
+      },
+      daovoice: {
+        enable: false
+      }
+    }
+  </script>
+
+  
+
+  
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+
+
+<nav class="navbar">
+  <div class="left">
+    <div class="163music">
+    
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=298 height=52 src="//music.163.com/outchain/player?type=0&id=4987905381&auto=0&height=32"></iframe>
+    
+</div>
+  </div>
+  <div class="center">VS Code搭建Python环境</div>
+  <div class="right">
+    <i class="iconfont iconmenu j-navbar-menu"></i>
+  </div>
+</nav>
+
+  <nav class="menu">
+  <div class="menu-wrap">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content">
+      
+      
+      
+      
+      <li class="menu-item"><a href="/ " class="underline"> 首页</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/archives " class="underline"> 归档</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/tags " class="underline"> 标签</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/categories " class="underline"> 分类</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/about " class="underline"> 关于</a></li>
+      
+    </ul>
+    <div class="menu-copyright"><p>Copyright© 2019-2020 | <a target="_blank" href="https://lyall2020.github.io">lyall</a> .AllRightsReserved</p></div>
+  </div>
+</nav>
+  <main id="main">
+  <div class="container" id="container">
+    <article class="article">
+  <section class="head">
+  <img   class="lazyload" data-original="/images/theme/post-image.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">VS Code搭建Python环境</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>7月 30, 2020</span
+        class="post-info-item">
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>2330</span>
+    </div>
+  </div>
+</section>
+  <section class="main">
+    <section class="content">
+      <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>使用轻量级开发工具VS Code搭建Python运行环境。</p>
+<a id="more"></a>
+
+<h1 id="前提条件"><a href="#前提条件" class="headerlink" title="前提条件"></a>前提条件</h1><ul>
+<li>VS Code</li>
+<li>VS Code Python拓展</li>
+<li>Python</li>
+</ul>
+<h2 id="安装VS-Code和Python拓展"><a href="#安装VS-Code和Python拓展" class="headerlink" title="安装VS Code和Python拓展"></a>安装VS Code和Python拓展</h2><p>1、安装<a href="https://code.visualstudio.com/" target="_blank" rel="noopener">VS Code</a><br>2、从Visual Studio Marketplace 安装VS Code的<a href="https://marketplace.visualstudio.com/items?itemName=ms-python.python" target="_blank" rel="noopener">Python扩展</a></p>
+<p><strong>Ctrl+Shift+X</strong>搜索<strong>python</strong></p>
+<p><img   class="lazyload" data-original="http://qiniu.hongjp1018.cn/image-20200730095152232.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20200730095152232"></p>
+<h2 id="安装Python"><a href="#安装Python" class="headerlink" title="安装Python"></a>安装Python</h2><p><strong>Windows</strong></p>
+<p>从<a href="https://www.python.org/downloads/" target="_blank" rel="noopener">python.org</a>安装<a href="https://www.python.org/ftp/python/3.8.5/python-3.8.5-amd64.exe" target="_blank" rel="noopener">Python3.8</a></p>
+<h2 id="验证Python安装情况"><a href="#验证Python安装情况" class="headerlink" title="验证Python安装情况"></a>验证Python安装情况</h2><p><strong>Windows</strong></p>
+<blockquote>
+<p>py –version</p>
+</blockquote>
+<p><img   class="lazyload" data-original="http://qiniu.hongjp1018.cn/image-20200730095522862.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20200730095522862"></p>
+<h1 id="快速开始"><a href="#快速开始" class="headerlink" title="快速开始"></a>快速开始</h1><h2 id="1、创建项目目录"><a href="#1、创建项目目录" class="headerlink" title="1、创建项目目录"></a>1、创建项目目录</h2><p>在E:\project\python下新建目录BigPoom</p>
+<h2 id="2、在指定项目中创建python虚拟环境"><a href="#2、在指定项目中创建python虚拟环境" class="headerlink" title="2、在指定项目中创建python虚拟环境"></a>2、在指定项目中创建python虚拟环境</h2><p>CMD运行下述代码</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cmd">&gt; E:<br>&gt; <span class="hljs-built_in">cd</span> E:\project\python\BigPoom<br>&gt; virtualenv .venv -p "D:\Program Files\python3.<span class="hljs-number">8</span>\python.exe"<br></code></pre></td></tr></table></figure>
+
+<p><img   class="lazyload" data-original="http://qiniu.hongjp1018.cn/image-20200730100501742.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20200730100501742"></p>
+<h2 id="3、vs-code打开项目"><a href="#3、vs-code打开项目" class="headerlink" title="3、vs code打开项目"></a>3、vs code打开项目</h2><p><img   class="lazyload" data-original="http://qiniu.hongjp1018.cn/image-20200730100532114.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20200730100532114"></p>
+<h2 id="4、配置Python解释器，生成setting-json配置文件"><a href="#4、配置Python解释器，生成setting-json配置文件" class="headerlink" title="4、配置Python解释器，生成setting.json配置文件"></a>4、配置Python解释器，生成setting.json配置文件</h2><p><strong>Ctrl+Shift+P</strong>（查看-&gt;命令面板），输入<strong>interpreter</strong>，单击筛选出来的结果“<strong>Python: Select Interpreter</strong>“，选择已经安装Python解释器或虚拟环境</p>
+<p><img   class="lazyload" data-original="http://qiniu.hongjp1018.cn/image-20200730150403623.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20200730150403623"></p>
+<p><img   class="lazyload" data-original="http://qiniu.hongjp1018.cn/image-20200730151302705.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20200730151302705"></p>
+<h2 id="5、生成luanch-json配置文件"><a href="#5、生成luanch-json配置文件" class="headerlink" title="5、生成luanch.json配置文件"></a>5、生成luanch.json配置文件</h2><p>运行-&gt;添加配置-&gt;选择Python-&gt;选择Python File</p>
+<p><img   class="lazyload" data-original="http://qiniu.hongjp1018.cn/image-20200730151246145.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20200730151246145"></p>
+<h2 id="6、脚本开发"><a href="#6、脚本开发" class="headerlink" title="6、脚本开发"></a>6、脚本开发</h2><p><img   class="lazyload" data-original="http://qiniu.hongjp1018.cn/image-20200730151218613.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20200730151218613"></p>
+<h1 id="常用工具"><a href="#常用工具" class="headerlink" title="常用工具"></a>常用工具</h1><h2 id="包管理工具-pip"><a href="#包管理工具-pip" class="headerlink" title="包管理工具 pip"></a>包管理工具 pip</h2><p>pip是一个现代的，通用的Python包管理工具，提供了对Python包的查找、下载、安装、卸载等功能。</p>
+<p><strong>添加环境变量</strong></p>
+<p><img   class="lazyload" data-original="http://qiniu.hongjp1018.cn/image-20200730151802814.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20200730151802814"></p>
+<p><strong>查看pip版本</strong></p>
+<blockquote>
+<p>pip show pip</p>
+</blockquote>
+<p>或者</p>
+<blockquote>
+<p>pip -V</p>
+</blockquote>
+<p><strong>升级pip</strong></p>
+<blockquote>
+<p>python -m pip install –upgrade pip</p>
+</blockquote>
+<p><strong>安装包</strong></p>
+<blockquote>
+<p>pip install package_name</p>
+</blockquote>
+<p><strong>查看某个已安装包</strong></p>
+<blockquote>
+<p>pip show –files package_name</p>
+</blockquote>
+<p><strong>查看已安装全部包</strong></p>
+<blockquote>
+<p>pip list</p>
+</blockquote>
+<p><strong>检查哪些包需要更新</strong></p>
+<blockquote>
+<p>pip list –outdated</p>
+</blockquote>
+<p><strong>升级包</strong></p>
+<blockquote>
+<p>pip install –upgrade package_name</p>
+</blockquote>
+<p><strong>卸载包</strong></p>
+<blockquote>
+<p>pip unistall package_name</p>
+</blockquote>
+<p><strong>查看帮助手册</strong></p>
+<blockquote>
+<p>pip –help</p>
+<p><img   class="lazyload" data-original="http://qiniu.hongjp1018.cn/image-20200730152531313.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20200730152531313"></p>
+</blockquote>
+<h2 id="虚拟环境-virtualenv"><a href="#虚拟环境-virtualenv" class="headerlink" title="虚拟环境 virtualenv"></a>虚拟环境 virtualenv</h2><p>创建一个专属于项目的独立的python环境，包含Python可执行文件以及pip库，但是不包含第三方包</p>
+<p><strong>安装</strong></p>
+<blockquote>
+<p>pip install virtualenv</p>
+</blockquote>
+<p><strong>查看版本</strong></p>
+<blockquote>
+<p>virtualenv –version</p>
+</blockquote>
+<p><strong>创建虚拟环境</strong></p>
+<blockquote>
+<p>virtualenv .venv -p “D:\Program Files\python3.8\python.exe”</p>
+</blockquote>
+<h2 id="静态代码检查工具-Flake8"><a href="#静态代码检查工具-Flake8" class="headerlink" title="静态代码检查工具 Flake8"></a>静态代码检查工具 <a href="https://pypi.python.org/pypi/flake8/" target="_blank" rel="noopener">Flake8</a></h2><p>由Python官方发布的一款辅助检测Python代码是否规范的工具，检查规则灵活，支持集成额外插件，扩展性强。</p>
+<p><strong>安装</strong></p>
+<blockquote>
+<p>pip install flake8</p>
+</blockquote>
+<p><strong>启用flake8</strong></p>
+<p>setting.json中添加</p>
+<blockquote>
+<p>“python.linting.flake8Enabled”: true</p>
+</blockquote>
+<p><img   class="lazyload" data-original="http://qiniu.hongjp1018.cn/image-20200730162637199.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20200730162637199"></p>
+<h2 id="自动格式化代码-yapf"><a href="#自动格式化代码-yapf" class="headerlink" title="自动格式化代码 yapf"></a>自动格式化代码 yapf</h2><p>Google 开发的一个用来格式化 Python 代码的工具。</p>
+<p><strong>安装</strong></p>
+<blockquote>
+<p>pip install yapf</p>
+</blockquote>
+<p><strong>启用yapf</strong></p>
+<p>setting.json中添加</p>
+<blockquote>
+<p>“python.formatting.provider”: “yapf”</p>
+</blockquote>
+<p><strong>使用</strong></p>
+<blockquote>
+<p>Alt+Shift+F</p>
+</blockquote>
+<h2 id="代码提示工具-kite"><a href="#代码提示工具-kite" class="headerlink" title="代码提示工具 kite"></a>代码提示工具 <a href="https://kite.com" target="_blank" rel="noopener">kite</a></h2><p><img   class="lazyload" data-original="http://qiniu.hongjp1018.cn/image-20200730171434273.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20200730171434273"></p>
+<h1 id="通用配置"><a href="#通用配置" class="headerlink" title="通用配置"></a>通用配置</h1><p>修改settings.json</p>
+<h2 id="自动保存"><a href="#自动保存" class="headerlink" title="自动保存"></a>自动保存</h2><blockquote>
+<p>“files.autoSave”: “afterDelay” </p>
+</blockquote>
+<h2 id="按Tab键时插入空格"><a href="#按Tab键时插入空格" class="headerlink" title="按Tab键时插入空格"></a>按Tab键时插入空格</h2><blockquote>
+<p>“editor.insertSpaces”: true</p>
+</blockquote>
+<h2 id="一个制表符等于的空格数"><a href="#一个制表符等于的空格数" class="headerlink" title="一个制表符等于的空格数"></a>一个制表符等于的空格数</h2><blockquote>
+<p>“editor.tabSize”: 4</p>
+</blockquote>
+<h2 id="添加自定义用户片段"><a href="#添加自定义用户片段" class="headerlink" title="添加自定义用户片段"></a>添加自定义用户片段</h2><p>管理（左下角齿轮）-&gt; 用户代码片段-&gt;搜索python-&gt;选择python.json</p>
+<p>添加如下代码</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs json">"HEADER":&#123;<br>        "prefix": "header",<br>        "body": [<br>        "#!/usr/bin/env python",<br>        "# -*- encoding: utf-8 -*-",<br>        "'''",<br>        "@File    :   $TM_FILENAME",<br>        "@Time    :   $CURRENT_YEAR/$CURRENT_MONTH/$CURRENT_DATE $CURRENT_HOUR:$CURRENT_MINUTE:$CURRENT_SECOND",<br>        "@Author  :   lyall ",<br>        "@Version :   1.0",<br>        "@Desc    :   None",<br>        <br>        "'''",<br>        "",<br>		<br>		<br>		"import os",<br>		"import sys",<br>		"sys.path.append(os.getcwd())",<br>		"$0",<br>    ],<br>    &#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="修改VS-Code语言为中文"><a href="#修改VS-Code语言为中文" class="headerlink" title="修改VS Code语言为中文"></a>修改VS Code语言为中文</h2><p>管理（左下角齿轮）-&gt;命令面板-&gt;搜索configure display language-&gt;选择zh-cn</p>
+
+    </section>
+    <section class="extra">
+      
+        <ul class="copyright">
+  
+  <li><strong>本文作者：</strong>BigPoom</li>
+  <li><strong>本文链接：</strong><a href="http://lyall2020.github.io/VS%20Code%E6%90%AD%E5%BB%BAPython%E7%8E%AF%E5%A2%83/index.html">http://lyall2020.github.io/VS%20Code%E6%90%AD%E5%BB%BAPython%E7%8E%AF%E5%A2%83/index.html</a></li>
+  <li><strong>版权声明：</strong>本博客所有文章均采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh"
+      rel="external nofollow" target="_blank"> BY-NC-SA </a>许可协议，转载请注明出处！</li>
+  
+</ul>
+      
+      
+        <section class="donate">
+  <div class="qrcode">
+    <img   class="lazyload" data-original="/images/theme/alipay.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+      
+      
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vs-code/" rel="tag">vs code</a></li></ul>
+
+      
+<nav class="nav">
+  
+    <a href="/%E8%AF%BB%E5%8F%96Word%E4%B8%AD%E7%9A%84%E8%A1%A8%E6%A0%BC%E6%95%B0%E6%8D%AE/"><i class="iconfont iconleft"></i>读取Word中的表格数据</a>
+  
+  
+    <a href="/%E8%87%B4%E8%BF%9COA%E4%BA%8C%E5%BC%80%E2%80%94%E2%80%94%E7%8E%AF%E5%A2%83%E7%AF%87/">致远OA二开——环境篇<i class="iconfont iconright"></i></a>
+  
+</nav>
+
+    </section>
+    
+      <section class="comments">
+        
+          <div class="btn" id="comments-btn">查看评论</div>
+        
+        
+<div id="valine"></div>
+<script defer src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+  window.onload = function () {
+    var loadValine = function () {
+      new Valine({
+        el: '#valine',
+        app_id: "om5v6Yea3iQD57IxOpdagvb3-gzGzoHsz",
+        app_key: "dczs3m37wzi6q04LbYGCMQch",
+        placeholder: "留下你的足迹~",
+        avatar: "mp",
+        pageSize: "10",
+        lang: "zh-CN",
+      });
+    }
+    if ( true ) {
+      $("#comments-btn").on("click", function () {
+        $(this).hide();
+        loadValine();
+      });
+    } else {
+      loadValine();
+    }
+  };
+</script>
+
+      </section>
+    
+  </section>
+</article>
+  </div>
+</main>
+  <footer class="footer">
+  <div class="footer-social">
+    
+    
+    
+    
+    
+    <a href="tencent://message/?Menu=yes&uin=2394148078 " target="_blank" onMouseOver="this.style.color= '#12B7F5'"
+      onMouseOut="this.style.color='#33333D'">
+      <i class="iconfont footer-social-item  iconQQ "></i>
+    </a>
+    
+    
+    
+    
+    
+    <a href="mailto:bigpoom@aliyun.com " target="_blank" onMouseOver="this.style.color='#FFBE5B'"
+      onMouseOut="this.style.color='#33333D'">
+      <i class="iconfont footer-social-item  iconmail"></i>
+    </a>
+    
+  </div>
+  <div class="footer-copyright"><p>Copyright© 2019-2020 | <a target="_blank" href="https://lyall2020.github.io">lyall</a> .AllRightsReserved</p></div>
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+</body>
+
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+
+
+<script src="https://cdn.bootcdn.net/ajax/libs/justifiedGallery/3.7.0/js/jquery.justifiedGallery.min.js"></script>
+
+
+
+
+
+
+<script src="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/modules.js"></script>
+<script src="/js/zui.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+<script>
+  (function () {
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    } else {
+      bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+
+<script>
+  var _hmt = _hmt || [];
+  (function () {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?4c204d8bc027a0455b5fc642ac334ca8";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+
+
+
+
+
+
+
+
+
+
+</html>
