@@ -1,0 +1,441 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Hexo搭建个人博客 - null</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+
+  
+  <meta name="keywords" content=", hexo, blog, 博客"> 
+  
+  <meta name="description" content="基于Hexo搭建个人博客。
+
+
+准备工作
+Node.j..."> 
+  
+  <meta name="author" content="BigPoom"> 
+
+  
+    <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  
+  
+    <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  
+  
+    <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  
+  
+    <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+  
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_hhodbqn7tit.css">
+
+  
+
+  
+  
+  
+<link rel="stylesheet" href="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+  
+  
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css">
+
+  
+
+  
+  
+  
+<link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/justifiedGallery/3.7.0/css/justifiedGallery.min.css">
+
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        loadingImage: '/images/theme/loading.gif',
+      },
+      donate: {
+        enable: true,
+        alipay: '/images/theme/alipay.jpg',
+        wechat: '/images/theme/wechat.jpg'
+      },
+      motto: {
+        api: '',
+        default: '天地不仁，以万物为刍狗。'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        alwaysShow: false
+      },
+      carrier: {
+        enable: false
+      },
+      daovoice: {
+        enable: false
+      }
+    }
+  </script>
+
+  
+
+  
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+
+
+<nav class="navbar">
+  <div class="left">
+    <div class="163music">
+    
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=298 height=52 src="//music.163.com/outchain/player?type=0&id=4987905381&auto=0&height=32"></iframe>
+    
+</div>
+  </div>
+  <div class="center">Hexo搭建个人博客</div>
+  <div class="right">
+    <i class="iconfont iconmenu j-navbar-menu"></i>
+  </div>
+</nav>
+
+  <nav class="menu">
+  <div class="menu-wrap">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content">
+      
+      
+      
+      
+      <li class="menu-item"><a href="/ " class="underline"> 首页</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/archives " class="underline"> 归档</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/tags " class="underline"> 标签</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/categories " class="underline"> 分类</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/about " class="underline"> 关于</a></li>
+      
+    </ul>
+    <div class="menu-copyright"><p>Copyright© 2019-2020 | <a target="_blank" href="https://lyall2020.github.io">lyall</a> .AllRightsReserved</p></div>
+  </div>
+</nav>
+  <main id="main">
+  <div class="container" id="container">
+    <article class="article">
+  <section class="head">
+  <img   class="lazyload" data-original="http://qiniu.hongjp1018.cn/hexo-index.PNG" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">Hexo搭建个人博客</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>9月 02, 2020</span
+        class="post-info-item">
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>8360</span>
+    </div>
+  </div>
+</section>
+  <section class="main">
+    <section class="content">
+      <p>基于<code>Hexo</code>搭建个人博客。</p>
+<a id="more"></a>
+
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><ul>
+<li><a href="https://nodejs.org/zh-cn/download/" target="_blank" rel="noopener">Node.js</a></li>
+<li><a href="https://git-scm.com/" target="_blank" rel="noopener">git</a></li>
+<li><a href="https://hexo.io/zh-cn/" target="_blank" rel="noopener">hexo</a></li>
+<li><a href="https://github.com/izhaoo/hexo-theme-zhaoo.git" target="_blank" rel="noopener">主题zhaoo</a></li>
+</ul>
+<h2 id="开始搭建"><a href="#开始搭建" class="headerlink" title="开始搭建"></a>开始搭建</h2><h3 id="安装Node-js"><a href="#安装Node-js" class="headerlink" title="安装Node.js"></a>安装<code>Node.js</code></h3><p>查看node版本：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">node -v<br></code></pre></td></tr></table></figure>
+
+<h3 id="安装git"><a href="#安装git" class="headerlink" title="安装git"></a>安装<code>git</code></h3><p>Windows环境下载git安装包，安装即可。</p>
+<h3 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装<code>hexo</code></h3><p>全局安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">npm install hexo-cli -g<br></code></pre></td></tr></table></figure>
+
+<p>查看hexo版本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">hexo -v<br></code></pre></td></tr></table></figure>
+
+<p>初始化hexo并下载依赖</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">hexo init &lt;path&gt;<br><span class="hljs-built_in">cd</span> &lt;path&gt;<br>npm insatll<br></code></pre></td></tr></table></figure>
+
+<p>启动hexo服务</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">hexo server<br>或 hexo s<br></code></pre></td></tr></table></figure>
+
+<p><img   class="lazyload" data-original="http://qiniu.hongjp1018.cn/hexo-run.PNG" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="运行结果"></p>
+<h2 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h2><p>部署至GitHub Pages</p>
+<p>1、新建仓库</p>
+<p>仓库名称：用户名.github.io</p>
+<p>设置为公共仓库</p>
+<p><img   class="lazyload" data-original="http://qiniu.hongjp1018.cn/hexo-create-repository.PNG" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="新建仓库"></p>
+<p>2、生成私钥和公钥</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">ssh-keygen -t rsa -C <span class="hljs-string">"email"</span><br></code></pre></td></tr></table></figure>
+
+<p>email是GitHub用户的注册邮箱</p>
+<p><img   class="lazyload" data-original="http://qiniu.hongjp1018.cn/hexo-ssh.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="私钥位置"></p>
+<p><code>id_rsa</code>是私钥，<code>id_rsa.pub</code>是公钥</p>
+<p>3、创建SSH key</p>
+<p>登录GitHub，点击头像，选择setting，选择SSH and GPG keys，新建一个SSH key，Title随便定义，将公钥中内容复制到Key中即可。</p>
+<p><img   class="lazyload" data-original="http://qiniu.hongjp1018.cn/hexo-create-ssh.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="创建ssh"></p>
+<p>验证是否创建成功</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">ssh -T git@github.com<br></code></pre></td></tr></table></figure>
+
+<p>出现<code>successfully</code>字样即成功。</p>
+<p>4、安装hexo部署插件hexo-deployer-git</p>
+<p>博客根目录下执行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">npm insatll hexo-deployer-git -save<br></code></pre></td></tr></table></figure>
+
+<p>5、修改博客根目录下配置文件<code>_config.yml</code></p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">deploy:</span><br>	<span class="hljs-attr">type:</span> <span class="hljs-string">git</span><br>	<span class="hljs-attr">repository:</span> <span class="hljs-string">git@github.com:&lt;仓库地址&gt;</span><br>	<span class="hljs-attr">branch:</span> <span class="hljs-string">master</span><br></code></pre></td></tr></table></figure>
+
+<p>6、部署博客</p>
+<p>博客根目录下依次执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">hexo clean   <span class="hljs-comment">#清除缓存文件和已生成的静态文件。非每次必须操作</span><br>hexo g		 <span class="hljs-comment">#生成静态文件</span><br>hexo d		 <span class="hljs-comment">#部署</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="站点配置"><a href="#站点配置" class="headerlink" title="站点配置"></a>站点配置</h3><p>参考<a href="https://hexo.io/zh-cn/docs/configuration" target="_blank" rel="noopener">hexo配置</a>或下列配置</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-comment"># Hexo Configuration</span><br><span class="hljs-comment">## Docs: https://hexo.io/docs/configuration.html</span><br><span class="hljs-comment">## Source: https://github.com/hexojs/hexo/</span><br><br><span class="hljs-comment"># Site</span><br><span class="hljs-attr">title:</span> <br><span class="hljs-attr">subtitle:</span> <span class="hljs-string">''</span><br><span class="hljs-attr">description:</span> <span class="hljs-string">''</span><br><span class="hljs-attr">keywords:</span><br><span class="hljs-attr">author:</span> <span class="hljs-string">BigPoom</span><br><span class="hljs-attr">language:</span> <span class="hljs-string">zh-cn</span><br><span class="hljs-attr">timezone:</span> <span class="hljs-string">''</span><br><br><span class="hljs-comment"># URL</span><br><span class="hljs-comment">## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'</span><br><span class="hljs-attr">url:</span> <span class="hljs-string">http://lyall2020.github.io</span><br><span class="hljs-attr">root:</span> <span class="hljs-string">/</span><br><span class="hljs-attr">permalink:</span> <span class="hljs-string">:title/</span><br><span class="hljs-attr">permalink_defaults:</span><br><span class="hljs-attr">pretty_urls:</span><br>  <span class="hljs-attr">trailing_index:</span> <span class="hljs-literal">true</span> <span class="hljs-comment"># Set to false to remove trailing 'index.html' from permalinks</span><br>  <span class="hljs-attr">trailing_html:</span> <span class="hljs-literal">true</span> <span class="hljs-comment"># Set to false to remove trailing '.html' from permalinks</span><br><br><span class="hljs-comment"># Directory</span><br><span class="hljs-attr">source_dir:</span> <span class="hljs-string">source</span><br><span class="hljs-attr">public_dir:</span> <span class="hljs-string">public</span><br><span class="hljs-attr">tag_dir:</span> <span class="hljs-string">tags</span><br><span class="hljs-attr">archive_dir:</span> <span class="hljs-string">archives</span><br><span class="hljs-attr">category_dir:</span> <span class="hljs-string">categories</span><br><span class="hljs-attr">code_dir:</span> <span class="hljs-string">downloads/code</span><br><span class="hljs-attr">i18n_dir:</span> <span class="hljs-string">:lang</span><br><span class="hljs-attr">skip_render:</span><br><br><span class="hljs-comment"># Writing</span><br><span class="hljs-attr">new_post_name:</span> <span class="hljs-string">:title.md</span> <span class="hljs-comment"># File name of new posts</span><br><span class="hljs-attr">default_layout:</span> <span class="hljs-string">post</span><br><span class="hljs-attr">titlecase:</span> <span class="hljs-literal">false</span> <span class="hljs-comment"># Transform title into titlecase</span><br><span class="hljs-attr">external_link:</span><br>  <span class="hljs-attr">enable:</span> <span class="hljs-literal">true</span> <span class="hljs-comment"># Open external links in new tab</span><br>  <span class="hljs-attr">field:</span> <span class="hljs-string">site</span> <span class="hljs-comment"># Apply to the whole site</span><br>  <span class="hljs-attr">exclude:</span> <span class="hljs-string">''</span><br><span class="hljs-attr">filename_case:</span> <span class="hljs-number">0</span><br><span class="hljs-attr">render_drafts:</span> <span class="hljs-literal">false</span><br><span class="hljs-attr">post_asset_folder:</span> <span class="hljs-literal">false</span><br><span class="hljs-attr">relative_link:</span> <span class="hljs-literal">false</span><br><span class="hljs-attr">future:</span> <span class="hljs-literal">true</span><br><span class="hljs-comment"># 高亮</span><br><span class="hljs-attr">highlight:</span><br>  <span class="hljs-attr">enable:</span> <span class="hljs-literal">true</span> <span class="hljs-comment">#启用高亮</span><br>  <span class="hljs-attr">line_number:</span> <span class="hljs-literal">true</span><br>  <span class="hljs-attr">auto_detect:</span> <span class="hljs-literal">true</span><br>  <span class="hljs-attr">tab_replace:</span> <span class="hljs-string">''</span><br>  <span class="hljs-attr">wrap:</span> <span class="hljs-literal">true</span><br>  <span class="hljs-attr">hljs:</span> <span class="hljs-literal">true</span><br><span class="hljs-attr">prismjs:</span><br>  <span class="hljs-attr">enable:</span> <span class="hljs-literal">false</span><br>  <span class="hljs-attr">preprocess:</span> <span class="hljs-literal">true</span><br>  <span class="hljs-attr">line_number:</span> <span class="hljs-literal">true</span><br>  <span class="hljs-attr">tab_replace:</span> <span class="hljs-string">''</span><br><br><span class="hljs-comment"># Home page setting</span><br><span class="hljs-comment"># path: Root path for your blogs index page. (default = '')</span><br><span class="hljs-comment"># per_page: Posts displayed per page. (0 = disable pagination)</span><br><span class="hljs-comment"># order_by: Posts order. (Order by date descending by default)</span><br><span class="hljs-attr">index_generator:</span><br>  <span class="hljs-attr">path:</span> <span class="hljs-string">''</span><br>  <span class="hljs-attr">per_page:</span> <span class="hljs-number">6</span>  <span class="hljs-comment">#默认显示文章数量，3的倍数</span><br>  <span class="hljs-attr">order_by:</span> <span class="hljs-string">-date</span><br><br><span class="hljs-comment"># Category &amp; Tag</span><br><span class="hljs-attr">default_category:</span> <span class="hljs-string">uncategorized</span><br><span class="hljs-attr">category_map:</span><br><span class="hljs-attr">tag_map:</span><br><br><span class="hljs-comment"># Metadata elements</span><br><span class="hljs-comment">## https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta</span><br><span class="hljs-attr">meta_generator:</span> <span class="hljs-literal">true</span><br><br><span class="hljs-comment"># Date / Time format</span><br><span class="hljs-comment">## Hexo uses Moment.js to parse and display date</span><br><span class="hljs-comment">## You can customize the date format as defined in</span><br><span class="hljs-comment">## http://momentjs.com/docs/#/displaying/format/</span><br><span class="hljs-attr">date_format:</span> <span class="hljs-string">YYYY-MM-DD</span><br><span class="hljs-attr">time_format:</span> <span class="hljs-string">HH:mm:ss</span><br><span class="hljs-comment">## updated_option supports 'mtime', 'date', 'empty'</span><br><span class="hljs-attr">updated_option:</span> <span class="hljs-string">'mtime'</span><br><br><span class="hljs-comment"># Pagination</span><br><span class="hljs-comment">## Set per_page to 0 to disable pagination</span><br><span class="hljs-attr">per_page:</span> <span class="hljs-number">10</span><br><span class="hljs-attr">pagination_dir:</span> <span class="hljs-string">page</span><br><br><span class="hljs-comment"># Include / Exclude file(s)</span><br><span class="hljs-comment">## include:/exclude: options only apply to the 'source/' folder</span><br><span class="hljs-attr">include:</span><br><span class="hljs-attr">exclude:</span><br><span class="hljs-attr">ignore:</span><br><br><span class="hljs-comment"># Extensions</span><br><span class="hljs-comment">## Plugins: https://hexo.io/plugins/</span><br><span class="hljs-comment">## Themes: https://hexo.io/themes/</span><br><span class="hljs-attr">theme:</span> <span class="hljs-string">zhaoo</span><br><br><span class="hljs-comment"># Deployment</span><br><span class="hljs-comment">## Docs: https://hexo.io/docs/one-command-deployment</span><br><span class="hljs-attr">deploy:</span><br>  <span class="hljs-attr">type:</span> <span class="hljs-string">git</span><br>  <span class="hljs-attr">repository:</span> <span class="hljs-string">git@github.com:lyall2020/lyall2020.github.io.git</span><br>  <span class="hljs-attr">branch:</span> <span class="hljs-string">master</span><br><br><span class="hljs-comment"># 站内搜索</span><br><span class="hljs-attr">search:</span> <br>  <span class="hljs-attr">path:</span> <span class="hljs-string">search.xml</span><br>  <span class="hljs-attr">field:</span> <span class="hljs-string">post</span><br>  <span class="hljs-attr">format:</span> <span class="hljs-string">html</span><br>  <span class="hljs-attr">limit:</span> <span class="hljs-number">10000</span><br><br><span class="hljs-attr">symbols_count_time:</span><br>  <span class="hljs-attr">symbols:</span> <span class="hljs-literal">true</span> <span class="hljs-comment">#是否统计字数</span><br>  <span class="hljs-attr">time:</span> <span class="hljs-literal">false</span> <span class="hljs-comment">#是否统计阅读时长</span><br>  <span class="hljs-attr">total_symbols:</span> <span class="hljs-literal">true</span> <span class="hljs-comment">#是否统计总字数</span><br>  <span class="hljs-attr">total_time:</span> <span class="hljs-literal">false</span> <span class="hljs-comment">#是否统计总阅读时长</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="使用主题zhaoo"><a href="#使用主题zhaoo" class="headerlink" title="使用主题zhaoo"></a>使用主题zhaoo</h3><h4 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h4><p><strong>1、使用git下载</strong></p>
+<p>在博客根目录下执行下述命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">git <span class="hljs-built_in">clone</span> https://github.com/izhaoo/hexo-theme-zhaoo.git themes/zhaoo<br></code></pre></td></tr></table></figure>
+
+<p><strong>2、直接从github下载zip包</strong></p>
+<p>解压至博客目录下的themes中</p>
+<p>修改博客根目录下的配置文件<code>_config.yml</code></p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">themes:</span> <span class="hljs-string">zhaoo</span><br></code></pre></td></tr></table></figure>
+
+<p>重启hexo服务</p>
+<h4 id="配置主题"><a href="#配置主题" class="headerlink" title="配置主题"></a>配置主题</h4><p>参考<a href="https://www.izhaoo.com/2020/05/05/hexo-theme-zhaoo-doc/" target="_blank" rel="noopener">zhaoo配置</a>或下列配置</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-comment"># --------------------------------------------------</span><br><span class="hljs-comment"># Site settings</span><br><span class="hljs-comment"># --------------------------------------------------</span><br>  <br><span class="hljs-comment"># Color</span><br><span class="hljs-attr">color:</span><br>  <span class="hljs-attr">default:</span> <span class="hljs-string">"#33333D"</span><br>  <span class="hljs-attr">link:</span> <span class="hljs-string">"#FFBE5B"</span><br><br><span class="hljs-comment"># Background Image</span><br><span class="hljs-attr">background_image:</span><br><br><span class="hljs-comment"># Favicon</span><br><span class="hljs-attr">favicon:</span><br>  <span class="hljs-attr">small:</span> <span class="hljs-string">/images/icons/favicon-16x16.png</span><br>  <span class="hljs-attr">medium:</span> <span class="hljs-string">/images/icons/favicon-32x32.png</span><br>  <span class="hljs-attr">apple_touch_icon:</span> <span class="hljs-string">/images/icons/apple-touch-icon.png</span><br>  <span class="hljs-attr">safari_pinned_tab:</span> <span class="hljs-string">/images/icons/stun-logo.svg</span><br>  <span class="hljs-attr">msapplication:</span> <span class="hljs-string">/images/icons/favicon-144x144.png</span><br><br><span class="hljs-comment"># Preview</span><br><span class="hljs-attr">preview:</span><br>  <span class="hljs-attr">enable:</span> <span class="hljs-literal">true</span><br>  <span class="hljs-attr">model:</span> <span class="hljs-string">wave</span>  <span class="hljs-comment">#cloud</span><br>  <span class="hljs-attr">welcome_image:</span> <span class="hljs-string">/images/theme/welcome-2.jpg</span><br>  <span class="hljs-attr">motto:</span><br>    <span class="hljs-attr">default:</span> <span class="hljs-string">天地不仁，以万物为刍狗。</span><br>    <span class="hljs-attr">color:</span> <span class="hljs-string">'#FFFFFF'</span><br>    <span class="hljs-attr">api:</span>  <span class="hljs-comment">#'http://localhost:3000/api/motto'</span><br><br><span class="hljs-comment"># Menu</span><br><span class="hljs-attr">menu:</span><br>  <span class="hljs-attr">home:</span> <span class="hljs-string">/</span> <span class="hljs-string">||</span> <span class="hljs-string">首页</span><br>  <span class="hljs-comment">#galleries: /galleries || 摄影</span><br>  <span class="hljs-attr">archives:</span> <span class="hljs-string">/archives</span> <span class="hljs-string">||</span> <span class="hljs-string">归档</span><br>  <span class="hljs-attr">tags:</span> <span class="hljs-string">/tags</span> <span class="hljs-string">||</span> <span class="hljs-string">标签</span><br>  <span class="hljs-attr">categories:</span> <span class="hljs-string">/categories</span> <span class="hljs-string">||</span> <span class="hljs-string">分类</span><br>  <span class="hljs-attr">about:</span> <span class="hljs-string">/about</span> <span class="hljs-string">||</span> <span class="hljs-string">关于</span><br><br><span class="hljs-comment"># Copyright</span><br><span class="hljs-attr">copyright:</span> <span class="hljs-string">&lt;p&gt;Copyright©</span> <span class="hljs-number">2019</span><span class="hljs-number">-2020</span> <span class="hljs-string">|</span> <span class="hljs-string">&lt;a</span> <span class="hljs-string">target="_blank"</span> <span class="hljs-string">href="https://lyall2020.github.io"&gt;lyall&lt;/a&gt;</span> <span class="hljs-string">.AllRightsReserved&lt;/p&gt;</span><br><br><span class="hljs-comment"># Social</span><br><span class="hljs-attr">social:</span><br>  <span class="hljs-attr">qq:</span> <span class="hljs-string">tencent://message/?Menu=yes&amp;uin=2394148078</span> <span class="hljs-string">||</span> <span class="hljs-string">iconQQ</span> <span class="hljs-string">||</span> <span class="hljs-string">'#12B7F5'</span><br>  <span class="hljs-comment">#wechat: javascript:; || iconwechat-fill || '#09BB07'</span><br>  <span class="hljs-comment">#instagram: https://www.instagram.com/izhaoo/ || iconinstagram || '#DA2E76'</span><br>  <span class="hljs-comment">#github: https://github.com/izhaoo || icongithub-fill || '#24292E'</span><br>  <span class="hljs-attr">email:</span> <span class="hljs-string">mailto:bigpoom@aliyun.com</span> <span class="hljs-string">||</span> <span class="hljs-string">iconmail</span><br><br><span class="hljs-comment"># Fab (FloatActionButton)</span><br><span class="hljs-attr">fab:</span><br>  <span class="hljs-attr">enable:</span> <span class="hljs-literal">true</span><br>  <span class="hljs-attr">alwaysShow:</span> <span class="hljs-literal">false</span><br><br><span class="hljs-comment"># --------------------------------------------------</span><br><span class="hljs-comment"># Post settings</span><br><span class="hljs-comment"># --------------------------------------------------</span><br><br><span class="hljs-comment"># Post image</span><br><span class="hljs-attr">post_image:</span> <span class="hljs-string">/images/theme/post-image.jpg</span><br><br><span class="hljs-comment"># 打赏</span><br><span class="hljs-comment"># Donate</span><br><span class="hljs-attr">donate:</span><br>  <span class="hljs-attr">enable:</span> <span class="hljs-literal">true</span><br>  <span class="hljs-attr">alipay:</span> <span class="hljs-string">/images/theme/alipay.jpg</span><br>  <span class="hljs-attr">wechat:</span> <span class="hljs-string">/images/theme/wechat.jpg</span><br><br><span class="hljs-comment"># 版权声明</span><br><span class="hljs-comment"># Copyright</span><br><span class="hljs-attr">post_copyright:</span><br>  <span class="hljs-attr">enable:</span> <span class="hljs-literal">true</span><br><br><span class="hljs-comment"># 分享</span><br><span class="hljs-comment"># Carrier（copy article with one click）</span><br><span class="hljs-attr">carrier:</span><br>  <span class="hljs-attr">enable:</span> <span class="hljs-literal">false</span><br>  <span class="hljs-attr">type:</span> <span class="hljs-string">html</span> <span class="hljs-comment">#markdown text</span><br><br><span class="hljs-comment"># --------------------------------------------------</span><br><span class="hljs-comment"># Page settings</span><br><span class="hljs-comment"># --------------------------------------------------</span><br><br><span class="hljs-comment"># Galleries</span><br><span class="hljs-attr">galleries:</span><br>  <span class="hljs-attr">enable:</span> <span class="hljs-literal">true</span><br>  <span class="hljs-attr">title:</span> <span class="hljs-string">摄影</span><br>  <span class="hljs-attr">subtitle:</span> <span class="hljs-string">Photography</span><br><br><span class="hljs-comment"># --------------------------------------------------</span><br><span class="hljs-comment"># Comment settings</span><br><span class="hljs-comment"># --------------------------------------------------</span><br><br><span class="hljs-attr">comments:</span><br>  <span class="hljs-attr">enable:</span> <span class="hljs-literal">true</span><br>  <span class="hljs-attr">type:</span> <span class="hljs-string">valine</span><br>  <span class="hljs-attr">button:</span> <span class="hljs-literal">true</span><br><br><span class="hljs-comment"># Gitalk</span><br><span class="hljs-attr">gitalk:</span><br>  <span class="hljs-attr">owner:</span><br>  <span class="hljs-attr">repo:</span><br>  <span class="hljs-attr">admin:</span><br>  <span class="hljs-attr">clientID:</span><br>  <span class="hljs-attr">clientSecret:</span><br><br><span class="hljs-comment"># Valine 评价</span><br><span class="hljs-attr">valine:</span><br>  <span class="hljs-attr">appId:</span> <span class="hljs-string">om5v6Yea3iQD57IxOpdagvb3-gzGzoHsz</span><br>  <span class="hljs-attr">appKey:</span> <span class="hljs-string">dczs3m37wzi6q04LbYGCMQch</span><br>  <span class="hljs-attr">placeholder:</span> <span class="hljs-string">留下你的足迹~</span><br>  <span class="hljs-attr">avatar:</span> <span class="hljs-string">mp</span><br>  <span class="hljs-attr">pageSize:</span> <span class="hljs-number">10</span><br>  <span class="hljs-attr">lang:</span> <span class="hljs-string">zh-CN</span><br><br><span class="hljs-comment"># ChangYan</span><br><span class="hljs-attr">changyan:</span><br>  <span class="hljs-attr">appId:</span><br>  <span class="hljs-attr">appKey:</span><br><br><span class="hljs-comment"># --------------------------------------------------</span><br><span class="hljs-comment"># Plugin settings</span><br><span class="hljs-comment"># --------------------------------------------------</span><br><br><span class="hljs-comment"># Daovoice</span><br><span class="hljs-attr">daovoice:</span><br>  <span class="hljs-attr">enable:</span> <span class="hljs-literal">false</span><br>  <span class="hljs-attr">appId:</span> <span class="hljs-string">abcdefg</span>  <span class="hljs-comment"># app_id</span><br><br><span class="hljs-comment"># 图片懒加载</span><br><span class="hljs-comment"># Lazyload</span><br><span class="hljs-attr">lazyload:</span><br>  <span class="hljs-attr">enable:</span> <span class="hljs-literal">true</span><br>  <span class="hljs-attr">onlyPost:</span> <span class="hljs-literal">false</span><br>  <span class="hljs-attr">loadingImage:</span> <span class="hljs-string">/images/theme/loading.gif</span><br><br><br><span class="hljs-comment"># 文章统计</span><br><span class="hljs-comment"># LeanCloud</span><br><span class="hljs-attr">leancloud:</span><br>  <span class="hljs-attr">enable:</span> <span class="hljs-literal">false</span><br>  <span class="hljs-attr">appId:</span><br>  <span class="hljs-attr">appKey:</span><br>  <span class="hljs-attr">serverURLs:</span><br><br><span class="hljs-comment"># FancyBox</span><br><span class="hljs-attr">fancybox:</span> <span class="hljs-literal">true</span><br><br><span class="hljs-comment"># 无刷新加载</span><br><span class="hljs-comment"># Pjax</span><br><span class="hljs-attr">pjax:</span> <span class="hljs-literal">false</span><br><br><span class="hljs-comment"># HighLight</span><br><span class="hljs-attr">highlight:</span> <span class="hljs-literal">true</span><br><br><span class="hljs-comment"># --------------------------------------------------</span><br><span class="hljs-comment"># Script settings</span><br><span class="hljs-comment"># --------------------------------------------------</span><br><br><span class="hljs-comment"># CDN</span><br><span class="hljs-attr">vendors:</span><br>  <span class="hljs-attr">jquery_js:</span> <span class="hljs-string">https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js</span><br>  <span class="hljs-attr">fancybox_js:</span> <span class="hljs-string">https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.js</span><br>  <span class="hljs-attr">pjax_js:</span> <span class="hljs-string">https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min.js</span><br>  <span class="hljs-attr">lazyload_js:</span> <span class="hljs-string">https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js</span><br>  <span class="hljs-attr">justifiedGallery_js:</span> <span class="hljs-string">https://cdn.bootcdn.net/ajax/libs/justifiedGallery/3.7.0/js/jquery.justifiedGallery.min.js</span><br>  <span class="hljs-attr">fancybox_css:</span> <span class="hljs-string">https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.css</span><br>  <span class="hljs-attr">highlight_css:</span> <span class="hljs-string">https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css</span><br>  <span class="hljs-attr">iconfont_css:</span> <span class="hljs-string">//at.alicdn.com/t/font_1445822_hhodbqn7tit.css</span><br>  <span class="hljs-attr">justifiedGallery_css:</span> <span class="hljs-string">https://cdn.bootcdn.net/ajax/libs/justifiedGallery/3.7.0/css/justifiedGallery.min.css</span><br><br><span class="hljs-comment"># SEO</span><br><span class="hljs-attr">seo:</span><br>  <span class="hljs-attr">baidu_auto_push:</span> <span class="hljs-literal">true</span><br><br><span class="hljs-comment"># Analytics</span><br><span class="hljs-attr">analytics:</span><br>  <span class="hljs-attr">baidu:</span> <span class="hljs-comment">#id</span><br>  <span class="hljs-attr">google:</span> <span class="hljs-comment">#id</span><br>  <span class="hljs-attr">tencent:</span> <span class="hljs-comment">#id</span><br>  <span class="hljs-attr">cnzz:</span> <span class="hljs-comment">#id</span><br><br><span class="hljs-comment"># Custom</span><br><span class="hljs-attr">custom:</span><br>  <span class="hljs-attr">head:</span><br>  <span class="hljs-attr">foot:</span><br>  <span class="hljs-attr">css:</span><br>  <span class="hljs-attr">js:</span><br><br><span class="hljs-comment"># music</span><br><span class="hljs-attr">music:</span><br>  <span class="hljs-attr">enable:</span> <span class="hljs-literal">true</span><br>  <span class="hljs-attr">url:</span> <span class="hljs-string">//music.163.com/outchain/player?type=0&amp;id=4987905381&amp;auto=0&amp;height=32</span><br></code></pre></td></tr></table></figure>
+
+
+
+
+    </section>
+    <section class="extra">
+      
+        <ul class="copyright">
+  
+  <li><strong>本文作者：</strong>BigPoom</li>
+  <li><strong>本文链接：</strong><a href="http://lyall2020.github.io/Hexo-builds-personal-blog/index.html">http://lyall2020.github.io/Hexo-builds-personal-blog/index.html</a></li>
+  <li><strong>版权声明：</strong>本博客所有文章均采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh"
+      rel="external nofollow" target="_blank"> BY-NC-SA </a>许可协议，转载请注明出处！</li>
+  
+</ul>
+      
+      
+        <section class="donate">
+  <div class="qrcode">
+    <img   class="lazyload" data-original="/images/theme/alipay.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+      
+      
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8D%9A%E5%AE%A2/" rel="tag">博客</a></li></ul>
+
+      
+<nav class="nav">
+  
+  
+    <a href="/Elasticsearch-from-introduction-to-abandonment/">ElasticSearch从入门到放弃（一）——初体验<i class="iconfont iconright"></i></a>
+  
+</nav>
+
+    </section>
+    
+      <section class="comments">
+        
+          <div class="btn" id="comments-btn">查看评论</div>
+        
+        
+<div id="valine"></div>
+<script defer src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+  window.onload = function () {
+    var loadValine = function () {
+      new Valine({
+        el: '#valine',
+        app_id: "om5v6Yea3iQD57IxOpdagvb3-gzGzoHsz",
+        app_key: "dczs3m37wzi6q04LbYGCMQch",
+        placeholder: "留下你的足迹~",
+        avatar: "mp",
+        pageSize: "10",
+        lang: "zh-CN",
+      });
+    }
+    if ( true ) {
+      $("#comments-btn").on("click", function () {
+        $(this).hide();
+        loadValine();
+      });
+    } else {
+      loadValine();
+    }
+  };
+</script>
+
+      </section>
+    
+  </section>
+</article>
+  </div>
+</main>
+  <footer class="footer">
+  <div class="footer-social">
+    
+    
+    
+    
+    
+    <a href="tencent://message/?Menu=yes&uin=2394148078 " target="_blank" onMouseOver="this.style.color= '#12B7F5'"
+      onMouseOut="this.style.color='#33333D'">
+      <i class="iconfont footer-social-item  iconQQ "></i>
+    </a>
+    
+    
+    
+    
+    
+    <a href="mailto:bigpoom@aliyun.com " target="_blank" onMouseOver="this.style.color='#FFBE5B'"
+      onMouseOut="this.style.color='#33333D'">
+      <i class="iconfont footer-social-item  iconmail"></i>
+    </a>
+    
+  </div>
+  <div class="footer-copyright"><p>Copyright© 2019-2020 | <a target="_blank" href="https://lyall2020.github.io">lyall</a> .AllRightsReserved</p></div>
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+</body>
+
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+
+
+<script src="https://cdn.bootcdn.net/ajax/libs/justifiedGallery/3.7.0/js/jquery.justifiedGallery.min.js"></script>
+
+
+
+
+
+
+<script src="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/modules.js"></script>
+<script src="/js/zui.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+<script>
+  (function () {
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    } else {
+      bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+
+<script>
+  var _hmt = _hmt || [];
+  (function () {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?4c204d8bc027a0455b5fc642ac334ca8";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+
+
+
+
+
+
+
+
+
+
+</html>

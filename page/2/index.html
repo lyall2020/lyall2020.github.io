@@ -7,7 +7,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Archive - null</title>
+  <title></title>
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="google" content="notranslate" />
@@ -109,20 +109,6 @@
   
 
 
-<nav class="navbar">
-  <div class="left">
-    <div class="163music">
-    
-        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=298 height=52 src="//music.163.com/outchain/player?type=0&id=4987905381&auto=0&height=32"></iframe>
-    
-</div>
-  </div>
-  <div class="center">归档</div>
-  <div class="right">
-    <i class="iconfont iconmenu j-navbar-menu"></i>
-  </div>
-</nav>
-
   <nav class="menu">
   <div class="menu-wrap">
     <div class="menu-close">
@@ -160,59 +146,74 @@
   </div>
 </nav>
   <main id="main">
-  <section class="archive">
-    <div class="archive-container">
-      <div class="archive-post">
-        <h3 class="archive-total">归档: 7 篇</h3>
+  <nav class="navbar">
+    <div class="left"></div>
+    <div class="center"></div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+  </nav>
+  
+    <div class="preview">
+  <div class="preview-image">
+    <h2 class="preview-motto" id="motto"></h2>
+    <!-- <span class="preview-cursor">|</span> -->
+    
+    <div class="preview-overlay">
+      <svg class="preview-waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+        viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="preview-parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7" />
+          <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
+          <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" />
+          <use xlink:href="#gentle-wave" x="48" y="7" fill="#fff" />
+        </g>
+      </svg>
+    </div>
+    
+  </div>
+  <div class="preview-scroll">
+    <a href="#container" class="smooth-scroll"><i class="iconfont iconMouse"></i></a>
+  </div>
+</div>
+  
+  <div class="container" id="container">
+    <section class="row post">
+  
+  <div class="col-lg-4 col-md-6 col-sm-12 post-item">
+  <div class="post-wrap">
+    
+    <a href="/analysis-develop-data/" class="post-image">
+      <img   class="lazyload" data-original="/images/theme/post-image.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+    </a>
+    <div class="post-content">
+      <h3 class="post-title"><a href="/analysis-develop-data/">分析云二开——数据篇</a></h3>
+      
+      
+      
+      <div class="post-excerpt">
+        <p class="substr-3">前言参照分析云本身调用接口方式，使用ajax或其他前端调用接口的技术，获取数据源，以适配要自定义的图表。</p>
+      </div>
+      <div class="post-info">
+        <span class="post-info-item"><i class="iconfont iconcalendar"></i>1月 09, 2020</span
+          class="post-info-item">
         
-        
-        
-        <h3 class="archive-year">2020</h3>
-        
-        <div class="archive-item">
-          <a class="archive-date" href="/Hexo-builds-personal-blog/">09/02</a>
-          <a class="archive-title" href="/Hexo-builds-personal-blog/">Hexo搭建个人博客</a>
-        </div>
-        
-        
-        <div class="archive-item">
-          <a class="archive-date" href="/Elasticsearch-from-introduction-to-abandonment/">08/31</a>
-          <a class="archive-title" href="/Elasticsearch-from-introduction-to-abandonment/">ElasticSearch从入门到放弃（一）——初体验</a>
-        </div>
-        
-        
-        <div class="archive-item">
-          <a class="archive-date" href="/read-table-from-words/">08/03</a>
-          <a class="archive-title" href="/read-table-from-words/">读取Word中的表格数据</a>
-        </div>
-        
-        
-        <div class="archive-item">
-          <a class="archive-date" href="/VsCode-Building-Python-environment/">07/30</a>
-          <a class="archive-title" href="/VsCode-Building-Python-environment/">VS Code搭建Python环境</a>
-        </div>
-        
-        
-        <div class="archive-item">
-          <a class="archive-date" href="/oa-develop-env/">03/07</a>
-          <a class="archive-title" href="/oa-develop-env/">致远OA二开——环境篇</a>
-        </div>
-        
-        
-        <div class="archive-item">
-          <a class="archive-date" href="/analysis-develop-report/">01/10</a>
-          <a class="archive-title" href="/analysis-develop-report/">分析云二开——报表篇</a>
-        </div>
-        
-        
-        <div class="archive-item">
-          <a class="archive-date" href="/analysis-develop-data/">01/09</a>
-          <a class="archive-title" href="/analysis-develop-data/">分析云二开——数据篇</a>
-        </div>
-        
+        <span class="post-info-item"><i class="iconfont iconfont-size"></i>3047</span>
       </div>
     </div>
-  </section>
+  </div>
+</div>
+  
+</section>
+    <section class="paginator">
+  
+  <a class="extend prev" rel="prev" href="/">&lt;</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+  
+</section>
+  </div>
 </main>
   <footer class="footer">
   <div class="footer-social">

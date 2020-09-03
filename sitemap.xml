@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://lyall2020.github.io/Hexo-builds-personal-blog/</loc>
+    
+    <lastmod>2020-09-03T14:19:59.372Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://lyall2020.github.io/tags/index.html</loc>
     
     <lastmod>2020-09-02T12:53:53.591Z</lastmod>
