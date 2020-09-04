@@ -1,6 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Typora应用小技巧</title>
+    <url>/skills-of-typora/</url>
+    <content><![CDATA[<p>通过PigGo实现在Typora插入图片自动上传七牛云。</p>
+<a id="more"></a>
+
+<h2 id="图片自动上传七牛云"><a href="#图片自动上传七牛云" class="headerlink" title="图片自动上传七牛云"></a>图片自动上传七牛云</h2><h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><ul>
+<li>七牛云图床</li>
+<li>PigGo</li>
+<li>Typora</li>
+</ul>
+<h3 id="正式开始"><a href="#正式开始" class="headerlink" title="正式开始"></a>正式开始</h3><p>1、创建七牛云存储空间</p>
+<p>参考地址：<a href="https://developer.qiniu.com/kodo/manual/4263/operational-guidelines-for-the-new-bucket" target="_blank" rel="noopener">https://developer.qiniu.com/kodo/manual/4263/operational-guidelines-for-the-new-bucket</a></p>
+<p>2、创建秘钥</p>
+<p><code>个人中心</code>   –&gt;  <code>秘钥管理</code></p>
+<p><img   class="lazyload" data-original="http://qiniu.hongjp1018.cn/image-20200904113535848.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20200904113535848"></p>
+<p>3、配置PigGo</p>
+<p><img   class="lazyload" data-original="http://qiniu.hongjp1018.cn/image-20200904113432990.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20200904113432990"></p>
+<p>设定AccessKey：第二步中获取</p>
+<p>设定SecretKey：第二步中获取</p>
+<p>存储空间名：第一步创建的名称</p>
+<p>访问地址：外链域名，可以通过域名管理绑定个人域名</p>
+<p>存储区域：使用存储区域简称</p>
+<table>
+<thead>
+<tr>
+<th align="center">存储区域</th>
+<th align="center">地域简称</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">华东</td>
+<td align="center">z0</td>
+</tr>
+<tr>
+<td align="center">华北</td>
+<td align="center">z1</td>
+</tr>
+<tr>
+<td align="center">华南</td>
+<td align="center">z2</td>
+</tr>
+<tr>
+<td align="center">北美</td>
+<td align="center">na0</td>
+</tr>
+<tr>
+<td align="center">东南亚</td>
+<td align="center">as0</td>
+</tr>
+</tbody></table>
+<p>4、配置Typora</p>
+<p><img   class="lazyload" data-original="http://qiniu.hongjp1018.cn/image-20200904133509784.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20200904133509784"></p>
+<p>配置上传服务及PigGo路径</p>
+<p>验证图片上传</p>
+<p><img   class="lazyload" data-original="http://qiniu.hongjp1018.cn/image-20200904133635803.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20200904133635803"></p>
+]]></content>
+      <categories>
+        <category>typora</category>
+      </categories>
+      <tags>
+        <tag>博客</tag>
+        <tag>Typora</tag>
+        <tag>PigGo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hexo搭建个人博客</title>
     <url>/Hexo-builds-personal-blog/</url>
     <content><![CDATA[<p>基于<code>Hexo</code>搭建个人博客。</p>
