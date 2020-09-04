@@ -637,7 +637,7 @@ body ul {
   }
 }
 .lazyload {
-  background: url("/images/theme/loading.gif") no-repeat center;
+  background: url("http://qiniu.hongjp1018.cn/loading.gif") no-repeat center;
 }
 .loading {
   position: fixed;
@@ -653,7 +653,7 @@ body ul {
   z-index: 40;
   height: 90vh;
   width: 100%;
-  background-image: url("/images/theme/welcome-2.jpg");
+  background-image: url("http://qiniu.hongjp1018.cn/welcome-2.jpg");
   background-repeat: no-repeat;
   background-size: 100% 100%;
   background-attachment: fixed;
