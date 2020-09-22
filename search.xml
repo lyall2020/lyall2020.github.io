@@ -1,6 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>快速开始logstash</title>
+    <url>/logstash-start/</url>
+    <content><![CDATA[<p>快速开始logstash</p>
+<a id="more"></a>
+
+<h2 id="下载与安装"><a href="#下载与安装" class="headerlink" title="下载与安装"></a>下载与安装</h2><p>官方下载地址：<a href="https://www.elastic.co/cn/downloads/past-releases#logstash" target="_blank" rel="noopener">https://www.elastic.co/cn/downloads/past-releases#logstash</a></p>
+<p>华为镜像：<a href="https://mirrors.huaweicloud.com/logstash/" target="_blank" rel="noopener">https://mirrors.huaweicloud.com/logstash/</a></p>
+<p>Windows环境下载ZIP，解压至任意目录，目录要求：</p>
+<ul>
+<li>路径没有空格</li>
+<li>不包含<code>:</code>字符</li>
+</ul>
+<p>测试安装</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> D:\ElasticSearch\logstash-7.8.0\bin<br>logstash -e <span class="hljs-string">"input &#123; stdin &#123;&#125; &#125; output &#123; stdout &#123;&#125; &#125;"</span><br></code></pre></td></tr></table></figure>
+
+<p>出现“Successfully started”字样，输入“hello”，结果同下图，即成功</p>
+<p><img   class="lazyload" data-original="http://qiniu.hongjp1018.cn/image-20200922141931764.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20200922141931764"></p>
+<h2 id="工作流程"><a href="#工作流程" class="headerlink" title="工作流程"></a>工作流程</h2><p><img   class="lazyload" data-original="http://qiniu.hongjp1018.cn/image-20200922142939616.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20200922142939616"></p>
+]]></content>
+      <categories>
+        <category>logstash</category>
+      </categories>
+      <tags>
+        <tag>logstash</tag>
+        <tag>ELK</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>通过logstash将关系型数据库数据转存至elasticsearch</title>
+    <url>/logstash-data-to-es/</url>
+    <content><![CDATA[<p>通过logstash手动或定时将mysql或sql server数据存储至es</p>
+<a id="more"></a>
+
+
+
+<h2 id="工作流程"><a href="#工作流程" class="headerlink" title="工作流程"></a>工作流程</h2><p><img   class="lazyload" data-original="http://qiniu.hongjp1018.cn/image-20200922142939616.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20200922142939616"></p>
+<h2 id="Mysql"><a href="#Mysql" class="headerlink" title="Mysql"></a>Mysql</h2><h3 id="Data-Source-—-mysql数据源"><a href="#Data-Source-—-mysql数据源" class="headerlink" title="Data Source —- mysql数据源"></a>Data Source —- mysql数据源</h3><figure class="highlight plain"><table><tr><td class="code"><pre><code class="hljs mysql">SET NAMES utf8mb4;<br>SET FOREIGN_KEY_CHECKS &#x3D; 0;<br><br>-- ----------------------------<br>-- Table structure for question<br>-- ----------------------------<br>DROP TABLE IF EXISTS &#96;question&#96;;<br>CREATE TABLE &#96;question&#96;  (<br>  &#96;id&#96; bigint(20) NOT NULL AUTO_INCREMENT COMMENT &#39;唯一id&#39;,<br>  &#96;title&#96; varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT &#39;问题标题&#39;,<br>  &#96;keywords&#96; varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT &#39;关键字&#39;,<br>  &#96;question_text&#96; longtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT &#39;问题详情，文本&#39;,<br>  &#96;answer_text&#96; longtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT &#39;答案详情，文本&#39;,<br>  &#96;question_html&#96; longtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT &#39;问题详情，html&#39;,<br>  &#96;answer_html&#96; longtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT &#39;答案详情，html&#39;,<br>  &#96;created&#96; datetime(0) NOT NULL COMMENT &#39;创建时间&#39;,<br>  &#96;username&#96; varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT &#39;创建人&#39;,<br>  PRIMARY KEY (&#96;id&#96;) USING BTREE<br>) ENGINE &#x3D; InnoDB AUTO_INCREMENT &#x3D; 24 CHARACTER SET &#x3D; utf8 COLLATE &#x3D; utf8_general_ci ROW_FORMAT &#x3D; Compact;<br><br>SET FOREIGN_KEY_CHECKS &#x3D; 1;<br></code></pre></td></tr></table></figure>
+
+<h3 id="ElasticSearch-—-创建es索引"><a href="#ElasticSearch-—-创建es索引" class="headerlink" title="ElasticSearch —- 创建es索引"></a>ElasticSearch —- 创建es索引</h3><figure class="highlight ebnf"><table><tr><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">PUT question</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="Logstash-Pipeline"><a href="#Logstash-Pipeline" class="headerlink" title="Logstash Pipeline"></a>Logstash Pipeline</h3><p>1、在logstash安装目录下的config中新建目录mysql-config</p>
+<p>2、下载mysql驱动<a href="http://qiniu.hongjp1018.cn/jdbc-mysql-driver.zip" target="_blank" rel="noopener">mysql-connector-java-8.0.21.jar</a>，解压至mysql-config</p>
+<p>3、新建文件question.conf</p>
+<figure class="highlight puppet"><table><tr><td class="code"><pre><code class="hljs puppet"><span class="hljs-comment"># 输入</span><br><span class="hljs-keyword">input</span> &#123;<br>	<span class="hljs-comment"># jdbc配置</span><br>	jdbc &#123;<br>		<span class="hljs-comment"># 指定驱动文件路径</span><br>		<span class="hljs-attr">jdbc_driver_library</span> =&gt; <span class="hljs-string">"D:/ElasticSearch/logstash-7.8.0/config/mysql-config/jdbc-mysql-driver/8.0.21/mysql-connector-java-8.0.21.jar"</span><br>		<span class="hljs-comment"># 指定驱动</span><br>		<span class="hljs-attr">jdbc_driver_class</span> =&gt; <span class="hljs-string">"com.mysql.jdbc.Driver"</span> <br>		<span class="hljs-comment"># mysql 连接信息</span><br>		<span class="hljs-attr">jdbc_connection_string</span> =&gt; <span class="hljs-string">"jdbc:mysql://127.0.0.1:3306/question?characterEncoding=utf8&amp;useSSL=false&amp;serverTimezone=Asia/Shanghai&amp;rewriteBatchedStatements=true"</span><br>		<span class="hljs-comment"># 用户名</span><br>		<span class="hljs-attr">jdbc_user</span> =&gt; <span class="hljs-string">"root"</span><br>		<span class="hljs-comment"># 密码</span><br>		<span class="hljs-attr">jdbc_password</span> =&gt; <span class="hljs-string">"root"</span><br>		<span class="hljs-comment"># 定时执行 Cron格式： "* * * * *"表示每分钟执行一次</span><br>		<span class="hljs-attr">schedule</span> =&gt; <span class="hljs-string">"* * * * *"</span><br>		<span class="hljs-comment"># 数据源</span><br>		<span class="hljs-attr">statement</span> =&gt; <span class="hljs-string">"SELECT * FROM question"</span><br>	&#125;<br>&#125;<br><br><span class="hljs-comment"># 输出</span><br><span class="hljs-keyword">output</span> &#123;<br>	<span class="hljs-comment"># es配置</span><br>    elasticsearch &#123;<br>		<span class="hljs-comment"># 地址</span><br>		<span class="hljs-attr">hosts</span> =&gt; [<span class="hljs-string">"localhost:9200"</span>]<br>		<span class="hljs-comment"># 用户名</span><br>		<span class="hljs-attr">user</span> =&gt; <span class="hljs-string">"elastic"</span><br>		<span class="hljs-comment"># 密码</span><br>		<span class="hljs-attr">password</span> =&gt; <span class="hljs-string">"123456"</span><br>        <span class="hljs-comment"># 索引名称</span><br>		<span class="hljs-attr">index</span> =&gt; <span class="hljs-string">"question"</span><br>    &#125;<br>	# 输出配置<br>    <span class="hljs-keyword">stdout</span> &#123;<br>        <span class="hljs-comment"># JSON格式输出</span><br>        <span class="hljs-attr">codec</span> =&gt; json_lines<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="执行脚本"><a href="#执行脚本" class="headerlink" title="执行脚本"></a>执行脚本</h3><figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> D:\ElasticSearch\logstash-7.8.0\bin<br>logstash -f D:\ElasticSearch\logstash-7.8.0\config\mysql-config\question.conf<br></code></pre></td></tr></table></figure>
+
+<h2 id="Sql-Server"><a href="#Sql-Server" class="headerlink" title="Sql Server"></a>Sql Server</h2><p>步骤同mysql，改变下述内容</p>
+<p>1、驱动<a href="http://qiniu.hongjp1018.cn/sqljdbc_4.2.zip" target="_blank" rel="noopener">sqljdbc_4.2.zip</a></p>
+<p>2、question.conf</p>
+<figure class="highlight puppet"><table><tr><td class="code"><pre><code class="hljs puppet"><span class="hljs-keyword">input</span> &#123;<br>  jdbc &#123;<br>    <span class="hljs-attr">jdbc_driver_library</span> =&gt; <span class="hljs-string">"D:\ElasticSearch\logstash-7.8.0\config\mssql-config\sqljdbc_4.2\chs\jre8\sqljdbc42.jar"</span><br>    <span class="hljs-attr">jdbc_driver_class</span> =&gt; <span class="hljs-string">"com.microsoft.sqlserver.jdbc.SQLServerDriver"</span><br>    <span class="hljs-attr">jdbc_connection_string</span> =&gt; <span class="hljs-string">"jdbc:sqlserver://localhost:1433;databaseName=question"</span><br>    <span class="hljs-attr">jdbc_user</span> =&gt; <span class="hljs-string">"sa"</span><br>    <span class="hljs-attr">jdbc_password</span> =&gt; <span class="hljs-string">"1"</span><br>    <span class="hljs-attr">statement</span> =&gt; <span class="hljs-string">"SELECT * FROM question"</span><br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+]]></content>
+      <categories>
+        <category>logstash</category>
+      </categories>
+      <tags>
+        <tag>es</tag>
+        <tag>logstash</tag>
+        <tag>ELK</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Typora应用小技巧</title>
     <url>/skills-of-typora/</url>
     <content><![CDATA[<p>通过PigGo实现在Typora插入图片自动上传七牛云。</p>

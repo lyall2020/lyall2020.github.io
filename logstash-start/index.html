@@ -7,13 +7,18 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>categories - null</title>
+  <title>快速开始logstash - null</title>
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="google" content="notranslate" />
 
   
+  <meta name="keywords" content=", logstash"> 
   
+  <meta name="description" content="快速开始logstash
+
+
+下载与安装官方下载地址：..."> 
   
   <meta name="author" content="BigPoom"> 
 
@@ -113,7 +118,7 @@
     
 </div>
   </div>
-  <div class="center">categories</div>
+  <div class="center">快速开始logstash</div>
   <div class="right">
     <i class="iconfont iconmenu j-navbar-menu"></i>
   </div>
@@ -156,13 +161,111 @@
   </div>
 </nav>
   <main id="main">
-  <section class="categories">
-    <header class="header">
-  <h1 class="header-title">分类</h1>
-  <p class="header-subtitle">共: 8 个</p>
-</header>
-    <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91/">二次开发</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91/%E5%88%86%E6%9E%90%E4%BA%91/">分析云</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91/OA/">OA</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/logstash/">logstash</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ElasticSearch/">ElasticSearch</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/typora/">typora</a><span class="category-list-count">1</span></li></ul>
+  <div class="container" id="container">
+    <article class="article">
+  <section class="head">
+  <img   class="lazyload" data-original="http://qiniu.hongjp1018.cn/logstash-header.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">快速开始logstash</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>9月 22, 2020</span
+        class="post-info-item">
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>371</span>
+    </div>
+  </div>
+</section>
+  <section class="main">
+    <section class="content">
+      <p>快速开始logstash</p>
+<a id="more"></a>
+
+<h2 id="下载与安装"><a href="#下载与安装" class="headerlink" title="下载与安装"></a>下载与安装</h2><p>官方下载地址：<a href="https://www.elastic.co/cn/downloads/past-releases#logstash" target="_blank" rel="noopener">https://www.elastic.co/cn/downloads/past-releases#logstash</a></p>
+<p>华为镜像：<a href="https://mirrors.huaweicloud.com/logstash/" target="_blank" rel="noopener">https://mirrors.huaweicloud.com/logstash/</a></p>
+<p>Windows环境下载ZIP，解压至任意目录，目录要求：</p>
+<ul>
+<li>路径没有空格</li>
+<li>不包含<code>:</code>字符</li>
+</ul>
+<p>测试安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> D:\ElasticSearch\logstash-7.8.0\bin<br>logstash -e <span class="hljs-string">"input &#123; stdin &#123;&#125; &#125; output &#123; stdout &#123;&#125; &#125;"</span><br></code></pre></td></tr></table></figure>
+
+<p>出现“Successfully started”字样，输入“hello”，结果同下图，即成功</p>
+<p><img   class="lazyload" data-original="http://qiniu.hongjp1018.cn/image-20200922141931764.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20200922141931764"></p>
+<h2 id="工作流程"><a href="#工作流程" class="headerlink" title="工作流程"></a>工作流程</h2><p><img   class="lazyload" data-original="http://qiniu.hongjp1018.cn/image-20200922142939616.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20200922142939616"></p>
+
+    </section>
+    <section class="extra">
+      
+        <ul class="copyright">
+  
+  <li><strong>本文作者：</strong>BigPoom</li>
+  <li><strong>本文链接：</strong><a href="http://lyall2020.github.io/logstash-start/index.html">http://lyall2020.github.io/logstash-start/index.html</a></li>
+  <li><strong>版权声明：</strong>本博客所有文章均采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh"
+      rel="external nofollow" target="_blank"> BY-NC-SA </a>许可协议，转载请注明出处！</li>
+  
+</ul>
+      
+      
+        <section class="donate">
+  <div class="qrcode">
+    <img   class="lazyload" data-original="http://qiniu.hongjp1018.cn/alipay.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+      
+      
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ELK/" rel="tag">ELK</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/logstash/" rel="tag">logstash</a></li></ul>
+
+      
+<nav class="nav">
+  
+  
+    <a href="/logstash-data-to-es/">通过logstash将关系型数据库数据转存至elasticsearch<i class="iconfont iconright"></i></a>
+  
+</nav>
+
+    </section>
+    
+      <section class="comments">
+        
+          <div class="btn" id="comments-btn">查看评论</div>
+        
+        
+<div id="valine"></div>
+<script defer src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+  window.onload = function () {
+    var loadValine = function () {
+      new Valine({
+        el: '#valine',
+        app_id: "om5v6Yea3iQD57IxOpdagvb3-gzGzoHsz",
+        app_key: "dczs3m37wzi6q04LbYGCMQch",
+        placeholder: "留下你的足迹~",
+        avatar: "mp",
+        pageSize: "10",
+        lang: "zh-CN",
+      });
+    }
+    if ( true ) {
+      $("#comments-btn").on("click", function () {
+        $(this).hide();
+        loadValine();
+      });
+    } else {
+      loadValine();
+    }
+  };
+</script>
+
+      </section>
+    
   </section>
+</article>
+  </div>
 </main>
   <footer class="footer">
   <div class="footer-social">
