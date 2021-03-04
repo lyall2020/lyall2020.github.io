@@ -54,8 +54,8 @@
 <figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> D:\ElasticSearch\logstash-7.8.0\bin<br>logstash -e <span class="hljs-string">"input &#123; stdin &#123;&#125; &#125; output &#123; stdout &#123;&#125; &#125;"</span><br></code></pre></td></tr></table></figure>
 
 <p>出现“Successfully started”字样，输入“hello”，结果同下图，即成功</p>
-<p><img   class="lazyload" data-original="http://qiniu.hongjp1018.cn/image-20200922141931764.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20200922141931764"></p>
-<h2 id="工作流程"><a href="#工作流程" class="headerlink" title="工作流程"></a>工作流程</h2><p><img   class="lazyload" data-original="http://qiniu.hongjp1018.cn/image-20200922142939616.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20200922142939616"></p>
+<p><img   class="lazyload" data-original="https://www.hongjp1018.cn/image-20200922141931764.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20200922141931764"></p>
+<h2 id="工作流程"><a href="#工作流程" class="headerlink" title="工作流程"></a>工作流程</h2><p><img   class="lazyload" data-original="https://www.hongjp1018.cn/image-20200922142939616.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20200922142939616"></p>
 ]]></content>
       <categories>
         <category>logstash</category>
