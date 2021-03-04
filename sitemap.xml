@@ -2,30 +2,72 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://lyall2020.github.io/logstash-data-to-es/</loc>
+    <loc>http://lyall2020.github.io/skills-of-typora/</loc>
     
-    <lastmod>2020-09-22T08:03:33.123Z</lastmod>
+    <lastmod>2021-03-04T08:10:28.224Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://lyall2020.github.io/VsCode-Building-Python-environment/</loc>
+    
+    <lastmod>2021-03-04T08:10:28.224Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://lyall2020.github.io/read-table-from-words/</loc>
+    
+    <lastmod>2021-03-04T08:10:28.224Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://lyall2020.github.io/oa-develop-env/</loc>
+    
+    <lastmod>2021-03-04T08:10:28.116Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://lyall2020.github.io/logstash-start/</loc>
     
-    <lastmod>2020-09-22T06:54:04.553Z</lastmod>
+    <lastmod>2021-03-04T08:10:28.080Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://lyall2020.github.io/skills-of-typora/</loc>
+    <loc>http://lyall2020.github.io/logstash-data-to-es/</loc>
     
-    <lastmod>2020-09-04T05:40:55.072Z</lastmod>
+    <lastmod>2021-03-04T08:10:27.912Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://lyall2020.github.io/Hexo-builds-personal-blog/</loc>
     
-    <lastmod>2020-09-03T14:19:59.372Z</lastmod>
+    <lastmod>2021-03-04T08:10:27.912Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://lyall2020.github.io/analysis-develop-report/</loc>
+    
+    <lastmod>2021-03-04T08:10:27.912Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://lyall2020.github.io/Elasticsearch-from-introduction-to-abandonment/</loc>
+    
+    <lastmod>2021-03-04T08:10:27.912Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://lyall2020.github.io/analysis-develop-data/</loc>
+    
+    <lastmod>2021-03-04T08:10:27.908Z</lastmod>
     
   </url>
   
@@ -40,48 +82,6 @@
     <loc>http://lyall2020.github.io/categories/index.html</loc>
     
     <lastmod>2020-09-02T12:53:29.897Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://lyall2020.github.io/Elasticsearch-from-introduction-to-abandonment/</loc>
-    
-    <lastmod>2020-08-31T08:30:26.595Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://lyall2020.github.io/read-table-from-words/</loc>
-    
-    <lastmod>2020-08-03T08:39:51.369Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://lyall2020.github.io/VsCode-Building-Python-environment/</loc>
-    
-    <lastmod>2020-07-30T09:26:45.184Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://lyall2020.github.io/oa-develop-env/</loc>
-    
-    <lastmod>2020-03-07T09:23:52.503Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://lyall2020.github.io/analysis-develop-data/</loc>
-    
-    <lastmod>2020-01-14T01:16:22.424Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://lyall2020.github.io/analysis-develop-report/</loc>
-    
-    <lastmod>2020-01-13T02:32:10.404Z</lastmod>
     
   </url>
   

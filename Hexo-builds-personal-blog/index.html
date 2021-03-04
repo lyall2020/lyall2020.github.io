@@ -165,7 +165,7 @@ Node.j...">
   <div class="container" id="container">
     <article class="article">
   <section class="head">
-  <img   class="lazyload" data-original="http://qiniu.hongjp1018.cn/hexo-index.PNG" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <img   class="lazyload" data-original="https://www.hongjp1018.cn/hexo-index.PNG" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
   <div class="head-mask">
     <h1 class="head-title">Hexo搭建个人博客</h1>
     <div class="head-info">
@@ -203,21 +203,21 @@ Node.j...">
 <p>启动hexo服务</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">hexo server<br>或 hexo s<br></code></pre></td></tr></table></figure>
 
-<p><img   class="lazyload" data-original="http://qiniu.hongjp1018.cn/hexo-run.PNG" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="运行结果"></p>
+<p><img   class="lazyload" data-original="https://www.hongjp1018.cn/hexo-run.PNG" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="运行结果"></p>
 <h2 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h2><p>部署至GitHub Pages</p>
 <p>1、新建仓库</p>
 <p>仓库名称：用户名.github.io</p>
 <p>设置为公共仓库</p>
-<p><img   class="lazyload" data-original="http://qiniu.hongjp1018.cn/hexo-create-repository.PNG" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="新建仓库"></p>
+<p><img   class="lazyload" data-original="https://www.hongjp1018.cn/hexo-create-repository.PNG" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="新建仓库"></p>
 <p>2、生成私钥和公钥</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">ssh-keygen -t rsa -C <span class="hljs-string">"email"</span><br></code></pre></td></tr></table></figure>
 
 <p>email是GitHub用户的注册邮箱</p>
-<p><img   class="lazyload" data-original="http://qiniu.hongjp1018.cn/hexo-ssh.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="私钥位置"></p>
+<p><img   class="lazyload" data-original="https://www.hongjp1018.cn/hexo-ssh.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="私钥位置"></p>
 <p><code>id_rsa</code>是私钥，<code>id_rsa.pub</code>是公钥</p>
 <p>3、创建SSH key</p>
 <p>登录GitHub，点击头像，选择setting，选择SSH and GPG keys，新建一个SSH key，Title随便定义，将公钥中内容复制到Key中即可。</p>
-<p><img   class="lazyload" data-original="http://qiniu.hongjp1018.cn/hexo-create-ssh.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="创建ssh"></p>
+<p><img   class="lazyload" data-original="https://www.hongjp1018.cn/hexo-create-ssh.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="创建ssh"></p>
 <p>验证是否创建成功</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">ssh -T git@github.com<br></code></pre></td></tr></table></figure>
 

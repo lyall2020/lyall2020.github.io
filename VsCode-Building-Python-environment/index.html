@@ -183,29 +183,29 @@
 </ul>
 <h2 id="安装VS-Code和Python拓展"><a href="#安装VS-Code和Python拓展" class="headerlink" title="安装VS Code和Python拓展"></a>安装VS Code和Python拓展</h2><p>1、安装<a href="https://code.visualstudio.com/" target="_blank" rel="noopener">VS Code</a><br>2、从Visual Studio Marketplace 安装VS Code的<a href="https://marketplace.visualstudio.com/items?itemName=ms-python.python" target="_blank" rel="noopener">Python扩展</a></p>
 <p><strong>Ctrl+Shift+X</strong>搜索<strong>python</strong></p>
-<p><img   class="lazyload" data-original="http://qiniu.hongjp1018.cn/image-20200730095152232.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20200730095152232"></p>
+<p><img   class="lazyload" data-original="https://www.hongjp1018.cn/image-20200730095152232.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20200730095152232"></p>
 <h2 id="安装Python"><a href="#安装Python" class="headerlink" title="安装Python"></a>安装Python</h2><p><strong>Windows</strong></p>
 <p>从<a href="https://www.python.org/downloads/" target="_blank" rel="noopener">python.org</a>安装<a href="https://www.python.org/ftp/python/3.8.5/python-3.8.5-amd64.exe" target="_blank" rel="noopener">Python3.8</a></p>
 <h2 id="验证Python安装情况"><a href="#验证Python安装情况" class="headerlink" title="验证Python安装情况"></a>验证Python安装情况</h2><p><strong>Windows</strong></p>
 <blockquote>
 <p>py –version</p>
 </blockquote>
-<p><img   class="lazyload" data-original="http://qiniu.hongjp1018.cn/image-20200730095522862.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20200730095522862"></p>
+<p><img   class="lazyload" data-original="https://www.hongjp1018.cn/image-20200730095522862.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20200730095522862"></p>
 <h1 id="快速开始"><a href="#快速开始" class="headerlink" title="快速开始"></a>快速开始</h1><h2 id="1、创建项目目录"><a href="#1、创建项目目录" class="headerlink" title="1、创建项目目录"></a>1、创建项目目录</h2><p>在E:\project\python下新建目录BigPoom</p>
 <h2 id="2、在指定项目中创建python虚拟环境"><a href="#2、在指定项目中创建python虚拟环境" class="headerlink" title="2、在指定项目中创建python虚拟环境"></a>2、在指定项目中创建python虚拟环境</h2><p>CMD运行下述代码</p>
 <figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cmd">&gt; E:<br>&gt; <span class="hljs-built_in">cd</span> E:\project\python\BigPoom<br>&gt; virtualenv .venv -p "D:\Program Files\python3.<span class="hljs-number">8</span>\python.exe"<br></code></pre></td></tr></table></figure>
 
-<p><img   class="lazyload" data-original="http://qiniu.hongjp1018.cn/image-20200730100501742.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20200730100501742"></p>
-<h2 id="3、vs-code打开项目"><a href="#3、vs-code打开项目" class="headerlink" title="3、vs code打开项目"></a>3、vs code打开项目</h2><p><img   class="lazyload" data-original="http://qiniu.hongjp1018.cn/image-20200730100532114.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20200730100532114"></p>
+<p><img   class="lazyload" data-original="https://www.hongjp1018.cn/image-20200730100501742.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20200730100501742"></p>
+<h2 id="3、vs-code打开项目"><a href="#3、vs-code打开项目" class="headerlink" title="3、vs code打开项目"></a>3、vs code打开项目</h2><p><img   class="lazyload" data-original="https://www.hongjp1018.cn/image-20200730100532114.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20200730100532114"></p>
 <h2 id="4、配置Python解释器，生成setting-json配置文件"><a href="#4、配置Python解释器，生成setting-json配置文件" class="headerlink" title="4、配置Python解释器，生成setting.json配置文件"></a>4、配置Python解释器，生成setting.json配置文件</h2><p><strong>Ctrl+Shift+P</strong>（查看-&gt;命令面板），输入<strong>interpreter</strong>，单击筛选出来的结果“<strong>Python: Select Interpreter</strong>“，选择已经安装Python解释器或虚拟环境</p>
-<p><img   class="lazyload" data-original="http://qiniu.hongjp1018.cn/image-20200730150403623.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20200730150403623"></p>
-<p><img   class="lazyload" data-original="http://qiniu.hongjp1018.cn/image-20200730151302705.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20200730151302705"></p>
+<p><img   class="lazyload" data-original="https://www.hongjp1018.cn/image-20200730150403623.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20200730150403623"></p>
+<p><img   class="lazyload" data-original="https://www.hongjp1018.cn/image-20200730151302705.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20200730151302705"></p>
 <h2 id="5、生成luanch-json配置文件"><a href="#5、生成luanch-json配置文件" class="headerlink" title="5、生成luanch.json配置文件"></a>5、生成luanch.json配置文件</h2><p>运行-&gt;添加配置-&gt;选择Python-&gt;选择Python File</p>
-<p><img   class="lazyload" data-original="http://qiniu.hongjp1018.cn/image-20200730151246145.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20200730151246145"></p>
-<h2 id="6、脚本开发"><a href="#6、脚本开发" class="headerlink" title="6、脚本开发"></a>6、脚本开发</h2><p><img   class="lazyload" data-original="http://qiniu.hongjp1018.cn/image-20200730151218613.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20200730151218613"></p>
+<p><img   class="lazyload" data-original="https://www.hongjp1018.cn/image-20200730151246145.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20200730151246145"></p>
+<h2 id="6、脚本开发"><a href="#6、脚本开发" class="headerlink" title="6、脚本开发"></a>6、脚本开发</h2><p><img   class="lazyload" data-original="https://www.hongjp1018.cn/image-20200730151218613.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20200730151218613"></p>
 <h1 id="常用工具"><a href="#常用工具" class="headerlink" title="常用工具"></a>常用工具</h1><h2 id="包管理工具-pip"><a href="#包管理工具-pip" class="headerlink" title="包管理工具 pip"></a>包管理工具 pip</h2><p>pip是一个现代的，通用的Python包管理工具，提供了对Python包的查找、下载、安装、卸载等功能。</p>
 <p><strong>添加环境变量</strong></p>
-<p><img   class="lazyload" data-original="http://qiniu.hongjp1018.cn/image-20200730151802814.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20200730151802814"></p>
+<p><img   class="lazyload" data-original="https://www.hongjp1018.cn/image-20200730151802814.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20200730151802814"></p>
 <p><strong>查看pip版本</strong></p>
 <blockquote>
 <p>pip show pip</p>
@@ -245,7 +245,7 @@
 <p><strong>查看帮助手册</strong></p>
 <blockquote>
 <p>pip –help</p>
-<p><img   class="lazyload" data-original="http://qiniu.hongjp1018.cn/image-20200730152531313.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20200730152531313"></p>
+<p><img   class="lazyload" data-original="https://www.hongjp1018.cn/image-20200730152531313.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20200730152531313"></p>
 </blockquote>
 <h2 id="虚拟环境-virtualenv"><a href="#虚拟环境-virtualenv" class="headerlink" title="虚拟环境 virtualenv"></a>虚拟环境 virtualenv</h2><p>创建一个专属于项目的独立的python环境，包含Python可执行文件以及pip库，但是不包含第三方包</p>
 <p><strong>安装</strong></p>
@@ -270,7 +270,7 @@
 <blockquote>
 <p>“python.linting.flake8Enabled”: true</p>
 </blockquote>
-<p><img   class="lazyload" data-original="http://qiniu.hongjp1018.cn/image-20200730162637199.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20200730162637199"></p>
+<p><img   class="lazyload" data-original="https://www.hongjp1018.cn/image-20200730162637199.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20200730162637199"></p>
 <h2 id="自动格式化代码-yapf"><a href="#自动格式化代码-yapf" class="headerlink" title="自动格式化代码 yapf"></a>自动格式化代码 yapf</h2><p>Google 开发的一个用来格式化 Python 代码的工具。</p>
 <p><strong>安装</strong></p>
 <blockquote>
@@ -285,7 +285,7 @@
 <blockquote>
 <p>Alt+Shift+F</p>
 </blockquote>
-<h2 id="代码提示工具-kite"><a href="#代码提示工具-kite" class="headerlink" title="代码提示工具 kite"></a>代码提示工具 <a href="https://kite.com" target="_blank" rel="noopener">kite</a></h2><p><img   class="lazyload" data-original="http://qiniu.hongjp1018.cn/image-20200730171434273.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20200730171434273"></p>
+<h2 id="代码提示工具-kite"><a href="#代码提示工具-kite" class="headerlink" title="代码提示工具 kite"></a>代码提示工具 <a href="https://kite.com" target="_blank" rel="noopener">kite</a></h2><p><img   class="lazyload" data-original="https://www.hongjp1018.cn/image-20200730171434273.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20200730171434273"></p>
 <h1 id="通用配置"><a href="#通用配置" class="headerlink" title="通用配置"></a>通用配置</h1><p>修改settings.json</p>
 <h2 id="自动保存"><a href="#自动保存" class="headerlink" title="自动保存"></a>自动保存</h2><blockquote>
 <p>“files.autoSave”: “afterDelay” </p>
